@@ -1,7 +1,5 @@
-"server-only";
-
-import { cert, getApps, initializeApp } from "firebase-admin/app";
-import { getFirestore } from "firebase-admin/firestore";
+import "server-only";
+import admin from "firebase-admin";
 
 const projectId = process.env.FIREBASE_ADMIN_PROJECT_ID;
 const clientEmail = process.env.FIREBASE_ADMIN_CLIENT_EMAIL;
@@ -11,9 +9,9 @@ if (!projectId || !clientEmail || !privateKey) {
   throw new Error("Missing Firebase Admin environment variables.");
 }
 
-if (!getApps().length) {
-  initializeApp({
-    credential: cert({
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert({
       projectId,
       clientEmail,
       privateKey,
@@ -21,4 +19,5 @@ if (!getApps().length) {
   });
 }
 
-export const adminDb = getFirestore();
+export const adminDb = admin.firestore();
+export const FieldValue = admin.firestore.FieldValue;
