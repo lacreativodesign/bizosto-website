@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { adminDb } from "@/lib/firebaseAdmin";
-import { FieldValue } from "firebase-admin/firestore";
+const ERP_INGEST_ENDPOINT = "https://dashboard.lacreativo.com/api/ingest/lead";
+const ERP_TENANT_ID = "bizosto";
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 10;
@@ -51,41 +51,78 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const fullName = normalizeField(body.fullName);
+    const name = normalizeField(body.name);
     const email = normalizeField(body.email).toLowerCase();
+    const company = normalizeField(body.company);
+    const message = normalizeField(body.message);
+    const page = normalizeField(body.page);
     const honeypot = normalizeField(body.website);
+    const source = normalizeField(body.source) || "bizosto-website";
 
     if (honeypot) {
       return NextResponse.json({ ok: false, error: "Invalid submission." }, { status: 400 });
     }
 
-    if (!fullName) {
-      return NextResponse.json({ ok: false, error: "Full name is required." }, { status: 400 });
+    if (!name) {
+      return NextResponse.json({ ok: false, error: "Name is required." }, { status: 400 });
     }
 
     if (!email || !emailRegex.test(email)) {
       return NextResponse.json({ ok: false, error: "Valid email is required." }, { status: 400 });
     }
 
+    if (!company) {
+      return NextResponse.json({ ok: false, error: "Company is required." }, { status: 400 });
+    }
+
+    if (!message) {
+      return NextResponse.json({ ok: false, error: "Message is required." }, { status: 400 });
+    }
+
+    if (!page) {
+      return NextResponse.json({ ok: false, error: "Page is required." }, { status: 400 });
+    }
+
+    const apiKey = process.env.NEXT_PUBLIC_ERP_INGEST_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ ok: false, error: "Server misconfiguration." }, { status: 500 });
+    }
+
     const payload = {
-      fullName,
+      source,
+      page,
+      name,
       email,
-      phone: optionalField(body.phone),
-      company: optionalField(body.company),
-      teamSize: optionalField(body.teamSize),
-      serviceType: optionalField(body.serviceType),
-      message: optionalField(body.message),
-      source: "website",
-      status: "new",
-      ownerRole: "sales_manager",
-      assignedTo: null,
-      createdAt: FieldValue.serverTimestamp(),
-      updatedAt: FieldValue.serverTimestamp(),
+      company,
+      message,
+      meta: {
+        userAgent: optionalField(body.meta?.userAgent) ?? optionalField(request.headers.get("user-agent")),
+        referrer: optionalField(body.meta?.referrer),
+        utm: body.meta?.utm ?? undefined,
+        phone: optionalField(body.meta?.phone),
+        teamSize: optionalField(body.meta?.teamSize),
+        serviceType: optionalField(body.meta?.serviceType),
+      },
     };
 
-    const docRef = await adminDb.collection("leads").add(payload);
+    const erpResponse = await fetch(ERP_INGEST_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-tenant-id": ERP_TENANT_ID,
+        "x-api-key": apiKey,
+      },
+      body: JSON.stringify(payload),
+    });
 
-    return NextResponse.json({ ok: true, id: docRef.id }, { status: 200 });
+    if (!erpResponse.ok) {
+      return NextResponse.json(
+        { ok: false, error: "Unable to submit right now. Please try again." },
+        { status: erpResponse.status }
+      );
+    }
+
+    return NextResponse.json({ ok: true }, { status: 200 });
   } catch (error) {
     console.error("Lead submission error", error);
     return NextResponse.json({ ok: false, error: "Server error" }, { status: 500 });
