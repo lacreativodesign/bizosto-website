@@ -1,9 +1,8 @@
 "use client";
 
 import type { ChangeEvent, FormEvent } from "react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Button from "@/components/Button";
-import Card from "@/components/Card";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 
@@ -14,7 +13,6 @@ interface FormState {
   company: string;
   teamSize: string;
   serviceType: string;
-  message: string;
   website: string;
 }
 
@@ -25,29 +23,41 @@ const initialState: FormState = {
   company: "",
   teamSize: "",
   serviceType: "",
-  message: "",
   website: "",
 };
 
-export default function ContactForm() {
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export default function HeroLeadForm() {
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<Partial<FormState>>({});
   const [submitting, setSubmitting] = useState(false);
-  const [showToast, setShowToast] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
+
+  const utmParams = useMemo(() => {
+    if (typeof window === "undefined") return {};
+    const params = new URLSearchParams(window.location.search);
+    return ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].reduce<
+      Record<string, string>
+    >((acc, key) => {
+      const value = params.get(key);
+      if (value) acc[key] = value;
+      return acc;
+    }, {});
+  }, []);
 
   const validate = () => {
     const nextErrors: Partial<FormState> = {};
     if (!form.fullName.trim()) nextErrors.fullName = "Full name is required.";
     if (!form.email.trim()) {
-      nextErrors.email = "Email is required.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      nextErrors.email = "Work email is required.";
+    } else if (!emailRegex.test(form.email)) {
       nextErrors.email = "Enter a valid email.";
     }
     if (!form.company.trim()) nextErrors.company = "Company is required.";
+    if (!form.serviceType.trim()) nextErrors.serviceType = "Select a nature of business.";
     if (!form.teamSize.trim()) nextErrors.teamSize = "Select a team size.";
-    if (!form.serviceType.trim()) nextErrors.serviceType = "Select a service type.";
-    if (!form.message.trim()) nextErrors.message = "Message is required.";
 
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -60,26 +70,17 @@ export default function ContactForm() {
     setApiError(null);
 
     try {
-      const utmParams = new URLSearchParams(window.location.search);
-      const utm = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].reduce<
-        Record<string, string>
-      >((acc, key) => {
-        const value = utmParams.get(key);
-        if (value) acc[key] = value;
-        return acc;
-      }, {});
-
       const payload = {
         source: "bizosto-website",
         page: window.location.pathname,
         name: form.fullName,
         email: form.email,
         company: form.company,
-        message: form.message,
+        message: `Homepage lead capture. ${form.serviceType} · Team size ${form.teamSize}.`,
         meta: {
           userAgent: navigator.userAgent,
           referrer: document.referrer || undefined,
-          utm: Object.keys(utm).length > 0 ? utm : undefined,
+          utm: Object.keys(utmParams).length > 0 ? utmParams : undefined,
           phone: form.phone || undefined,
           teamSize: form.teamSize || undefined,
           serviceType: form.serviceType || undefined,
@@ -104,9 +105,9 @@ export default function ContactForm() {
         return;
       }
 
-      setShowToast(true);
+      setSuccess(true);
       setForm(initialState);
-      window.setTimeout(() => setShowToast(false), 3000);
+      window.setTimeout(() => setSuccess(false), 3000);
     } catch (error) {
       setApiError("Unable to submit right now. Please try again.");
     } finally {
@@ -115,47 +116,59 @@ export default function ContactForm() {
   };
 
   const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
-    <div className="space-y-4">
-      {showToast ? (
-        <div className="rounded-md border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-foreground">
-          Thanks for reaching out. We will get back to you shortly.
+    <div className="space-y-4 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
+      <div className="space-y-1">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+          Schedule a Demo
+        </p>
+        <h3 className="text-2xl font-semibold text-foreground">See Bizosto ERP in action</h3>
+        <p className="text-sm text-muted-foreground">
+          Share a few details and our team will reach out with a tailored walkthrough.
+        </p>
+      </div>
+      {success ? (
+        <div className="rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-foreground">
+          Thanks! We will follow up shortly with next steps.
         </div>
       ) : null}
       {apiError ? (
-        <div className="rounded-md border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-foreground">
+        <div className="rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-foreground">
           {apiError}
         </div>
       ) : null}
-      <Card>
-        <form className="grid gap-4 md:grid-cols-2" onSubmit={handleSubmit} noValidate>
-          <div className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
-            <label htmlFor="website">Website</label>
-            <input
-              id="website"
-              name="website"
-              value={form.website}
-              onChange={handleChange}
-              tabIndex={-1}
-              autoComplete="off"
-            />
-          </div>
+      <form className="grid gap-4" onSubmit={handleSubmit} noValidate>
+        <div
+          className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+          aria-hidden="true"
+        >
+          <label htmlFor="website">Website</label>
+          <input
+            id="website"
+            name="website"
+            value={form.website}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="fullName">
-              Your name
+              Full name
             </label>
             <Input
               id="fullName"
               name="fullName"
               value={form.fullName}
               onChange={handleChange}
-              placeholder="Who should we address?"
+              placeholder="Your name"
               hasError={Boolean(errors.fullName)}
               aria-invalid={Boolean(errors.fullName)}
             />
@@ -163,7 +176,7 @@ export default function ContactForm() {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="email">
-              Work email for demo details
+              Work email
             </label>
             <Input
               id="email"
@@ -171,19 +184,22 @@ export default function ContactForm() {
               type="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="you@yourcompany.com"
+              placeholder="you@company.com"
               hasError={Boolean(errors.email)}
               aria-invalid={Boolean(errors.email)}
             />
             {errors.email ? <p className="text-xs text-primary">{errors.email}</p> : null}
           </div>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="phone">
-              Best phone for scheduling (optional)
+              Phone
             </label>
             <Input
               id="phone"
               name="phone"
+              type="tel"
               value={form.phone}
               onChange={handleChange}
               placeholder="+1 (555) 000-0000"
@@ -191,7 +207,7 @@ export default function ContactForm() {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="company">
-              Company or agency name
+              Company
             </label>
             <Input
               id="company"
@@ -204,9 +220,39 @@ export default function ContactForm() {
             />
             {errors.company ? <p className="text-xs text-primary">{errors.company}</p> : null}
           </div>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-foreground" htmlFor="serviceType">
+              Nature of business
+            </label>
+            <Select
+              id="serviceType"
+              name="serviceType"
+              value={form.serviceType}
+              onChange={handleChange}
+              hasError={Boolean(errors.serviceType)}
+              aria-invalid={Boolean(errors.serviceType)}
+            >
+              <option value="">Select nature of business</option>
+              <option value="Digital Agency">Digital Agency</option>
+              <option value="SaaS">SaaS</option>
+              <option value="Ecommerce">Ecommerce</option>
+              <option value="Consulting">Consulting</option>
+              <option value="Real Estate">Real Estate</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Legal">Legal</option>
+              <option value="Logistics">Logistics</option>
+              <option value="Education">Education</option>
+              <option value="Other">Other</option>
+            </Select>
+            {errors.serviceType ? (
+              <p className="text-xs text-primary">{errors.serviceType}</p>
+            ) : null}
+          </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="teamSize">
-              Team size to support
+              Team size
             </label>
             <Select
               id="teamSize"
@@ -220,59 +266,21 @@ export default function ContactForm() {
               <option value="1-10">1-10</option>
               <option value="11-25">11-25</option>
               <option value="26-50">26-50</option>
-              <option value="51+">51+</option>
+              <option value="51-75">51-75</option>
+              <option value="76-100">76-100</option>
             </Select>
             {errors.teamSize ? <p className="text-xs text-primary">{errors.teamSize}</p> : null}
           </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-semibold text-foreground" htmlFor="serviceType">
-              Business model
-            </label>
-            <Select
-              id="serviceType"
-              name="serviceType"
-              value={form.serviceType}
-              onChange={handleChange}
-              hasError={Boolean(errors.serviceType)}
-              aria-invalid={Boolean(errors.serviceType)}
-            >
-              <option value="">Select business model</option>
-              <option value="agency">Agency</option>
-              <option value="service-provider">Service provider</option>
-              <option value="internal-ops">Internal operations team</option>
-              <option value="consultancy">Consultancy</option>
-              <option value="other">Other</option>
-            </Select>
-            {errors.serviceType ? <p className="text-xs text-primary">{errors.serviceType}</p> : null}
-          </div>
-          <div className="flex flex-col gap-1 md:col-span-2">
-            <label className="text-sm font-semibold text-foreground" htmlFor="message">
-              Workflow goals for the demo
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              rows={4}
-              className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground shadow-[inset_0_1px_2px_rgba(15,23,42,0.08)] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              placeholder="Share the workflows, clients, or approvals you want to see."
-            />
-            {errors.message ? <p className="text-xs text-primary">{errors.message}</p> : null}
-          </div>
-          <div className="md:col-span-2">
-            <Button
-              type="submit"
-              className={`w-full ${submitting ? "opacity-60 pointer-events-none" : ""}`}
-              variant="primary"
-              aria-disabled={submitting}
-            >
-              {submitting ? "Submitting..." : "Request My Demo"}
-            </Button>
-            <p className="mt-2 text-xs text-muted-foreground">We typically respond within 24 hours.</p>
-          </div>
-        </form>
-      </Card>
+        </div>
+        <div>
+          <Button type="submit" className="w-full" disabled={submitting}>
+            {submitting ? "Submitting..." : "Request a Demo"}
+          </Button>
+          <p className="mt-2 text-xs text-muted-foreground">
+            We respond within one business day with next steps.
+          </p>
+        </div>
+      </form>
     </div>
   );
 }
