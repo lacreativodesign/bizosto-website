@@ -1,11 +1,13 @@
+import type { Metadata } from "next";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 
-export const metadata = {
-  title: "Product",
-  description: "Explore Bizosto modules from pipeline to reporting in one ERP master UI.",
+export const metadata: Metadata = {
+  title: "Agency ERP Platform",
+  description:
+    "Explore the Bizosto Agency ERP and Business Operating System connecting pipeline, delivery, finance, and reporting.",
 };
 
 const modules = [

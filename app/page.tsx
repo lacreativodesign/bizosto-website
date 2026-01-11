@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import FeatureGrid from "@/components/FeatureGrid";
@@ -7,10 +8,13 @@ import FAQAccordion from "@/components/FAQAccordion";
 import TestimonialCard from "@/components/TestimonialCard";
 import Button from "@/components/Button";
 
-export const metadata = {
-  title: "Home",
+export const metadata: Metadata = {
+  title: "Business Operating System",
   description:
-    "Bizosto is a business OS that turns chaos into process, automation, and accountability for service providers.",
+    "Bizosto is the Business Operating System and service business management software that unifies clients, projects, sales, finance, and teams.",
+  alternates: {
+    canonical: "https://www.bizosto.com/",
+  },
 };
 
 const outcomes = [
