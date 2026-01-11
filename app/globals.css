@@ -1,29 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #f4f7fb;
+  --foreground: #0b1220;
   --surface: #ffffff;
-  --surface-muted: #f1f5f9;
+  --surface-muted: #f1f4f9;
+  --surface-strong: #e7edf6;
   --card: #ffffff;
-  --border: #e2e8f0;
-  --primary: #2563eb;
-  --primary-foreground: #f8fafc;
-  --muted-foreground: #475569;
-  --accent: #1e293b;
+  --border: #d6dde8;
+  --border-subtle: #e3e9f2;
+  --border-strong: #c2cada;
+  --primary: #2b6cff;
+  --primary-hover: #1f5be0;
+  --primary-foreground: #f8fbff;
+  --muted-foreground: #566378;
+  --accent: #111827;
+  --ring: rgba(43, 108, 255, 0.35);
+  --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.12);
+  --shadow-card-hover: 0 22px 50px rgba(15, 23, 42, 0.18);
 }
 
 .dark {
-  --background: #0b1120;
-  --foreground: #e2e8f0;
-  --surface: #0f172a;
-  --surface-muted: #111827;
+  --background: #0a0f1a;
+  --foreground: #e4e9f2;
+  --surface: #0f1624;
+  --surface-muted: #121b2d;
+  --surface-strong: #182338;
   --card: #0f172a;
-  --border: #1f2937;
-  --primary: #3b82f6;
-  --primary-foreground: #0b1120;
-  --muted-foreground: #94a3b8;
-  --accent: #cbd5f5;
+  --border: #1f2a3a;
+  --border-subtle: #233145;
+  --border-strong: #2b3a52;
+  --primary: #4f8bff;
+  --primary-hover: #3f7df4;
+  --primary-foreground: #0b1220;
+  --muted-foreground: #9aa6b6;
+  --accent: #d2def5;
+  --ring: rgba(79, 139, 255, 0.4);
+  --shadow-card: 0 20px 50px rgba(3, 8, 20, 0.6);
+  --shadow-card-hover: 0 28px 60px rgba(3, 8, 20, 0.7);
 }
 
 @theme inline {
@@ -31,12 +45,19 @@
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
+  --color-surface-strong: var(--surface-strong);
   --color-card: var(--card);
   --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
+  --color-ring: var(--ring);
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

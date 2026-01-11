@@ -3,9 +3,8 @@ import Container from "@/components/Container";
 import LogoMark from "@/components/LogoMark";
 
 const footerLinks = [
-  { href: "/privacy", label: "Privacy" },
-  { href: "/terms", label: "Terms" },
-  { href: "/contact", label: "Contact" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms & Conditions" },
 ];
 
 export default function Footer() {
@@ -21,6 +20,9 @@ export default function Footer() {
           ))}
         </div>
       </Container>
+      <div className="border-t border-border-subtle py-4 text-center text-xs text-muted-foreground">
+        Powered by LA CREATIVO GROUP, LLC
+      </div>
     </footer>
   );
 }
