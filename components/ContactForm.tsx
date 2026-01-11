@@ -227,9 +227,14 @@ export default function ContactForm() {
             {errors.message ? <p className="text-xs text-primary">{errors.message}</p> : null}
           </div>
           <div className="md:col-span-2">
-            <Button type="submit" className="w-full" variant="primary" disabled={submitting}>
-              {submitting ? "Submitting..." : "Submit request"}
-            </Button>
+            <Button
+  type="submit"
+  className={`w-full ${submitting ? "opacity-60 pointer-events-none" : ""}`}
+  variant="primary"
+  aria-disabled={submitting}
+>
+  {submitting ? "Submitting..." : "Submit request"}
+</Button>
           </div>
         </form>
       </Card>
