@@ -1,10 +1,12 @@
+import type { Metadata } from "next";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
 
-export const metadata = {
-  title: "How it Works",
-  description: "Discover the Bizosto 3-step flow from lead capture to delivery and reporting.",
+export const metadata: Metadata = {
+  title: "How It Works",
+  description:
+    "See how Bizosto service business management software turns lead capture into delivery, billing, and reporting.",
 };
 
 const steps = [

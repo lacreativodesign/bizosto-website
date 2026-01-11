@@ -1,11 +1,16 @@
+import type { Metadata } from "next";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import ContactForm from "@/components/ContactForm";
 import Card from "@/components/Card";
 
-export const metadata = {
-  title: "Contact",
-  description: "Contact Bizosto to align on workflows, integrations, and implementation scope.",
+export const metadata: Metadata = {
+  title: "Contact Bizosto",
+  description:
+    "Contact Bizosto to discuss Agency ERP needs, service business management software, and implementation scope.",
+  alternates: {
+    canonical: "https://www.bizosto.com/contact",
+  },
 };
 
 export default function ContactPage() {

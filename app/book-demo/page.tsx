@@ -1,11 +1,13 @@
+import type { Metadata } from "next";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Book a Demo",
-  description: "Schedule a Bizosto ERP demo and align your workflow rollout.",
+  description:
+    "Schedule a demo of the Bizosto Business Operating System to plan your rollout and module scope.",
 };
 
 export default function BookDemoPage() {

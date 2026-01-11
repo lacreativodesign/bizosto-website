@@ -1,12 +1,17 @@
+import type { Metadata } from "next";
 import Badge from "@/components/Badge";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 
-export const metadata = {
-  title: "Pricing",
-  description: "Hybrid pricing tiers for Bizosto ERP with scope finalized in your demo.",
+export const metadata: Metadata = {
+  title: "Agency ERP Pricing",
+  description:
+    "Review Bizosto Agency ERP pricing for service business management software, with scope finalized during your demo.",
+  alternates: {
+    canonical: "https://www.bizosto.com/pricing",
+  },
 };
 
 const tiers = [
