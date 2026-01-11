@@ -13,6 +13,7 @@ interface FormState {
   teamSize: string;
   serviceType: string;
   message: string;
+  website: string;
 }
 
 const initialState: FormState = {
@@ -23,6 +24,7 @@ const initialState: FormState = {
   teamSize: "",
   serviceType: "",
   message: "",
+  website: "",
 };
 
 export default function ContactForm() {
@@ -30,6 +32,7 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<Partial<FormState>>({});
   const [submitting, setSubmitting] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
 
   const validate = () => {
     const nextErrors: Partial<FormState> = {};
@@ -52,14 +55,34 @@ export default function ContactForm() {
     event.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
+    setApiError(null);
 
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
 
-    setSubmitting(false);
-    setShowToast(true);
-    setForm(initialState);
+      const data = (await response.json().catch(() => null)) as
+        | { ok: boolean; error?: string }
+        | null;
 
-    window.setTimeout(() => setShowToast(false), 3000);
+      if (!response.ok || !data?.ok) {
+        setApiError(data?.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      setShowToast(true);
+      setForm(initialState);
+      window.setTimeout(() => setShowToast(false), 3000);
+    } catch (error) {
+      setApiError("Unable to submit right now. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -76,8 +99,24 @@ export default function ContactForm() {
           Thanks for reaching out. We will get back to you shortly.
         </div>
       ) : null}
+      {apiError ? (
+        <div className="rounded-md border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-foreground">
+          {apiError}
+        </div>
+      ) : null}
       <Card>
         <form className="grid gap-4 md:grid-cols-2" onSubmit={handleSubmit} noValidate>
+          <div className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input
+              id="website"
+              name="website"
+              value={form.website}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="fullName">
               Full name
@@ -188,7 +227,7 @@ export default function ContactForm() {
             {errors.message ? <p className="text-xs text-primary">{errors.message}</p> : null}
           </div>
           <div className="md:col-span-2">
-            <Button type="submit" className="w-full" variant="primary">
+            <Button type="submit" className="w-full" variant="primary" disabled={submitting}>
               {submitting ? "Submitting..." : "Submit request"}
             </Button>
           </div>
