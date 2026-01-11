@@ -58,12 +58,39 @@ export default function ContactForm() {
     setApiError(null);
 
     try {
+      const utmParams = new URLSearchParams(window.location.search);
+      const utm = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].reduce<
+        Record<string, string>
+      >((acc, key) => {
+        const value = utmParams.get(key);
+        if (value) acc[key] = value;
+        return acc;
+      }, {});
+
+      const payload = {
+        source: "bizosto-website",
+        page: window.location.pathname,
+        name: form.fullName,
+        email: form.email,
+        company: form.company,
+        message: form.message,
+        meta: {
+          userAgent: navigator.userAgent,
+          referrer: document.referrer || undefined,
+          utm: Object.keys(utm).length > 0 ? utm : undefined,
+          phone: form.phone || undefined,
+          teamSize: form.teamSize || undefined,
+          serviceType: form.serviceType || undefined,
+        },
+        website: form.website,
+      };
+
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       const data = (await response.json().catch(() => null)) as
@@ -228,13 +255,13 @@ export default function ContactForm() {
           </div>
           <div className="md:col-span-2">
             <Button
-  type="submit"
-  className={`w-full ${submitting ? "opacity-60 pointer-events-none" : ""}`}
-  variant="primary"
-  aria-disabled={submitting}
->
-  {submitting ? "Submitting..." : "Submit request"}
-</Button>
+              type="submit"
+              className={`w-full ${submitting ? "opacity-60 pointer-events-none" : ""}`}
+              variant="primary"
+              aria-disabled={submitting}
+            >
+              {submitting ? "Submitting..." : "Submit request"}
+            </Button>
           </div>
         </form>
       </Card>
