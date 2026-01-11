@@ -84,27 +84,29 @@ const faqs = [
 
 export default function HomePage() {
   return (
-    <div className="space-y-20 pb-20 pt-12">
-      <Container className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-        <div className="space-y-6">
+    <div className="space-y-24 pb-24 pt-14">
+      <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div className="space-y-7">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            Business OS for service teams
+            Bizosto
           </p>
-          <div className="space-y-4">
-            <h1 className="text-3xl font-semibold leading-tight text-foreground sm:text-4xl lg:text-5xl">
-              Turn chaos into process, automation, and accountability.
+          <div className="space-y-5">
+            <h1 className="text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+              The operating system for modern service businesses.
             </h1>
-            <p className="text-base text-muted-foreground sm:text-lg">
-              Bizosto unifies lead capture, delivery, finance, and reporting in a single ERP built for
-              agencies, consultancies, and professional services.
+            <p className="max-w-xl text-base text-muted-foreground sm:text-lg">
+              Manage clients, projects, sales, finance, and teams — in one system.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button href="/book-demo">Book a Demo</Button>
-            <Button href="/product" variant="outline">
-              Explore the product
+            <Button href="/how-it-works" variant="outline">
+              See How It Works
             </Button>
           </div>
+          <p className="text-sm text-muted-foreground">
+            Built by operators. Designed for teams scaling beyond spreadsheets.
+          </p>
           <div className="grid gap-4 text-sm text-muted-foreground sm:grid-cols-3">
             <div className="space-y-1">
               <p className="text-2xl font-semibold text-foreground">95%</p>
@@ -144,6 +146,38 @@ export default function HomePage() {
 
       <Container>
         <SectionHeading
+          eyebrow="Why Bizosto"
+          title="Operational confidence without the complexity"
+          subtitle="Every workflow stays connected so leaders can scale delivery with clarity."
+        />
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: "One source of truth",
+              description:
+                "Unify pipeline, delivery, finance, and client data so every team works from the same record.",
+            },
+            {
+              title: "Built for delivery teams",
+              description:
+                "Standardize scopes, approvals, and handoffs so projects move smoothly and predictably.",
+            },
+            {
+              title: "SaaS-ready control",
+              description:
+                "Role-based access, audit trails, and reporting give leadership the visibility they need.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="rounded-xl border border-border bg-surface p-6">
+              <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+              <p className="mt-3 text-sm text-muted-foreground">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
+
+      <Container>
+        <SectionHeading
           eyebrow="Outcomes"
           title="Operational outcomes that leaders can measure"
           subtitle="Every module is designed to move service businesses from reactive work to predictable performance."
@@ -161,30 +195,29 @@ export default function HomePage() {
       <Container>
         <SectionHeading
           eyebrow="How it works"
-          title="From lead intake to delivery, every step stays connected"
-          subtitle="Bizosto builds a complete chain of accountability across pipeline, delivery, and finance."
+          title="From lead intake to revenue, every step stays connected"
+          subtitle="A simple operating rhythm that keeps pipeline, delivery, and finance aligned."
         />
-        <div className="mt-8 grid gap-6 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 rounded-2xl border border-border bg-surface p-6 md:grid-cols-3">
           {[
             {
               title: "Capture leads",
-              description:
-                "Centralize inbound requests, qualify faster, and route work to the right team.",
+              description: "Centralize inbound requests and qualify faster.",
             },
             {
-              title: "Manage pipeline",
-              description:
-                "Move opportunities into approved scopes with automated approvals and SLAs.",
+              title: "Run delivery",
+              description: "Move work through scoped, automated delivery playbooks.",
             },
             {
-              title: "Deliver and report",
-              description:
-                "Track delivery, collect payments, and surface profitability in one view.",
+              title: "Track revenue",
+              description: "Tie delivery to billing, margin, and client renewals.",
             },
           ].map((step) => (
-            <div key={step.title} className="rounded-xl border border-border bg-card p-6">
-              <h3 className="text-lg font-semibold text-foreground">{step.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{step.description}</p>
+            <div key={step.title} className="space-y-2 rounded-xl border border-border bg-card p-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                {step.title}
+              </p>
+              <p className="text-sm text-muted-foreground">{step.description}</p>
             </div>
           ))}
         </div>
@@ -253,8 +286,10 @@ export default function HomePage() {
 
       <Container>
         <CTASection
-          title="Ready to build accountable operations?"
-          description="Book a demo to align workflows, delivery, and finance in one ERP master system."
+          title="Ready to see Bizosto in action?"
+          description="Get a guided walkthrough and rollout plan."
+          primaryAction="Book a Demo"
+          secondaryAction="Contact"
         />
       </Container>
     </div>
