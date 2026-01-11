@@ -40,6 +40,7 @@ export default function HeroLeadForm() {
     } else if (!emailRegex.test(form.email)) {
       nextErrors.email = "Enter a valid email.";
     }
+    if (!form.phone.trim()) nextErrors.phone = "Phone number is required.";
     if (!form.businessType.trim()) nextErrors.businessType = "Select a business type.";
     if (!form.teamSize.trim()) nextErrors.teamSize = "Select a team size.";
 
@@ -93,18 +94,26 @@ export default function HeroLeadForm() {
       });
 
       const data = (await response.json().catch(() => null)) as
-        | { ok: boolean; error?: string }
+        | { ok: boolean; error?: string; code?: string }
         | null;
 
       if (!response.ok || !data?.ok) {
-        setApiError(data?.error ?? "Something went wrong. Please try again.");
+        if (data?.code === "CONFIG_MISSING") {
+          setApiError(
+            "Intake is being configured. Please use Contact page for now."
+          );
+        } else if (data?.code === "UPSTREAM_ERROR") {
+          setApiError("Something went wrong. Please try again.");
+        } else {
+          setApiError(data?.error ?? "Something went wrong. Please try again.");
+        }
         return;
       }
 
       setSuccess(true);
       setForm(initialState);
     } catch (error) {
-      setApiError("Unable to submit right now. Please try again.");
+      setApiError("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -124,7 +133,7 @@ export default function HeroLeadForm() {
     <div className="space-y-4">
       {success ? (
         <div className="rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-foreground">
-          Thanks! We received your request and will reach out shortly.
+          Thanks — we received your request. We’ll reply within 1 business day.
         </div>
       ) : null}
       {apiError ? (
@@ -158,6 +167,7 @@ export default function HeroLeadForm() {
               value={form.fullName}
               onChange={handleChange}
               placeholder="Your name"
+              required
             />
             {errors.fullName ? (
               <p className="text-xs text-primary">{errors.fullName}</p>
@@ -174,6 +184,7 @@ export default function HeroLeadForm() {
               value={form.email}
               onChange={handleChange}
               placeholder="you@company.com"
+              required
             />
             {errors.email ? <p className="text-xs text-primary">{errors.email}</p> : null}
           </div>
@@ -190,7 +201,9 @@ export default function HeroLeadForm() {
               value={form.phone}
               onChange={handleChange}
               placeholder="+1 (555) 000-0000"
+              required
             />
+            {errors.phone ? <p className="text-xs text-primary">{errors.phone}</p> : null}
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="businessType">
@@ -201,6 +214,7 @@ export default function HeroLeadForm() {
               name="businessType"
               value={form.businessType}
               onChange={handleChange}
+              required
             >
               <option value="">Select business type</option>
               <option value="Digital Agency">Digital Agency</option>
@@ -223,7 +237,13 @@ export default function HeroLeadForm() {
           <label className="text-sm font-semibold text-foreground" htmlFor="teamSize">
             Team size
           </label>
-          <select id="teamSize" name="teamSize" value={form.teamSize} onChange={handleChange}>
+          <select
+            id="teamSize"
+            name="teamSize"
+            value={form.teamSize}
+            onChange={handleChange}
+            required
+          >
             <option value="">Select team size</option>
             <option value="1-10">1-10</option>
             <option value="11-25">11-25</option>

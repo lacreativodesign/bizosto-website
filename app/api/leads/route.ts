@@ -85,7 +85,10 @@ export async function POST(request: Request) {
 
     const apiKey = process.env.NEXT_PUBLIC_ERP_INGEST_KEY;
     if (!apiKey) {
-      return NextResponse.json({ ok: false, error: "Server misconfiguration." }, { status: 500 });
+      return NextResponse.json(
+        { ok: false, code: "CONFIG_MISSING" },
+        { status: 500 }
+      );
     }
 
     const payload = {
@@ -117,14 +120,14 @@ export async function POST(request: Request) {
 
     if (!erpResponse.ok) {
       return NextResponse.json(
-        { ok: false, error: "Unable to submit right now. Please try again." },
-        { status: erpResponse.status }
+        { ok: false, code: "UPSTREAM_ERROR" },
+        { status: 502 }
       );
     }
 
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (error) {
     console.error("Lead submission error", error);
-    return NextResponse.json({ ok: false, error: "Server error" }, { status: 500 });
+    return NextResponse.json({ ok: false, code: "UPSTREAM_ERROR" }, { status: 500 });
   }
 }
