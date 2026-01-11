@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface LogoMarkProps {
@@ -6,13 +9,26 @@ interface LogoMarkProps {
 }
 
 export default function LogoMark({ className, variant = "full" }: LogoMarkProps) {
+  const [hasError, setHasError] = useState(false);
+
   return (
-    <div className={cn("flex items-center gap-2 text-foreground", className)}>
+    <div className={cn("flex items-center gap-3 text-foreground", className)}>
       <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-surface-muted text-sm font-semibold">
         BZ
       </div>
       {variant === "full" ? (
-        <span className="text-base font-semibold tracking-tight">Bizosto ERP</span>
+        <div className="flex items-center">
+          {!hasError ? (
+            <img
+              src="/brand/bizosto.png"
+              alt="Bizosto"
+              className="h-7 w-auto object-contain"
+              onError={() => setHasError(true)}
+            />
+          ) : (
+            <span className="text-base font-semibold tracking-tight">Bizosto</span>
+          )}
+        </div>
       ) : null}
     </div>
   );
