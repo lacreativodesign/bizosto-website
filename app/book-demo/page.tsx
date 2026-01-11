@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import Card from "@/components/Card";
-import Button from "@/components/Button";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Book a Demo",
@@ -16,25 +16,51 @@ export default function BookDemoPage() {
       <Container className="space-y-6">
         <SectionHeading
           eyebrow="Book a demo"
-          title="Walk through the Bizosto ERP master UI"
-          subtitle="We will map your workflows and confirm the right module scope and rollout timeline."
+          title="See how Bizosto runs your entire operation"
+          subtitle="A live walkthrough tailored to your business model."
         />
-        <Card className="space-y-4">
-          <p className="text-sm text-muted-foreground">
-            A scheduling embed will appear here. Connect a Calendly or Google Calendar link in a future
-            step.
-          </p>
-          <div className="h-64 rounded-lg border border-dashed border-border bg-surface-muted" />
-        </Card>
-        <Card className="flex flex-col items-start justify-between gap-4 bg-surface-muted sm:flex-row sm:items-center">
-          <div>
-            <p className="text-sm font-semibold text-foreground">Prefer email?</p>
-            <p className="text-sm text-muted-foreground">Reach us directly and we will schedule a demo.</p>
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+          <div className="space-y-6">
+            <Card className="space-y-4">
+              <div className="space-y-2">
+                <p className="text-sm font-semibold text-foreground">What you&apos;ll see</p>
+                <p className="text-sm text-muted-foreground">
+                  Walk through the workflows that run your day-to-day operations.
+                </p>
+              </div>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Lead capture → assignment</li>
+                <li>Client &amp; project workflow</li>
+                <li>Roles, permissions, and reporting</li>
+                <li>Notifications and accountability</li>
+              </ul>
+            </Card>
+            <Card className="space-y-4 bg-surface-muted">
+              <div className="space-y-2">
+                <p className="text-sm font-semibold text-foreground">Who this is for</p>
+                <p className="text-sm text-muted-foreground">
+                  Teams that need one system to manage delivery, visibility, and follow-through.
+                </p>
+              </div>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p>Agencies — align leads, client work, and staffing in one place.</p>
+                <p>Service providers — standardize delivery and keep everyone accountable.</p>
+                <p>Internal operations teams — replace spreadsheets with real-time reporting.</p>
+              </div>
+            </Card>
           </div>
-          <Button href="mailto:hello@bizosto.com" variant="outline">
-            Email us
-          </Button>
-        </Card>
+          <div className="space-y-4">
+            <ContactForm />
+            <Card className="space-y-2 bg-surface-muted">
+              <p className="text-sm font-semibold text-foreground">Trusted by operators</p>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Built by operators</li>
+                <li>No obligation demo</li>
+                <li>Real workflows, not slides</li>
+              </ul>
+            </Card>
+          </div>
+        </div>
       </Container>
     </div>
   );

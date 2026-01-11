@@ -146,7 +146,7 @@ export default function ContactForm() {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="fullName">
-              Full name
+              Your name
             </label>
             <input
               id="fullName"
@@ -154,13 +154,13 @@ export default function ContactForm() {
               value={form.fullName}
               onChange={handleChange}
               className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground"
-              placeholder="Jordan Ellis"
+              placeholder="Who should we address?"
             />
             {errors.fullName ? <p className="text-xs text-primary">{errors.fullName}</p> : null}
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="email">
-              Work email
+              Work email for demo details
             </label>
             <input
               id="email"
@@ -168,13 +168,13 @@ export default function ContactForm() {
               value={form.email}
               onChange={handleChange}
               className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground"
-              placeholder="you@agency.com"
+              placeholder="you@yourcompany.com"
             />
             {errors.email ? <p className="text-xs text-primary">{errors.email}</p> : null}
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="phone">
-              Phone
+              Best phone for scheduling (optional)
             </label>
             <input
               id="phone"
@@ -187,7 +187,7 @@ export default function ContactForm() {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="company">
-              Company
+              Company or agency name
             </label>
             <input
               id="company"
@@ -201,7 +201,7 @@ export default function ContactForm() {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="teamSize">
-              Team size
+              Team size to support
             </label>
             <select
               id="teamSize"
@@ -220,7 +220,7 @@ export default function ContactForm() {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="serviceType">
-              Service type
+              Business model
             </label>
             <select
               id="serviceType"
@@ -229,10 +229,10 @@ export default function ContactForm() {
               onChange={handleChange}
               className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground"
             >
-              <option value="">Select service type</option>
+              <option value="">Select business model</option>
               <option value="agency">Agency</option>
-              <option value="dev-shop">Development shop</option>
-              <option value="marketing">Marketing firm</option>
+              <option value="service-provider">Service provider</option>
+              <option value="internal-ops">Internal operations team</option>
               <option value="consultancy">Consultancy</option>
               <option value="other">Other</option>
             </select>
@@ -240,7 +240,7 @@ export default function ContactForm() {
           </div>
           <div className="flex flex-col gap-1 md:col-span-2">
             <label className="text-sm font-semibold text-foreground" htmlFor="message">
-              Message
+              Workflow goals for the demo
             </label>
             <textarea
               id="message"
@@ -249,7 +249,7 @@ export default function ContactForm() {
               onChange={handleChange}
               rows={4}
               className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground"
-              placeholder="Tell us about your workflows, tools, and outcomes you need."
+              placeholder="Share the workflows, clients, or approvals you want to see."
             />
             {errors.message ? <p className="text-xs text-primary">{errors.message}</p> : null}
           </div>
@@ -260,8 +260,9 @@ export default function ContactForm() {
               variant="primary"
               aria-disabled={submitting}
             >
-              {submitting ? "Submitting..." : "Submit request"}
+              {submitting ? "Submitting..." : "Request My Demo"}
             </Button>
+            <p className="mt-2 text-xs text-muted-foreground">We typically respond within 24 hours.</p>
           </div>
         </form>
       </Card>
