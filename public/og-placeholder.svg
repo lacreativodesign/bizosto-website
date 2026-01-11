@@ -1,0 +1,12 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="80" y="80" width="1040" height="470" rx="32" fill="#111827" stroke="#1f2937" stroke-width="2"/>
+  <rect x="140" y="150" width="320" height="48" rx="8" fill="#1f2937"/>
+  <rect x="140" y="230" width="520" height="18" rx="9" fill="#1f2937"/>
+  <rect x="140" y="270" width="620" height="18" rx="9" fill="#1f2937"/>
+  <rect x="140" y="310" width="420" height="18" rx="9" fill="#1f2937"/>
+  <rect x="140" y="380" width="920" height="120" rx="16" fill="#0b1120" stroke="#1f2937" stroke-width="2"/>
+  <circle cx="1040" cy="160" r="18" fill="#2563eb"/>
+  <text x="140" y="130" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="600">Bizosto ERP</text>
+  <text x="140" y="210" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="20">Business OS for service teams</text>
+</svg>
