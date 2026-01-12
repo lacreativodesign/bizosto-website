@@ -20,7 +20,7 @@ export default function ContactPage() {
   return (
     <PageShell>
       <div className="flex flex-col">
-        <Section>
+        <Section variant="premium">
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
