@@ -216,7 +216,7 @@ export default function HomePage() {
         </div>
       </Container>
 
-      <section className="premium-section section-spacing">
+      <section className="section-spacing">
         <Container className="relative z-10">
           <ScrollReveal>
             <SectionHeading
@@ -244,7 +244,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="section-muted section-spacing">
+      <section className="section-spacing">
         <Container>
           <ScrollReveal>
             <SectionHeading
