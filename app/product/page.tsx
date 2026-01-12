@@ -69,7 +69,7 @@ export default function ProductPage() {
   return (
     <PageShell>
       <div className="flex flex-col">
-        <Section>
+        <Section variant="premium">
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
@@ -91,7 +91,7 @@ export default function ProductPage() {
           </Container>
         </Section>
 
-        <Section variant="premium">
+        <Section>
           <Container className="relative z-10">
             <ScrollReveal>
               <SectionHeading

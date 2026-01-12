@@ -57,7 +57,7 @@ export default function PricingPage() {
   return (
     <PageShell>
       <div className="flex flex-col">
-        <Section>
+        <Section variant="premium">
           <Container>
             <ScrollReveal>
               <SectionHeading
@@ -76,7 +76,7 @@ export default function PricingPage() {
           </Container>
         </Section>
 
-        <Section variant="premium">
+        <Section>
           <Container className="relative z-10">
             <ScrollReveal>
               <SectionHeading

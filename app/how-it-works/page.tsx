@@ -34,7 +34,7 @@ export default function HowItWorksPage() {
   return (
     <PageShell>
       <div className="flex flex-col">
-        <Section>
+        <Section variant="premium">
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
@@ -59,7 +59,7 @@ export default function HowItWorksPage() {
           </Container>
         </Section>
 
-        <Section variant="muted">
+        <Section>
           <Container>
             <ScrollReveal>
               <SectionHeading
