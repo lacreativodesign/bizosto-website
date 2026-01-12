@@ -3,6 +3,7 @@ import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
+import { BarChart3, ClipboardCheck, CreditCard, ShieldCheck, TrendingUp } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Agency ERP Platform",
@@ -15,26 +16,31 @@ const modules = [
     title: "Sales pipeline",
     description:
       "Capture leads, qualify opportunities, and standardize proposals with approval workflows and SLA tracking.",
+    icon: <TrendingUp className="h-4 w-4" aria-hidden="true" />,
   },
   {
     title: "Delivery",
     description:
       "Launch projects with templates, enforce milestones, and keep teams aligned with automated handoffs.",
+    icon: <ClipboardCheck className="h-4 w-4" aria-hidden="true" />,
   },
   {
     title: "Finance",
     description:
       "Manage retainers, invoices, and collections alongside delivery to protect margins and cash flow.",
+    icon: <CreditCard className="h-4 w-4" aria-hidden="true" />,
   },
   {
     title: "Reporting",
     description:
       "Monitor utilization, profitability, and risk with live dashboards across every account.",
+    icon: <BarChart3 className="h-4 w-4" aria-hidden="true" />,
   },
   {
     title: "Roles and permissions",
     description:
       "Define access levels for leadership, operations, and client stakeholders with audit-ready controls.",
+    icon: <ShieldCheck className="h-4 w-4" aria-hidden="true" />,
   },
 ];
 
@@ -58,8 +64,8 @@ const outcomes = [
 
 export default function ProductPage() {
   return (
-    <div className="space-y-20 pb-20 pt-12">
-      <Container className="space-y-6">
+    <div className="flex flex-col">
+      <Container className="section-spacing space-y-6">
         <SectionHeading
           eyebrow="Product"
           title="A master ERP UI purpose-built for service delivery"
@@ -75,7 +81,7 @@ export default function ProductPage() {
         </div>
       </Container>
 
-      <Container>
+      <Container className="section-spacing">
         <SectionHeading
           eyebrow="Modules"
           title="From pipeline to reporting, every module drives outcomes"
@@ -86,7 +92,7 @@ export default function ProductPage() {
         </div>
       </Container>
 
-      <Container>
+      <Container className="section-spacing">
         <SectionHeading
           eyebrow="Unified outcomes"
           title="Operational intelligence without the tool sprawl"
@@ -108,7 +114,7 @@ export default function ProductPage() {
         </div>
       </Container>
 
-      <Container>
+      <Container className="section-spacing">
         <CTASection
           title="See Bizosto in action"
           description="Walk through the ERP master UI and plan the right modules for your service business."

@@ -6,6 +6,7 @@ const script = `(() => {
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const useDark = stored === "dark" || (stored === "system" && prefersDark);
   document.documentElement.classList.toggle("dark", useDark);
+  document.documentElement.style.colorScheme = useDark ? "dark" : "light";
 })();`;
 
 export default function ThemeScript() {

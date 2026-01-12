@@ -11,6 +11,8 @@ function applyTheme(theme: Theme) {
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const useDark = theme === "dark" || (theme === "system" && prefersDark);
   root.classList.toggle("dark", useDark);
+  root.style.colorScheme = useDark ? "dark" : "light";
+  return useDark ? "dark" : "light";
 }
 
 export default function ThemeToggle() {
@@ -21,23 +23,15 @@ export default function ThemeToggle() {
     const stored = window.localStorage.getItem(storageKey) as Theme | null;
     const initialTheme = stored ?? "system";
     setTheme(initialTheme);
-    applyTheme(initialTheme);
-    setResolvedTheme(
-      initialTheme === "dark"
-        ? "dark"
-        : initialTheme === "light"
-          ? "light"
-          : window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light"
-    );
+    const nextResolved = applyTheme(initialTheme);
+    setResolvedTheme(nextResolved);
 
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const onChange = () => {
       const current = (window.localStorage.getItem(storageKey) as Theme | null) ?? "system";
       if (current === "system") {
-        applyTheme("system");
-        setResolvedTheme(media.matches ? "dark" : "light");
+        const updated = applyTheme("system");
+        setResolvedTheme(updated);
       }
     };
     media.addEventListener("change", onChange);
@@ -48,8 +42,8 @@ export default function ThemeToggle() {
     const nextTheme: Theme = theme === "dark" ? "light" : "dark";
     setTheme(nextTheme);
     window.localStorage.setItem(storageKey, nextTheme);
-    applyTheme(nextTheme);
-    setResolvedTheme(nextTheme);
+    const updated = applyTheme(nextTheme);
+    setResolvedTheme(updated);
   };
 
   return (
