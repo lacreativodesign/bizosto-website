@@ -41,12 +41,18 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
   if (!request.headers.get("content-type")?.includes("application/json")) {
-    return NextResponse.json({ ok: false, error: "Invalid content type." }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, code: "BAD_REQUEST", error: "Invalid content type." },
+      { status: 400 }
+    );
   }
 
   const ip = getClientIp(request.headers);
   if (isRateLimited(ip)) {
-    return NextResponse.json({ ok: false, error: "Too many requests" }, { status: 429 });
+    return NextResponse.json(
+      { ok: false, code: "RATE_LIMIT", error: "Too many requests." },
+      { status: 429 }
+    );
   }
 
   try {
@@ -60,33 +66,51 @@ export async function POST(request: Request) {
     const source = normalizeField(body.source) || "bizosto-website";
 
     if (honeypot) {
-      return NextResponse.json({ ok: false, error: "Invalid submission." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, code: "BAD_REQUEST", error: "Invalid submission." },
+        { status: 400 }
+      );
     }
 
     if (!name) {
-      return NextResponse.json({ ok: false, error: "Name is required." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, code: "BAD_REQUEST", error: "Name is required." },
+        { status: 400 }
+      );
     }
 
     if (!email || !emailRegex.test(email)) {
-      return NextResponse.json({ ok: false, error: "Valid email is required." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, code: "BAD_REQUEST", error: "Valid email is required." },
+        { status: 400 }
+      );
     }
 
     if (!company) {
-      return NextResponse.json({ ok: false, error: "Company is required." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, code: "BAD_REQUEST", error: "Company is required." },
+        { status: 400 }
+      );
     }
 
     if (!message) {
-      return NextResponse.json({ ok: false, error: "Message is required." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, code: "BAD_REQUEST", error: "Message is required." },
+        { status: 400 }
+      );
     }
 
     if (!page) {
-      return NextResponse.json({ ok: false, error: "Page is required." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, code: "BAD_REQUEST", error: "Page is required." },
+        { status: 400 }
+      );
     }
 
     const apiKey = process.env.NEXT_PUBLIC_ERP_INGEST_KEY;
     if (!apiKey) {
       return NextResponse.json(
-        { ok: false, code: "CONFIG_MISSING" },
+        { ok: false, code: "CONFIG_MISSING", error: "Ingest configuration is missing." },
         { status: 500 }
       );
     }
@@ -119,8 +143,14 @@ export async function POST(request: Request) {
     });
 
     if (!erpResponse.ok) {
+      const detail = await erpResponse.text().catch(() => "");
       return NextResponse.json(
-        { ok: false, code: "UPSTREAM_ERROR" },
+        {
+          ok: false,
+          code: "UPSTREAM_ERROR",
+          error: `ERP ingest failed with status ${erpResponse.status}.`,
+          detail: detail.slice(0, 200) || undefined,
+        },
         { status: 502 }
       );
     }
@@ -128,6 +158,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (error) {
     console.error("Lead submission error", error);
-    return NextResponse.json({ ok: false, code: "UPSTREAM_ERROR" }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, code: "UPSTREAM_ERROR", error: "Unexpected error while processing lead." },
+      { status: 500 }
+    );
   }
 }

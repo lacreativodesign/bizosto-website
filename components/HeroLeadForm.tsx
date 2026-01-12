@@ -7,6 +7,7 @@ import Button from "@/components/Button";
 interface FormState {
   fullName: string;
   email: string;
+  company: string;
   phone: string;
   businessType: string;
   teamSize: string;
@@ -16,6 +17,7 @@ interface FormState {
 const initialState: FormState = {
   fullName: "",
   email: "",
+  company: "",
   phone: "",
   businessType: "",
   teamSize: "",
@@ -40,6 +42,7 @@ export default function HeroLeadForm() {
     } else if (!emailRegex.test(form.email)) {
       nextErrors.email = "Enter a valid email.";
     }
+    if (!form.company.trim()) nextErrors.company = "Company name is required.";
     if (!form.phone.trim()) nextErrors.phone = "Phone number is required.";
     if (!form.businessType.trim()) nextErrors.businessType = "Select a business type.";
     if (!form.teamSize.trim()) nextErrors.teamSize = "Select a team size.";
@@ -72,8 +75,8 @@ export default function HeroLeadForm() {
         page: window.location.pathname,
         name: form.fullName,
         email: form.email,
-        company: form.businessType,
-        message: `Homepage lead form. Team size: ${form.teamSize}. Nature of business: ${form.businessType}.`,
+        company: form.company,
+        message: `Homepage lead form. Company: ${form.company}. Team size: ${form.teamSize}. Nature of business: ${form.businessType}.`,
         meta: {
           userAgent: navigator.userAgent,
           referrer: document.referrer || undefined,
@@ -94,19 +97,12 @@ export default function HeroLeadForm() {
       });
 
       const data = (await response.json().catch(() => null)) as
-        | { ok: boolean; error?: string; code?: string }
+        | { ok: boolean; error?: string; code?: string; detail?: string }
         | null;
 
       if (!response.ok || !data?.ok) {
-        if (data?.code === "CONFIG_MISSING") {
-          setApiError(
-            "Intake is being configured. Please use Contact page for now."
-          );
-        } else if (data?.code === "UPSTREAM_ERROR") {
-          setApiError("Something went wrong. Please try again.");
-        } else {
-          setApiError(data?.error ?? "Something went wrong. Please try again.");
-        }
+        const errorMessage = data?.error ?? "Something went wrong. Please try again.";
+        setApiError(errorMessage);
         return;
       }
 
@@ -191,6 +187,20 @@ export default function HeroLeadForm() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-foreground" htmlFor="company">
+              Company name
+            </label>
+            <input
+              id="company"
+              name="company"
+              value={form.company}
+              onChange={handleChange}
+              placeholder="Company name"
+              required
+            />
+            {errors.company ? <p className="text-xs text-primary">{errors.company}</p> : null}
+          </div>
+          <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="phone">
               Phone
             </label>
@@ -205,6 +215,8 @@ export default function HeroLeadForm() {
             />
             {errors.phone ? <p className="text-xs text-primary">{errors.phone}</p> : null}
           </div>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="businessType">
               Nature of business
@@ -232,26 +244,26 @@ export default function HeroLeadForm() {
               <p className="text-xs text-primary">{errors.businessType}</p>
             ) : null}
           </div>
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-sm font-semibold text-foreground" htmlFor="teamSize">
-            Team size
-          </label>
-          <select
-            id="teamSize"
-            name="teamSize"
-            value={form.teamSize}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select team size</option>
-            <option value="1-10">1-10</option>
-            <option value="11-25">11-25</option>
-            <option value="26-50">26-50</option>
-            <option value="51-75">51-75</option>
-            <option value="76-100">76-100</option>
-          </select>
-          {errors.teamSize ? <p className="text-xs text-primary">{errors.teamSize}</p> : null}
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-foreground" htmlFor="teamSize">
+              Team size
+            </label>
+            <select
+              id="teamSize"
+              name="teamSize"
+              value={form.teamSize}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select team size</option>
+              <option value="1-10">1-10</option>
+              <option value="11-25">11-25</option>
+              <option value="26-50">26-50</option>
+              <option value="51-75">51-75</option>
+              <option value="76-100">76-100</option>
+            </select>
+            {errors.teamSize ? <p className="text-xs text-primary">{errors.teamSize}</p> : null}
+          </div>
         </div>
         <div className="flex flex-col gap-2">
           <Button type="submit" disabled={submitting} className="w-full" variant="primary">
