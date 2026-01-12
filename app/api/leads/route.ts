@@ -63,8 +63,6 @@ export async function POST(request: Request) {
     const message = normalizeField(body.message);
     const page = normalizeField(body.page);
     const honeypot = normalizeField(body.website);
-    const source = normalizeField(body.source) || "bizosto-website";
-
     if (honeypot) {
       return NextResponse.json(
         { ok: false, code: "BAD_REQUEST", error: "Invalid submission." },
@@ -115,21 +113,14 @@ export async function POST(request: Request) {
       );
     }
 
-    const payload = {
-      source,
-      page,
-      name,
+    const erpPayload = {
+      fullName: name,
       email,
-      company,
       message,
-      meta: {
-        userAgent: optionalField(body.meta?.userAgent) ?? optionalField(request.headers.get("user-agent")),
-        referrer: optionalField(body.meta?.referrer),
-        utm: body.meta?.utm ?? undefined,
-        phone: optionalField(body.meta?.phone),
-        teamSize: optionalField(body.meta?.teamSize),
-        serviceType: optionalField(body.meta?.serviceType),
-      },
+      phone: optionalField(body.meta?.phone),
+      company: optionalField(body.company),
+      teamSize: optionalField(body.meta?.teamSize),
+      serviceType: optionalField(body.meta?.serviceType),
     };
 
     const erpResponse = await fetch(ERP_INGEST_ENDPOINT, {
@@ -139,16 +130,29 @@ export async function POST(request: Request) {
         "x-tenant-id": ERP_TENANT_ID,
         "x-api-key": apiKey,
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(erpPayload),
     });
 
     if (!erpResponse.ok) {
-      const detail = await erpResponse.text().catch(() => "");
+      const detail = await (async () => {
+        try {
+          const contentType = erpResponse.headers.get("content-type") ?? "";
+          if (contentType.includes("application/json")) {
+            const data = await erpResponse.json();
+            if (typeof data === "string") {
+              return data;
+            }
+            return JSON.stringify(data);
+          }
+          return await erpResponse.text();
+        } catch {
+          return "";
+        }
+      })();
       return NextResponse.json(
         {
           ok: false,
           code: "UPSTREAM_ERROR",
-          error: `ERP ingest failed with status ${erpResponse.status}.`,
           detail: detail.slice(0, 200) || undefined,
         },
         { status: 502 }
