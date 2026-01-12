@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+
+export const runtime = "nodejs";
 const ERP_INGEST_ENDPOINT = "https://dashboard.lacreativo.com/api/ingest/lead";
 const ERP_TENANT_ID = "bizosto";
 
@@ -62,6 +64,7 @@ export async function POST(request: Request) {
     const company = normalizeField(body.company);
     const message = normalizeField(body.message);
     const page = normalizeField(body.page);
+    const source = normalizeField(body.source) || "website";
     const honeypot = normalizeField(body.website);
     if (honeypot) {
       return NextResponse.json(
@@ -113,14 +116,41 @@ export async function POST(request: Request) {
       );
     }
 
+    /**
+     * ERP assignment contract (ERP-side):
+     * - assignedToUserId (string)
+     * - assignedToEmail (string)
+     * - assignedToName (string)
+     * - assignedAt (timestamp)
+     *
+     * Notifications should be created for the assigned user using:
+     * - toUserId: assignedToUserId
+     * - deepLink conventions:
+     *   admin: /admin/sales/leads?open=<leadId>
+     *   sales_manager: /sales_manager/leads?open=<leadId>
+     *   sales: /sales/leads?open=<leadId>
+     */
     const erpPayload = {
       fullName: name,
       email,
-      message,
       phone: optionalField(body.meta?.phone),
-      company: optionalField(body.company),
+      company,
       teamSize: optionalField(body.meta?.teamSize),
       serviceType: optionalField(body.meta?.serviceType),
+      message,
+      source,
+      page,
+      meta: {
+        phone: optionalField(body.meta?.phone),
+        teamSize: optionalField(body.meta?.teamSize),
+        serviceType: optionalField(body.meta?.serviceType),
+        source,
+        page,
+      },
+      notificationHint: {
+        tenantId: ERP_TENANT_ID,
+        preferredRoles: ["admin", "sales_manager"],
+      },
     };
 
     const erpResponse = await fetch(ERP_INGEST_ENDPOINT, {
@@ -139,10 +169,7 @@ export async function POST(request: Request) {
           const contentType = erpResponse.headers.get("content-type") ?? "";
           if (contentType.includes("application/json")) {
             const data = await erpResponse.json();
-            if (typeof data === "string") {
-              return data;
-            }
-            return JSON.stringify(data);
+            return typeof data === "string" ? data : JSON.stringify(data);
           }
           return await erpResponse.text();
         } catch {
@@ -152,8 +179,9 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           ok: false,
-          code: "UPSTREAM_ERROR",
+          error: "ERP ingest failed",
           detail: detail.slice(0, 200) || undefined,
+          status: erpResponse.status,
         },
         { status: 502 }
       );

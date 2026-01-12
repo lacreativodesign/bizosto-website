@@ -11,6 +11,9 @@ export default function Footer() {
     <footer className="border-t border-border bg-background">
       <Container className="py-10">
         <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            Powered by LA CREATIVO GROUP, LLC
+          </p>
           <div className="flex flex-wrap items-center gap-3">
             {footerLinks.map((link, index) => (
               <span key={link.href} className="flex items-center gap-3">
@@ -23,9 +26,6 @@ export default function Footer() {
               </span>
             ))}
           </div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            Powered by LA CREATIVO GROUP, LLC
-          </p>
         </div>
       </Container>
     </footer>

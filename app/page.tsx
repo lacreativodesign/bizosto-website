@@ -10,6 +10,7 @@ import HeroLeadForm from "@/components/HeroLeadForm";
 import PricingTiers from "@/components/PricingTiers";
 import ScrollReveal from "@/components/ScrollReveal";
 import ScreenshotGallery from "@/components/ScreenshotGallery";
+import PageShell from "@/components/PageShell";
 import {
   BarChart3,
   ClipboardCheck,
@@ -116,58 +117,59 @@ const faqs = [
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col">
-      <section className="hero-surface section-spacing">
-        <Container className="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
-          <ScrollReveal className="space-y-7">
-            <span className="inline-flex items-center rounded-full border border-border/70 bg-surface/80 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-muted-foreground shadow-sm">
-              BIZOSTO
-            </span>
-            <div className="space-y-5">
-              <h1 className="text-balance text-[2.6rem] font-semibold leading-[1.08] tracking-[-0.02em] text-foreground sm:text-5xl lg:text-[3.75rem]">
-                The operating system for modern service businesses.
-              </h1>
-              <p className="max-w-xl text-base text-muted-foreground sm:text-lg">
-                Manage clients, projects, sales, finance, and teams — in one system.
+    <PageShell>
+      <div className="flex flex-col">
+        <section className="hero-surface section-spacing">
+          <Container className="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+            <ScrollReveal className="space-y-7">
+              <span className="inline-flex items-center rounded-full border border-border/70 bg-surface/80 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-muted-foreground shadow-sm">
+                BIZOSTO
+              </span>
+              <div className="space-y-5">
+                <h1 className="text-balance text-[2.6rem] font-semibold leading-[1.08] tracking-[-0.02em] text-foreground sm:text-5xl lg:text-[3.75rem]">
+                  The operating system for modern service businesses.
+                </h1>
+                <p className="max-w-xl text-base text-muted-foreground sm:text-lg">
+                  Manage clients, projects, sales, finance, and teams — in one system.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button href="/book-demo">Book a Demo</Button>
+                <Button href="/how-it-works" variant="outline">
+                  See How It Works
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Built by operators. Designed for teams scaling beyond spreadsheets.
               </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button href="/book-demo">Book a Demo</Button>
-              <Button href="/how-it-works" variant="outline">
-                See How It Works
-              </Button>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Built by operators. Designed for teams scaling beyond spreadsheets.
-            </p>
-            <div className="grid gap-4 text-sm text-muted-foreground sm:grid-cols-3">
-              <div className="space-y-1">
-                <p className="text-2xl font-semibold text-foreground">95%</p>
-                <p>Workflow adherence after rollout</p>
+              <div className="grid gap-4 text-sm text-muted-foreground sm:grid-cols-3">
+                <div className="space-y-1">
+                  <p className="text-2xl font-semibold text-foreground">95%</p>
+                  <p>Workflow adherence after rollout</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-2xl font-semibold text-foreground">40%</p>
+                  <p>Reduction in project handoff delays</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-2xl font-semibold text-foreground">3x</p>
+                  <p>Faster reporting cycles</p>
+                </div>
               </div>
-              <div className="space-y-1">
-                <p className="text-2xl font-semibold text-foreground">40%</p>
-                <p>Reduction in project handoff delays</p>
+            </ScrollReveal>
+            <ScrollReveal className="rounded-2xl border border-border bg-surface/90 p-6 shadow-xl shadow-slate-900/10 backdrop-blur">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-semibold text-foreground">Request ERP Access</p>
+                  <span className="rounded-full border border-border bg-surface-muted px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                    Enterprise intake
+                  </span>
+                </div>
+                <HeroLeadForm />
               </div>
-              <div className="space-y-1">
-                <p className="text-2xl font-semibold text-foreground">3x</p>
-                <p>Faster reporting cycles</p>
-              </div>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal className="rounded-2xl border border-border bg-surface/90 p-6 shadow-xl shadow-slate-900/10 backdrop-blur">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-foreground">Request ERP Access</p>
-                <span className="rounded-full border border-border bg-surface-muted px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                  Enterprise intake
-                </span>
-              </div>
-              <HeroLeadForm />
-            </div>
-          </ScrollReveal>
-        </Container>
-      </section>
+            </ScrollReveal>
+          </Container>
+        </section>
 
       <Container className="section-spacing">
         <ScrollReveal>
@@ -386,6 +388,7 @@ export default function HomePage() {
           />
         </ScrollReveal>
       </Container>
-    </div>
+      </div>
+    </PageShell>
   );
 }
