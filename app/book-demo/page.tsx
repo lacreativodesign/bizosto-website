@@ -23,7 +23,7 @@ export default function BookDemoPage() {
               <SectionHeading
                 eyebrow="Book a demo"
                 title="See how Bizosto runs your entire operation"
-                subtitle="A live walkthrough tailored to your business model."
+                subtitle="Book a live walkthrough or start your free 14-day trial right now."
               />
             </ScrollReveal>
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
@@ -61,6 +61,24 @@ export default function BookDemoPage() {
                 </ScrollReveal>
               </div>
               <div className="space-y-4">
+                <ScrollReveal>
+                  <Card className="space-y-3 border-primary/40 bg-primary/5">
+                    <p className="text-sm font-semibold text-foreground">Ready to start now?</p>
+                    <p className="text-sm text-muted-foreground">
+                      Skip the demo and start your free 14-day trial immediately. No credit card
+                      required.
+                    </p>
+                    <a
+                      href="https://app.bizosto.com/signup"
+                      className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+                    >
+                      Start Free Trial →
+                    </a>
+                    <p className="text-xs text-muted-foreground">
+                      Or fill the form below to book a guided demo.
+                    </p>
+                  </Card>
+                </ScrollReveal>
                 <ScrollReveal>
                   <ContactForm />
                 </ScrollReveal>

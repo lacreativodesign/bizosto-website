@@ -1,31 +1,101 @@
 import Link from "next/link";
 import Container from "@/components/Container";
-
-const footerLinks = [
-  { href: "/privacy", label: "Privacy Policy" },
-  { href: "/terms", label: "Terms & Conditions" },
-];
+import LogoMark from "@/components/LogoMark";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="border-t border-border bg-background">
-      <Container className="py-10">
-        <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            Powered by LA CREATIVO GROUP, LLC
-          </p>
-          <div className="flex flex-wrap items-center gap-3">
-            {footerLinks.map((link, index) => (
-              <span key={link.href} className="flex items-center gap-3">
-                <Link href={link.href} className="transition hover:text-foreground">
-                  {link.label}
-                </Link>
-                {index < footerLinks.length - 1 ? (
-                  <span className="text-muted-foreground/60">|</span>
-                ) : null}
-              </span>
-            ))}
+      <Container className="py-12">
+        <div className="grid gap-8 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+          <div className="space-y-4">
+            <LogoMark />
+            <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+              The operating system for modern service businesses. Manage clients, projects, sales,
+              finance, and teams — in one system.
+            </p>
+            <p className="text-xs text-muted-foreground">A product of LA CREATIVO GROUP, LLC</p>
           </div>
+
+          <div className="space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
+              Product
+            </p>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link href="/product" className="transition hover:text-foreground">
+                  Features
+                </Link>
+              </li>
+              <li>
+                <Link href="/how-it-works" className="transition hover:text-foreground">
+                  How It Works
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="transition hover:text-foreground">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <a href="https://app.bizosto.com/signup" className="transition hover:text-foreground">
+                  Start Free Trial
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
+              Company
+            </p>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link href="/book-demo" className="transition hover:text-foreground">
+                  Book a Demo
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="transition hover:text-foreground">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
+              Account
+            </p>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <a href="https://app.bizosto.com/login" className="transition hover:text-foreground">
+                  Sign In
+                </a>
+              </li>
+              <li>
+                <a href="https://app.bizosto.com/signup" className="transition hover:text-foreground">
+                  Create Account
+                </a>
+              </li>
+              <li>
+                <Link href="/privacy" className="transition hover:text-foreground">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="transition hover:text-foreground">
+                  Terms &amp; Conditions
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground">
+          <p>© {currentYear} LA CREATIVO GROUP, LLC. All rights reserved.</p>
+          <p>Bizosto® — Business Operating System</p>
         </div>
       </Container>
     </footer>

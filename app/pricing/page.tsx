@@ -27,29 +27,36 @@ const highlights = [
 
 const faqs = [
   {
-    question: "Can I start small and upgrade?",
-    answer:
-      "Yes. Start with the essentials and add modules or seats as your team grows.",
+    question: "Is there a free trial?",
+    answer: "Yes. Every plan includes a 14-day free trial with full access to all selected modules. No credit card required to start.",
   },
   {
-    question: "Do you support agencies only?",
-    answer:
-      "Bizosto is built for service delivery teams, including agencies, consultancies, and professional services.",
+    question: "What happens when my trial ends?",
+    answer: "You will be prompted to choose a plan and add a payment method. If no payment is added, your account enters a read-only grace period before being locked.",
+  },
+  {
+    question: "Can I change plans anytime?",
+    answer: "Yes. Upgrade immediately with prorated billing, or downgrade at the end of your billing period.",
+  },
+  {
+    question: "Is there a setup fee?",
+    answer: "No setup fees. The monthly subscription price is all-inclusive for your selected plan.",
+  },
+  {
+    question: "Can I enable or disable modules?",
+    answer: "Yes. Modules are configurable by your workspace admin so you only use what your team needs.",
+  },
+  {
+    question: "Is there a fee for accepting client payments?",
+    answer: "A 0.5% platform handling fee applies to payments processed through Bizosto. This is in addition to Stripe's standard processing fee.",
+  },
+  {
+    question: "How is tax calculated on my subscription?",
+    answer: "Tax is calculated automatically based on your billing location using Stripe Tax. The applicable rate for your jurisdiction is applied at checkout.",
   },
   {
     question: "Is my data secure?",
-    answer:
-      "We use secure hosting, role-based access, and audit-ready activity logs to protect data.",
-  },
-  {
-    question: "Can I enable/disable modules?",
-    answer:
-      "Yes. Modules are configurable so you only pay for what your team needs.",
-  },
-  {
-    question: "How onboarding works?",
-    answer:
-      "We map your workflows, configure modules, and train your team to launch confidently.",
+    answer: "Yes. All data is encrypted, isolated per workspace, and stored securely on Google Cloud / Firebase infrastructure with role-based access controls.",
   },
 ];
 
@@ -62,8 +69,8 @@ export default function PricingPage() {
             <ScrollReveal>
               <SectionHeading
                 eyebrow="Pricing"
-                title="Conversion-ready pricing built for service delivery teams"
-                subtitle="Pick your starting tier, then finalize modules and team size during onboarding."
+                title="Simple, transparent pricing for every business"
+                subtitle="Start with a 14-day free trial. No credit card required. Cancel anytime."
                 align="center"
               />
             </ScrollReveal>

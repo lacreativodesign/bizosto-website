@@ -99,19 +99,22 @@ const featureHighlights = [
 
 const faqs = [
   {
-    question: "How long does onboarding take?",
-    answer:
-      "Most teams launch core workflows in 2-4 weeks, with automation and reporting layered in after go-live.",
+    question: "Is there a free trial?",
+    answer: "Yes. Every plan includes a 14-day free trial with full module access. No credit card required.",
   },
   {
     question: "Can we keep our existing tools?",
     answer:
-      "Bizosto replaces fragmented workflows while integrating with the systems you keep for accounting or CRM.",
+      "Bizosto replaces fragmented workflows while integrating with accounting or CRM tools you choose to keep.",
   },
   {
-    question: "Is pricing fixed?",
+    question: "How long does onboarding take?",
+    answer: "Most teams are live within 2-4 weeks, with automation and reporting added after go-live.",
+  },
+  {
+    question: "What is the platform handling fee?",
     answer:
-      "Pricing starts with clear tiers and is finalized in demo based on modules, data migration, and automation depth.",
+      "A 0.5% platform handling fee applies to client payments processed through Bizosto. There are no hidden fees on your subscription.",
   },
 ];
 
@@ -134,13 +137,13 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button href="/book-demo">Book a Demo</Button>
-                <Button href="/how-it-works" variant="outline">
-                  See How It Works
+                <a href="https://app.bizosto.com/signup" className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Start Free Trial</a>
+                <Button href="/book-demo" variant="outline">
+                  Book a Demo
                 </Button>
               </div>
               <p className="text-sm text-muted-foreground">
-                Built by operators. Designed for teams scaling beyond spreadsheets.
+                14-day free trial. No credit card required. Cancel anytime.
               </p>
               <div className="grid gap-4 text-sm text-muted-foreground sm:grid-cols-3">
                 <div className="space-y-1">
@@ -160,9 +163,9 @@ export default function HomePage() {
             <ScrollReveal className="rounded-2xl border border-border bg-surface/90 p-6 shadow-xl shadow-slate-900/10 backdrop-blur">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-foreground">Request ERP Access</p>
-                  <span className="rounded-full border border-border bg-surface-muted px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                    Enterprise intake
+                  <p className="text-sm font-semibold text-foreground">Start your free 14-day trial</p>
+                  <span className="rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-green-600">
+                    No credit card required
                   </span>
                 </div>
                 <HeroLeadForm />

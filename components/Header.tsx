@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Container from "@/components/Container";
-import Button from "@/components/Button";
 import LogoMark from "@/components/LogoMark";
 import ThemeToggle from "@/components/ThemeToggle";
 import MobileNav from "@/components/MobileNav";
@@ -32,8 +31,19 @@ export default function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-3 md:flex">
+          <a
+            href="https://app.bizosto.com/login"
+            className="text-sm font-medium text-muted-foreground transition hover:text-foreground"
+          >
+            Sign In
+          </a>
           <ThemeToggle />
-          <Button href="/book-demo">Book a Demo</Button>
+          <a
+            href="https://app.bizosto.com/signup"
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            Start Free Trial
+          </a>
         </div>
         <div className="flex items-center gap-3 md:hidden">
           <ThemeToggle />
