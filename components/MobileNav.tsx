@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Button from "@/components/Button";
 
 const links = [
   { href: "/product", label: "Product" },
@@ -39,10 +38,21 @@ export default function MobileNav() {
               </Link>
             ))}
           </nav>
-          <div className="mt-4">
-            <Button href="/book-demo" className="w-full">
-              Book a Demo
-            </Button>
+          <div className="mt-4 space-y-2 border-t border-border pt-4">
+            <a
+              href="https://app.bizosto.com/login"
+              className="block rounded-md px-2 py-1 text-sm font-medium text-muted-foreground transition hover:bg-surface-muted hover:text-foreground"
+              onClick={() => setOpen(false)}
+            >
+              Sign In
+            </a>
+            <a
+              href="https://app.bizosto.com/signup"
+              className="block rounded-md bg-primary px-2 py-2 text-center text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+              onClick={() => setOpen(false)}
+            >
+              Start Free Trial
+            </a>
           </div>
         </div>
       ) : null}

@@ -107,6 +107,7 @@ export default function HeroLeadForm() {
       }
 
       setSuccess(true);
+      window.location.href = `https://app.bizosto.com/signup?email=${encodeURIComponent(form.email)}&company=${encodeURIComponent(form.company)}&name=${encodeURIComponent(form.fullName)}`;
       setForm(initialState);
     } catch (error) {
       setApiError("Something went wrong. Please try again.");
@@ -267,10 +268,10 @@ export default function HeroLeadForm() {
         </div>
         <div className="flex flex-col gap-2">
           <Button type="submit" disabled={submitting} className="w-full" variant="primary">
-            {submitting ? "Submitting..." : "Request ERP Access"}
+            {submitting ? "Submitting..." : "Start Free Trial →"}
           </Button>
           <p className="text-xs text-muted-foreground">
-            We respond within one business day with next steps.
+            You'll be taken to create your account. No credit card required.
           </p>
         </div>
       </form>
