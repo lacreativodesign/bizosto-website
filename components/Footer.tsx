@@ -29,6 +29,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/integrations" className="transition hover:text-foreground">
+                  Integrations
+                </Link>
+              </li>
+              <li>
+                <Link href="/use-cases" className="transition hover:text-foreground">
+                  Use Cases
+                </Link>
+              </li>
+              <li>
                 <Link href="/how-it-works" className="transition hover:text-foreground">
                   How It Works
                 </Link>
