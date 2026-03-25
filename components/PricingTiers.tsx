@@ -1,10 +1,53 @@
+"use client";
+
+import { useState } from "react";
 import Badge from "@/components/Badge";
 import Card from "@/components/Card";
 import { pricingTiers } from "@/components/pricing-data";
 
 export default function PricingTiers() {
+  const [isAnnual, setIsAnnual] = useState(false);
+
   return (
     <>
+      {/* Billing toggle */}
+      <div className="mb-8 flex flex-col items-center gap-3">
+        <div className="inline-flex items-center rounded-full border border-border bg-surface p-1">
+          <button
+            type="button"
+            onClick={() => setIsAnnual(false)}
+            className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+              !isAnnual
+                ? "bg-primary text-primary-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Monthly
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsAnnual(true)}
+            className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+              isAnnual
+                ? "bg-primary text-primary-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Annual
+          </button>
+        </div>
+        {isAnnual ? (
+          <p className="text-sm font-semibold text-green-600">
+            🎉 2 months free — pay for 10, get 12
+          </p>
+        ) : (
+          <p className="text-sm text-muted-foreground">
+            Switch to annual and get 2 months free
+          </p>
+        )}
+      </div>
+
+      {/* Pricing cards */}
       <div className="grid gap-6 lg:grid-cols-3">
         {pricingTiers.map((tier) => (
           <Card
@@ -23,7 +66,19 @@ export default function PricingTiers() {
             <div className="space-y-4">
               <div>
                 <p className="text-sm font-semibold text-muted-foreground">{tier.name}</p>
-                <h3 className="mt-2 text-2xl font-semibold text-foreground">{tier.price}</h3>
+                <h3 className="mt-2 text-2xl font-semibold text-foreground">
+                  {isAnnual ? tier.annualPerMonth : tier.monthlyPrice}
+                </h3>
+                {isAnnual ? (
+                  <div className="mt-1 flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground">
+                      {tier.annualPrice} billed annually
+                    </span>
+                    <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-semibold text-green-600">
+                      {tier.annualSaving}
+                    </span>
+                  </div>
+                ) : null}
                 <p className="mt-2 text-sm text-muted-foreground">{tier.who}</p>
               </div>
               <ul className="space-y-3 text-sm text-muted-foreground">
@@ -54,7 +109,7 @@ export default function PricingTiers() {
                 ))}
               </ul>
               <a
-                href={tier.cta.href}
+                href={isAnnual ? tier.cta.annualHref : tier.cta.monthlyHref}
                 className={`mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
                   tier.highlight
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
@@ -70,6 +125,7 @@ export default function PricingTiers() {
           </Card>
         ))}
       </div>
+
       <p className="mt-6 text-center text-sm text-muted-foreground">
         All prices subject to applicable local tax based on billing location. A 0.5% platform
         handling fee applies to payments processed through Bizosto.
