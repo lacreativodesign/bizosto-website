@@ -7,26 +7,26 @@ import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
 
 export const metadata: Metadata = {
-  title: "How It Works",
+  title: "How Bizosto Works — From First Lead to Final Invoice",
   description:
-    "See how Bizosto service business management software turns lead capture into delivery, billing, and reporting.",
+    "See how Bizosto connects lead capture, project delivery, client communication, finance, and reporting in one automated flow for service businesses.",
 };
 
 const steps = [
   {
-    title: "Capture leads",
+    title: "Every lead enters the same system.",
     description:
-      "Collect inbound requests, standardize intake, and route leads to the right owners with SLA controls.",
+      "Whether it comes from your website, an email, or a referral — every enquiry lands in your CRM, gets assigned to the right person, and starts moving through your pipeline automatically. No more leads dying in inboxes.",
   },
   {
-    title: "Manage pipeline",
+    title: "Deals become projects without the friction.",
     description:
-      "Convert pipeline into scoped delivery plans with approval gates, resourcing, and commitments.",
+      "When a deal closes in Bizosto, a project kicks off with the right team assigned, the right workflow loaded, and the right client briefed — all without a single manual handoff. Your ops team stops hearing 'wait, when did we close this?'",
   },
   {
-    title: "Deliver, collect, and report",
+    title: "Deliver the work. Get paid. See the numbers.",
     description:
-      "Track milestones, issue invoices, and surface performance reporting with real-time dashboards.",
+      "Projects close, invoices go out automatically, payments are tracked, and your financial reports update in real time. By the time your leadership team asks what the month looks like — Bizosto already knows.",
   },
 ];
 
@@ -38,9 +38,9 @@ export default function HowItWorksPage() {
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
-                eyebrow="How it works"
-                title="A connected operational flow built for services"
-                subtitle="Bizosto turns every lead into a governed project with accountability and measurable outcomes."
+                eyebrow="The Flow"
+                title="The way your business should have always run."
+                subtitle="Most service businesses run on a patchwork of tools that don't talk to each other. Bizosto connects every step — from the first conversation with a client to the final payment — in one continuous, automated flow."
               />
             </ScrollReveal>
             <div className="grid gap-6 lg:grid-cols-3">
@@ -63,22 +63,22 @@ export default function HowItWorksPage() {
           <Container>
             <ScrollReveal>
               <SectionHeading
-                eyebrow="Built for accountability"
-                title="Operational ownership is designed into every workflow"
-                subtitle="Bizosto assigns owners, due dates, and approval checkpoints so nothing slips between teams."
+                eyebrow="How Accountability Works"
+                title="Things stop slipping when the system doesn't let them."
+                subtitle="Bizosto doesn't rely on people remembering to chase things. Every workflow has built-in owners, deadlines, and escalation points — so the system does the chasing for you."
               />
             </ScrollReveal>
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               {[
                 {
-                  title: "Role-based execution",
+                  title: "The right person. The right task. Every time.",
                   description:
-                    "Define who can create, approve, and execute across sales, delivery, and finance.",
+                    "Define who creates, approves, and executes across every department. Your sales team moves deals. Your ops team runs delivery. Your finance team invoices. Nobody is doing someone else's job.",
                 },
                 {
-                  title: "Automated checkpoints",
+                  title: "The system escalates so you don't have to.",
                   description:
-                    "Trigger alerts, escalations, and audit trails to keep every project on track.",
+                    "When a milestone is missed, Bizosto flags it. When an approval is overdue, the right person gets notified. When a client hasn't paid, a reminder goes out. You focus on the business. The system handles the admin.",
                 },
               ].map((item, index) => (
                 <ScrollReveal key={item.title} delay={index * 90}>
@@ -96,8 +96,8 @@ export default function HowItWorksPage() {
           <Container>
             <ScrollReveal>
               <CTASection
-                title="Map your workflow in a demo"
-                description="We will help you align pipeline, delivery, and finance around a single accountability framework."
+                title="See your exact workflow in a live demo."
+                description="We'll map your current process into Bizosto and show you exactly where the time, money, and accountability gaps close — before you commit to anything."
               />
             </ScrollReveal>
           </Container>

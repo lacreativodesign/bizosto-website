@@ -8,9 +8,9 @@ import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
 
 export const metadata: Metadata = {
-  title: "Book a Demo",
+  title: "Book a Live Bizosto Walkthrough — See Your Workflows in Action",
   description:
-    "Schedule a demo of the Bizosto Business Operating System to plan your rollout and module scope.",
+    "Book a personalised Bizosto demo. We'll map your exact service business workflow and show you how each module connects — so you can make a decision with confidence.",
 };
 
 export default function BookDemoPage() {
@@ -21,9 +21,9 @@ export default function BookDemoPage() {
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
-                eyebrow="Book a demo"
-                title="See how Bizosto runs your entire operation"
-                subtitle="Book a live walkthrough or start your free 14-day trial right now."
+                eyebrow="Book a Demo"
+                title="See your business running on one system."
+                subtitle="This isn't a generic product demo. We'll walk through your actual workflows — your pipeline, your delivery process, your finance setup — and show you exactly how Bizosto fits."
               />
             </ScrollReveal>
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
@@ -31,31 +31,31 @@ export default function BookDemoPage() {
                 <ScrollReveal>
                   <Card className="space-y-4">
                     <div className="space-y-2">
-                      <p className="text-sm font-semibold text-foreground">What you&apos;ll see</p>
+                      <p className="text-sm font-semibold text-foreground">What you'll see in 30 minutes</p>
                       <p className="text-sm text-muted-foreground">
-                        Walk through the workflows that run your day-to-day operations.
+                        We walk through your real workflows, not a scripted slideshow. Expect to leave with a clear rollout plan.
                       </p>
                     </div>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>Lead capture → assignment</li>
-                      <li>Client &amp; project workflow</li>
-                      <li>Roles, permissions, and reporting</li>
-                      <li>Notifications and accountability</li>
+                      <li>How leads flow from capture to delivery</li>
+                      <li>Your project and production workflow in action</li>
+                      <li>Finance, invoicing, and how payments connect to projects</li>
+                      <li>Your client portal — what your clients will actually see</li>
                     </ul>
                   </Card>
                 </ScrollReveal>
                 <ScrollReveal delay={100}>
                   <Card className="space-y-4 bg-surface-muted">
                     <div className="space-y-2">
-                      <p className="text-sm font-semibold text-foreground">Who this is for</p>
+                      <p className="text-sm font-semibold text-foreground">Who gets the most from this demo</p>
                       <p className="text-sm text-muted-foreground">
-                        Teams that need one system to manage delivery, visibility, and follow-through.
+                        Founders, ops directors, and team leads at service businesses who are tired of running their company on six different tools.
                       </p>
                     </div>
                     <div className="space-y-2 text-sm text-muted-foreground">
-                      <p>Agencies — align leads, client work, and staffing in one place.</p>
-                      <p>Service providers — standardize delivery and keep everyone accountable.</p>
-                      <p>Internal operations teams — replace spreadsheets with real-time reporting.</p>
+                      <p>Agencies — stop losing deals and projects between Slack threads and spreadsheets.</p>
+                      <p>Consultancies — track engagements, utilization, and retainers without manual work.</p>
+                      <p>Operations leaders — give your leadership team a dashboard they can make decisions from.</p>
                     </div>
                   </Card>
                 </ScrollReveal>
@@ -63,10 +63,9 @@ export default function BookDemoPage() {
               <div className="space-y-4">
                 <ScrollReveal>
                   <Card className="space-y-3 border-primary/40 bg-primary/5">
-                    <p className="text-sm font-semibold text-foreground">Ready to start now?</p>
+                    <p className="text-sm font-semibold text-foreground">Rather start right now?</p>
                     <p className="text-sm text-muted-foreground">
-                      Skip the demo and start your free 14-day trial immediately. No credit card
-                      required.
+                      Skip the demo and sign up directly. Your 14-day trial gives you full access to every module from minute one. No credit card. No restrictions.
                     </p>
                     <a
                       href="https://app.bizosto.com/signup"
@@ -75,7 +74,7 @@ export default function BookDemoPage() {
                       Start Free Trial →
                     </a>
                     <p className="text-xs text-muted-foreground">
-                      Or fill the form below to book a guided demo.
+                      Or fill the form to book your personalised walkthrough.
                     </p>
                   </Card>
                 </ScrollReveal>
@@ -84,11 +83,11 @@ export default function BookDemoPage() {
                 </ScrollReveal>
                 <ScrollReveal delay={120}>
                   <Card className="space-y-2 bg-surface-muted">
-                    <p className="text-sm font-semibold text-foreground">Trusted by operators</p>
+                    <p className="text-sm font-semibold text-foreground">Why teams trust Bizosto</p>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>Built by operators</li>
-                      <li>No obligation demo</li>
-                      <li>Real workflows, not slides</li>
+                      <li>Built by people who ran service businesses.</li>
+                      <li>30-minute walkthrough. No obligation.</li>
+                      <li>Your workflows, not a generic demo script.</li>
                     </ul>
                   </Card>
                 </ScrollReveal>

@@ -7,11 +7,11 @@ import ThemeScript from "@/components/ThemeScript";
 
 export const metadata: Metadata = {
   title: {
-    default: "Bizosto — Business Operating System",
+    default: "Bizosto — Run Your Entire Service Business in One System",
     template: "Bizosto — %s",
   },
   description:
-    "Bizosto is the operating system for modern service businesses. Manage clients, projects, sales, finance, and teams — in one system.",
+    "Bizosto is the all-in-one business platform for service teams. CRM, sales, projects, finance, HR, and client portal — connected, automated, and built to grow with you.",
   metadataBase: new URL("https://www.bizosto.com"),
   openGraph: {
     siteName: "Bizosto",
