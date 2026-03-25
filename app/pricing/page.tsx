@@ -9,55 +9,59 @@ import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
 
 export const metadata: Metadata = {
-  title: "Agency ERP Pricing",
+  title: "Simple, Flat Pricing — Your Whole Team for One Monthly Fee",
   description:
-    "Review Bizosto Agency ERP pricing for service business management software, with scope finalized during your demo.",
+    "Bizosto pricing starts at $79/month for your entire team. No per-user fees. No hidden charges. Compare Starter, Pro, and Enterprise plans.",
   alternates: {
     canonical: "https://www.bizosto.com/pricing",
   },
 };
 
 const highlights = [
-  "Lead capture & routing",
-  "Client & project workflow",
-  "Roles & permissions",
-  "Notifications & activity log",
-  "Reporting & dashboards",
-  "Module-based SaaS scaling",
+  "CRM, leads, deals & client management",
+  "Project delivery & production workflows",
+  "Finance, invoicing, payroll & tax",
+  "HR, attendance, leave & onboarding",
+  "Client portal with payment collection",
+  "10+ integrations: Slack, Google, QuickBooks & more",
+  "11 user roles — every team member covered",
+  "Real-time reports & performance dashboards",
+  "Approval workflows & audit trails",
+  "14-day free trial, all modules unlocked",
 ];
 
 const faqs = [
   {
     question: "Is there a free trial?",
-    answer: "Yes. Every plan includes a 14-day free trial with full access to all selected modules. No credit card required to start.",
+    answer: "Yes — every new workspace gets a full 14-day trial with every module unlocked. No credit card required. No restrictions. You see the real product from day one, not a locked-down demo version.",
   },
   {
     question: "What happens when my trial ends?",
-    answer: "You will be prompted to choose a plan and add a payment method. If no payment is added, your account enters a read-only grace period before being locked.",
+    answer: "You'll be prompted to choose a plan and add a payment method. If you don't subscribe, your workspace enters a read-only grace period for 30 days before being locked. Your data is always safe.",
   },
   {
     question: "Can I change plans anytime?",
-    answer: "Yes. Upgrade immediately with prorated billing, or downgrade at the end of your billing period.",
+    answer: "Yes. Upgrade immediately and the new modules activate right away — billing is prorated so you only pay for what you use. Downgrades take effect at the start of your next billing period.",
   },
   {
     question: "Is there a setup fee?",
-    answer: "No setup fees. The monthly subscription price is all-inclusive for your selected plan.",
+    answer: "No setup fees, ever. What you see on the pricing page is what you pay. The optional Enterprise onboarding session ($499) is available if you want a guided rollout, but it's entirely your choice.",
   },
   {
-    question: "Can I enable or disable modules?",
-    answer: "Yes. Modules are configurable by your workspace admin so you only use what your team needs.",
+    question: "Why isn't Bizosto per-user like other tools?",
+    answer: "Because per-user pricing punishes growth. When you hire your 11th person, your tool bill shouldn't jump. Bizosto charges a flat monthly fee so you can scale your team without scaling your software costs.",
   },
   {
-    question: "Is there a fee for accepting client payments?",
-    answer: "A 0.5% platform handling fee applies to payments processed through Bizosto. This is in addition to Stripe's standard processing fee.",
+    question: "Can I enable or disable specific modules?",
+    answer: "Yes. Your workspace admin can turn modules on or off at any time. If your team doesn't use HR yet, keep it off. Enable it when you need it — your plan tier determines which modules are available.",
   },
   {
-    question: "How is tax calculated on my subscription?",
-    answer: "Tax is calculated automatically based on your billing location using Stripe Tax. The applicable rate for your jurisdiction is applied at checkout.",
+    question: "Is there a fee when clients pay through Bizosto?",
+    answer: "A 0.5% platform handling fee applies to payments processed through the Bizosto payment terminal — on top of Stripe's standard processing fee. This only applies to client payments, not your subscription.",
   },
   {
-    question: "Is my data secure?",
-    answer: "Yes. All data is encrypted, isolated per workspace, and stored securely on Google Cloud / Firebase infrastructure with role-based access controls.",
+    question: "How does Bizosto compare to Zoho or HubSpot?",
+    answer: "Zoho One costs $37–$90 per user per month. HubSpot Professional starts at $100 per user per month. For a team of 20, that's $740–$2,000/month just for one of those platforms. Bizosto gives your entire team full ERP capability for $149/month flat. One price. Every module. No per-user penalties.",
   },
 ];
 
@@ -70,8 +74,8 @@ export default function PricingPage() {
             <ScrollReveal>
               <SectionHeading
                 eyebrow="Pricing"
-                title="Simple, transparent pricing for every business"
-                subtitle="Start with a 14-day free trial. Full access. Cancel anytime."
+                title="One flat price covers your whole team. Always."
+                subtitle="While other platforms charge per user and watch your bill grow as you hire — Bizosto charges one flat monthly fee. Grow your team. The price doesn't move."
                 align="center"
               />
             </ScrollReveal>
@@ -106,9 +110,9 @@ export default function PricingPage() {
           <Container className="relative z-10">
             <ScrollReveal>
               <SectionHeading
-                eyebrow="Included"
-                title="What you get with Bizosto"
-                subtitle="Everything you need to unify delivery, reporting, and governance."
+                eyebrow="What's Included"
+                title="Everything your service business needs — in every plan."
+                subtitle="Every Bizosto plan includes the core platform. Higher tiers unlock more modules, more storage, and dedicated support. No surprises, no add-ons, no gotchas."
                 align="center"
               />
             </ScrollReveal>
@@ -128,9 +132,9 @@ export default function PricingPage() {
           <Container>
             <ScrollReveal>
               <SectionHeading
-                eyebrow="FAQ"
-                title="Answers to common pricing questions"
-                subtitle="Get clarity before you book your demo."
+                eyebrow="Pricing FAQ"
+                title="Every pricing question, answered honestly."
+                subtitle="We believe in transparent pricing. No sales calls needed to find out what it costs. No hidden fees to discover after you sign up."
               />
             </ScrollReveal>
             <div className="mt-10 grid gap-4 md:grid-cols-2">
