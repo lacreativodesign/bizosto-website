@@ -12,8 +12,8 @@ export default function Footer() {
           <div className="space-y-4">
             <LogoMark />
             <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-              The operating system for modern service businesses. Manage clients, projects, sales,
-              finance, and teams — in one system.
+              The all-in-one platform for service businesses. CRM, projects, finance, HR, and
+              client portal — connected, automated, and built to scale with you.
             </p>
             <p className="text-xs text-muted-foreground">A product of LA CREATIVO GROUP, LLC</p>
           </div>

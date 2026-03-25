@@ -9,59 +9,59 @@ import Section from "@/components/Section";
 import { BarChart3, ClipboardCheck, CreditCard, ShieldCheck, TrendingUp } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Agency ERP Platform",
+  title: "Every Module Your Service Business Needs — Built to Work Together",
   description:
-    "Explore the Bizosto Agency ERP and Business Operating System connecting pipeline, delivery, finance, and reporting.",
+    "Explore Bizosto's full module suite — CRM, sales pipeline, project delivery, production, finance, HR, client portal, and more. One platform, every function, total visibility.",
 };
 
 const modules = [
   {
-    title: "Sales pipeline",
+    title: "CRM & Sales Pipeline",
     description:
-      "Capture leads, qualify opportunities, and standardize proposals with approval workflows and SLA tracking.",
+      "From first enquiry to signed deal — every lead is captured, qualified, and moved through your pipeline with automated follow-ups and SLA tracking. Never lose a prospect in a spreadsheet again.",
     icon: <TrendingUp className="h-4 w-4" aria-hidden="true" />,
   },
   {
-    title: "Delivery",
+    title: "Project & Production Delivery",
     description:
-      "Launch projects with templates, enforce milestones, and keep teams aligned with automated handoffs.",
+      "Brief → assign → QA → sign off. Every job moves through your production workflow with milestones, task owners, file management, and automated handoffs between teams.",
     icon: <ClipboardCheck className="h-4 w-4" aria-hidden="true" />,
   },
   {
-    title: "Finance",
+    title: "Finance & Revenue",
     description:
-      "Manage retainers, invoices, and collections alongside delivery to protect margins and cash flow.",
+      "Invoices, payments, payroll, expenses, tax, and financial reporting — all connected directly to the projects that generate them. Know your margin before a project closes, not after.",
     icon: <CreditCard className="h-4 w-4" aria-hidden="true" />,
   },
   {
-    title: "Reporting",
+    title: "Reports & Analytics",
     description:
-      "Monitor utilization, profitability, and risk with live dashboards across every account.",
+      "Revenue performance, delivery health, team utilization, sales pipeline, and HR data — in real-time dashboards you can act on today. No exporting. No building decks. Just answers.",
     icon: <BarChart3 className="h-4 w-4" aria-hidden="true" />,
   },
   {
-    title: "Roles and permissions",
+    title: "Roles, Permissions & HR",
     description:
-      "Define access levels for leadership, operations, and client stakeholders with audit-ready controls.",
+      "11 user roles from Super Admin to Client. Full HR module with employee records, attendance, leave, onboarding, and payroll. Every person sees exactly what they need — nothing more.",
     icon: <ShieldCheck className="h-4 w-4" aria-hidden="true" />,
   },
 ];
 
 const outcomes = [
   {
-    title: "Single source of truth",
+    title: "Every team. One system.",
     description:
-      "Every team works from the same project data, eliminating duplicate tools and hidden status updates.",
+      "Sales, delivery, finance, HR, and your clients all work from the same data. No more conflicting spreadsheets, no more version confusion, no more status chasing.",
   },
   {
-    title: "Workflow accountability",
+    title: "Accountability built in, not bolted on.",
     description:
-      "Standardized checkpoints ensure every task has an owner, a due date, and a measurable outcome.",
+      "Every task has an owner. Every project has a deadline. Every approval has a chain. Bizosto doesn't let things slip — it makes dropping the ball impossible to hide.",
   },
   {
-    title: "Predictable delivery",
+    title: "Delivery you can promise — and prove.",
     description:
-      "Align pipeline commitments with capacity and financial outcomes in one operational view.",
+      "Know your capacity before you commit. Track milestones as they happen. Invoice the moment delivery is confirmed. Your clients see it. Your numbers reflect it.",
   },
 ];
 
@@ -73,9 +73,9 @@ export default function ProductPage() {
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
-                eyebrow="Product"
-                title="A master ERP UI purpose-built for service delivery"
-                subtitle="Bizosto connects every department with a unified, outcome-driven workflow stack."
+                eyebrow="The Platform"
+                title="Every module your team needs. None of the tools they hate."
+                subtitle="Bizosto was built by people who ran service businesses and got tired of the tool chaos. Every feature exists because it was needed — not because it looked good in a pitch deck."
               />
             </ScrollReveal>
             <div className="grid gap-6 md:grid-cols-3">
@@ -95,9 +95,9 @@ export default function ProductPage() {
           <Container className="relative z-10">
             <ScrollReveal>
               <SectionHeading
-                eyebrow="Modules"
-                title="From pipeline to reporting, every module drives outcomes"
-                subtitle="Each module is designed as a connected system, not a standalone tool."
+                eyebrow="What's Inside"
+                title="15 modules. One platform. Zero tool-switching."
+                subtitle="Each module is built to share data with every other module — so when a deal closes, a project starts. When a project delivers, an invoice goes out. When an invoice is paid, your reports update. It all just works."
               />
             </ScrollReveal>
             <ScrollReveal className="mt-8">
@@ -110,22 +110,22 @@ export default function ProductPage() {
           <Container>
             <ScrollReveal>
               <SectionHeading
-                eyebrow="Unified outcomes"
-                title="Operational intelligence without the tool sprawl"
-                subtitle="Move from disconnected apps to a clean, enterprise-grade surface that keeps teams aligned."
+                eyebrow="The Bottom Line"
+                title="You didn't start your business to manage software subscriptions."
+                subtitle="Bizosto replaces the fragmented stack with one system your team learns once, uses daily, and actually relies on. Less overhead. More output. Total visibility."
               />
             </ScrollReveal>
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               {[
                 {
-                  title: "Delivery control center",
+                  title: "One dashboard to run your entire operation.",
                   description:
-                    "Combine project timelines, capacity, and approvals into a single operational dashboard.",
+                    "Every project, every team member, every client, and every invoice — visible from one screen. Your leadership team stops asking for updates because the answers are always there.",
                 },
                 {
-                  title: "Executive reporting layer",
+                  title: "Numbers that tell the truth — automatically.",
                   description:
-                    "Track margin, forecast, and risk across all engagements without manual reporting cycles.",
+                    "Bizosto generates your financial and operational reports without anyone having to build them. Revenue, margin, utilization, and delivery risk are always current, always accurate.",
                 },
               ].map((item, index) => (
                 <ScrollReveal key={item.title} delay={index * 90}>
@@ -143,8 +143,8 @@ export default function ProductPage() {
           <Container>
             <ScrollReveal>
               <CTASection
-                title="See Bizosto in action"
-                description="Walk through the ERP master UI and plan the right modules for your service business."
+                title="Ready to stop duct-taping tools together?"
+                description="Book a 30-minute walkthrough and we'll show you exactly how Bizosto maps to your operation. No generic demo. Your workflows, your modules, your team."
               />
             </ScrollReveal>
           </Container>
