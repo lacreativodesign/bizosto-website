@@ -10,8 +10,8 @@ export default function Icon() {
         style={{
           width: 32,
           height: 32,
-          borderRadius: 8,
-          background: "linear-gradient(135deg, #1a4fff 0%, #2563eb 50%, #0ea5e9 100%)",
+          borderRadius: 7,
+          background: "linear-gradient(135deg, #012167 0%, #6692f9 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -21,9 +21,8 @@ export default function Icon() {
           style={{
             fontFamily: "system-ui, sans-serif",
             fontSize: 20,
-            fontWeight: 800,
+            fontWeight: 700,
             color: "#ffffff",
-            letterSpacing: "-0.04em",
             lineHeight: 1,
           }}
         >
