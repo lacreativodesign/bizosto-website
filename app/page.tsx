@@ -162,11 +162,8 @@ export default function HomePage() {
             </ScrollReveal>
             <ScrollReveal className="rounded-2xl border border-border bg-surface/90 p-6 shadow-xl shadow-slate-900/10 backdrop-blur">
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-foreground">Start your free 14-day trial</p>
-                  <span className="rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-green-600">
-                    No credit card required
-                  </span>
+                <div>
+                  <p className="text-xl font-bold text-foreground">Start Your Free 14-Day Trial</p>
                 </div>
                 <HeroLeadForm />
               </div>

@@ -64,7 +64,7 @@ export default function PricingTiers() {
                 {tier.cta.label}
               </a>
               <p className="mt-2 text-center text-xs text-muted-foreground">
-                14-day free trial • No credit card required
+                14-day free trial • Cancel anytime
               </p>
             </div>
           </Card>

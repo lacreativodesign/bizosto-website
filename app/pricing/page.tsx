@@ -3,6 +3,7 @@ import Card from "@/components/Card";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import PricingTiers from "@/components/PricingTiers";
+import ComparisonTable from "@/components/ComparisonTable";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
@@ -70,7 +71,7 @@ export default function PricingPage() {
               <SectionHeading
                 eyebrow="Pricing"
                 title="Simple, transparent pricing for every business"
-                subtitle="Start with a 14-day free trial. No credit card required. Cancel anytime."
+                subtitle="Start with a 14-day free trial. Full access. Cancel anytime."
                 align="center"
               />
             </ScrollReveal>
@@ -80,6 +81,24 @@ export default function PricingPage() {
             <p className="mt-6 text-center text-sm text-muted-foreground">
               Final pricing depends on modules and team size.
             </p>
+          </Container>
+        </Section>
+
+
+
+        <Section>
+          <Container>
+            <ScrollReveal>
+              <SectionHeading
+                eyebrow="Compare plans"
+                title="Everything you get, side by side"
+                subtitle="No per-user pricing. One flat monthly fee for your whole team."
+                align="center"
+              />
+            </ScrollReveal>
+            <ScrollReveal className="mt-10">
+              <ComparisonTable />
+            </ScrollReveal>
           </Container>
         </Section>
 

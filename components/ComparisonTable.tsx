@@ -1,75 +1,76 @@
 import Card from "@/components/Card";
 
 const rows = [
-  {
-    feature: "Automated lead capture",
-    foundation: true,
-    growth: true,
-    enterprise: true,
-  },
-  {
-    feature: "Workflow templates",
-    foundation: true,
-    growth: true,
-    enterprise: true,
-  },
-  {
-    feature: "Financial operations",
-    foundation: false,
-    growth: true,
-    enterprise: true,
-  },
-  {
-    feature: "Custom automation",
-    foundation: false,
-    growth: false,
-    enterprise: true,
-  },
-  {
-    feature: "Dedicated success manager",
-    foundation: false,
-    growth: false,
-    enterprise: true,
-  },
+  { feature: "Users", starter: "10", pro: "20", enterprise: "Unlimited" },
+  { feature: "Storage", starter: "20GB", pro: "75GB", enterprise: "250GB" },
+  { feature: "CRM & Sales pipeline", starter: true, pro: true, enterprise: true },
+  { feature: "Project management", starter: true, pro: true, enterprise: true },
+  { feature: "Notifications", starter: true, pro: true, enterprise: true },
+  { feature: "Basic Reports", starter: true, pro: true, enterprise: true },
+  { feature: "Finance & Invoicing", starter: false, pro: true, enterprise: true },
+  { feature: "Production management", starter: false, pro: true, enterprise: true },
+  { feature: "Approvals workflow", starter: false, pro: true, enterprise: true },
+  { feature: "Full Reports & Analytics", starter: false, pro: true, enterprise: true },
+  { feature: "HR & Payroll", starter: false, pro: false, enterprise: true },
+  { feature: "Client Stripe Connect", starter: false, pro: false, enterprise: true },
+  { feature: "White-label options", starter: false, pro: false, enterprise: true },
+  { feature: "Client portal seats", starter: "10", pro: "Unlimited", enterprise: "Unlimited" },
+  { feature: "Support", starter: "Email 48h", pro: "Priority + Chat", enterprise: "Dedicated same-day" },
 ];
 
-function Check({ enabled }: { enabled: boolean }) {
-  return (
-    <span
-      className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold ${
-        enabled ? "bg-primary/20 text-primary" : "bg-surface-muted text-muted-foreground"
-      }`}
-    >
-      {enabled ? "Yes" : "-"}
-    </span>
-  );
+type Row = {
+  feature: string;
+  starter: boolean | string;
+  pro: boolean | string;
+  enterprise: boolean | string;
+};
+
+function Cell({ value }: { value: boolean | string }) {
+  if (typeof value === "boolean") {
+    return (
+      <span
+        className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
+          value
+            ? "bg-primary/15 text-primary"
+            : "bg-surface-muted text-muted-foreground"
+        }`}
+      >
+        {value ? "✓" : "—"}
+      </span>
+    );
+  }
+  return <span className="text-sm font-medium text-foreground">{value}</span>;
 }
 
 export default function ComparisonTable() {
   return (
-    <Card className="overflow-hidden p-0">
-      <div className="grid grid-cols-4 border-b border-border bg-surface-muted text-sm font-semibold text-foreground">
-        <div className="px-4 py-3">Capability</div>
-        <div className="px-4 py-3">Foundation</div>
-        <div className="px-4 py-3">Growth</div>
-        <div className="px-4 py-3">Enterprise</div>
-      </div>
-      <div className="divide-y divide-border">
-        {rows.map((row) => (
-          <div key={row.feature} className="grid grid-cols-4 items-center text-sm text-muted-foreground">
-            <div className="px-4 py-3 text-foreground">{row.feature}</div>
-            <div className="px-4 py-3">
-              <Check enabled={row.foundation} />
-            </div>
-            <div className="px-4 py-3">
-              <Check enabled={row.growth} />
-            </div>
-            <div className="px-4 py-3">
-              <Check enabled={row.enterprise} />
-            </div>
-          </div>
-        ))}
-      </div>
-    </Card>
+    <div className="overflow-x-auto rounded-2xl border border-border">
+      <table className="w-full min-w-[540px] text-sm">
+        <thead>
+          <tr className="border-b border-border bg-surface-muted">
+            <th className="px-5 py-4 text-left font-semibold text-foreground">Feature</th>
+            <th className="px-5 py-4 text-center font-semibold text-foreground">Starter</th>
+            <th className="px-5 py-4 text-center font-semibold text-primary">Pro ★</th>
+            <th className="px-5 py-4 text-center font-semibold text-foreground">Enterprise</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-border">
+          {rows.map((row: Row) => (
+            <tr key={row.feature} className="bg-surface transition hover:bg-surface-muted">
+              <td className="px-5 py-3 font-medium text-foreground">{row.feature}</td>
+              <td className="px-5 py-3 text-center text-muted-foreground">
+                <Cell value={row.starter} />
+              </td>
+              <td className="px-5 py-3 text-center text-muted-foreground">
+                <Cell value={row.pro} />
+              </td>
+              <td className="px-5 py-3 text-center text-muted-foreground">
+                <Cell value={row.enterprise} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

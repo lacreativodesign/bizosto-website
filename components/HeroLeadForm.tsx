@@ -271,7 +271,7 @@ export default function HeroLeadForm() {
             {submitting ? "Submitting..." : "Start Free Trial →"}
           </Button>
           <p className="text-xs text-muted-foreground">
-            You'll be taken to create your account. No credit card required.
+            14-day free trial. Cancel anytime.
           </p>
         </div>
       </form>
