@@ -6,10 +6,10 @@ import MobileNav from "@/components/MobileNav";
 
 const navLinks = [
   { href: "/product", label: "Product" },
-  { href: "/how-it-works", label: "How it Works" },
+  { href: "/integrations", label: "Integrations" },
+  { href: "/use-cases", label: "Use Cases" },
   { href: "/pricing", label: "Pricing" },
   { href: "/book-demo", label: "Book a Demo" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
