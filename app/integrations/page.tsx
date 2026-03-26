@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+"use client";
+import { useState } from "react";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
@@ -6,15 +7,6 @@ import Card from "@/components/Card";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
-
-export const metadata: Metadata = {
-  title: "Integrations — Connect Bizosto to Your Existing Stack",
-  description:
-    "Bizosto integrates with Google Workspace, Microsoft 365, Slack, QuickBooks, Xero, DocuSign, Mailchimp, Twilio, Calendly, Stripe, and Zapier. Your tools, connected.",
-  alternates: {
-    canonical: "https://www.bizosto.com/integrations",
-  },
-};
 
 const integrations = [
   {
@@ -99,6 +91,9 @@ const integrations = [
 const categories = ["All", "Productivity", "Accounting", "Communication", "Documents", "Marketing", "Scheduling", "Payments", "Automation"];
 
 export default function IntegrationsPage() {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const filtered = activeCategory === "All" ? integrations : integrations.filter((i) => i.category === activeCategory);
+
   return (
     <PageShell>
       <div className="flex flex-col">
@@ -111,29 +106,29 @@ export default function IntegrationsPage() {
                 subtitle="You don't have to rip and replace your entire stack. Bizosto integrates deeply with the apps your team lives in — so data flows both ways, automatically, from day one."
               />
             </ScrollReveal>
-            <ScrollReveal>
-              <div className="flex flex-wrap gap-2">
-                {categories.map((cat) => (
-                  <span
-                    key={cat}
-                    className={`rounded-full border border-border px-4 py-1.5 text-xs font-semibold ${
-                      cat === "All"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-surface text-muted-foreground"
-                    }`}
-                  >
-                    {cat}
-                  </span>
-                ))}
-              </div>
-            </ScrollReveal>
+            <div className="flex flex-wrap gap-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setActiveCategory(cat)}
+                  className={`rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors ${
+                    activeCategory === cat
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-surface text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
           </Container>
         </Section>
 
         <Section>
           <Container>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {integrations.map((integration, index) => (
+              {filtered.map((integration, index) => (
                 <ScrollReveal key={integration.name} delay={index * 50}>
                   <Card className="space-y-4 h-full">
                     <div className="flex items-start justify-between gap-3">
