@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/product", label: "Product" },
   { href: "/integrations", label: "Integrations" },
   { href: "/use-cases", label: "Use Cases" },
+  { href: "/ai-workforce", label: "AI Workforce" },
   { href: "/pricing", label: "Pricing" },
   { href: "/book-demo", label: "Book a Demo" },
 ];

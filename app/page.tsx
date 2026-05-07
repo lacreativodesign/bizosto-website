@@ -301,6 +301,67 @@ export default function HomePage() {
         </div>
       </Container>
 
+      <section className="section-spacing">
+        <Container>
+          <ScrollReveal>
+            <SectionHeading
+              eyebrow="AI Workforce"
+              title="Your business runs on Bizosto. Now your AI agents do too."
+              subtitle="Bizosto AI Workforce gives service businesses intelligent agents that work inside your existing system — reading live data, surfacing what matters, and handling routine work automatically."
+            />
+          </ScrollReveal>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                emoji: "🤖",
+                name: "COO Agent",
+                badge: "Live now",
+                badgeColor: "bg-green-500/10 text-green-600 border-green-500/20",
+                description: "Every morning — a plain-English summary of your business health. Open leads, overdue invoices, active projects, team status. No dashboards to open. Just answers.",
+              },
+              {
+                emoji: "💰",
+                name: "Finance Agent",
+                badge: "Coming soon",
+                badgeColor: "bg-amber-500/10 text-amber-600 border-amber-500/20",
+                description: "Monitors late payments, flags overdue invoices, and drafts collection emails — all requiring your approval before anything is sent. Finance intelligence without overhead.",
+              },
+              {
+                emoji: "📈",
+                name: "Sales Agent",
+                badge: "Coming soon",
+                badgeColor: "bg-amber-500/10 text-amber-600 border-amber-500/20",
+                description: "Watches your pipeline, spots stalling deals, and suggests follow-up actions. All inside Bizosto — no separate AI tool, no new login, no context-switching.",
+              },
+            ].map((agent) => (
+              <ScrollReveal key={agent.name}>
+                <div className="card-hover flex h-full flex-col rounded-xl border border-border bg-surface p-6 space-y-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-2xl">{agent.emoji}</span>
+                    <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold ${agent.badgeColor}`}>
+                      {agent.badge}
+                    </span>
+                  </div>
+                  <p className="text-sm font-semibold text-foreground">{agent.name}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{agent.description}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+          <ScrollReveal className="mt-6 flex items-center gap-4">
+            <a
+              href="/ai-workforce"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+            >
+              Explore AI Workforce →
+            </a>
+            <p className="text-sm text-muted-foreground">
+              Powered by your own OpenAI or Anthropic key. Pro and Enterprise plans.
+            </p>
+          </ScrollReveal>
+        </Container>
+      </section>
+
       <Container className="section-spacing">
         <ScrollReveal>
           <SectionHeading

@@ -8,6 +8,7 @@ const links = [
   { href: "/integrations", label: "Integrations" },
   { href: "/use-cases", label: "Use Cases" },
   { href: "/how-it-works", label: "How it Works" },
+  { href: "/ai-workforce", label: "AI Workforce" },
   { href: "/pricing", label: "Pricing" },
   { href: "/book-demo", label: "Book a Demo" },
   { href: "/contact", label: "Contact" },
