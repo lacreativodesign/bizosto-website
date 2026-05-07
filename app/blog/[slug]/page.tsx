@@ -16,10 +16,38 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = getPost(params.slug);
   if (!post) return {};
+
+  const ogTitle = encodeURIComponent(post.title);
+  const ogEyebrow = encodeURIComponent(post.category);
+  const ogImageUrl = `/og?title=${ogTitle}&eyebrow=${ogEyebrow}`;
+
   return {
     title: `${post.title} | Bizosto Blog`,
     description: post.excerpt,
     alternates: { canonical: `https://www.bizosto.com/blog/${post.slug}` },
+    openGraph: {
+      type: "article",
+      siteName: "Bizosto",
+      url: `https://www.bizosto.com/blog/${post.slug}`,
+      title: post.title,
+      description: post.excerpt,
+      publishedTime: post.date,
+      authors: ["Bizosto"],
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [ogImageUrl],
+    },
   };
 }
 

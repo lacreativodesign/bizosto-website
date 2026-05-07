@@ -7,28 +7,58 @@ import ThemeScript from "@/components/ThemeScript";
 import Script from "next/script";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.bizosto.com"),
   title: {
-    default: "Bizosto — Run Your Entire Service Business in One System",
-    template: "Bizosto — %s",
+    default: "Bizosto — The Operating System for Service Businesses",
+    template: "%s | Bizosto",
   },
   description:
-    "Bizosto is the all-in-one business platform for service teams. CRM, sales, projects, finance, HR, and client portal — connected, automated, and built to grow with you.",
-  metadataBase: new URL("https://www.bizosto.com"),
+    "Bizosto connects CRM, projects, finance, HR, and client portal into one system built for service businesses with 10–200 people. 14-day free trial.",
+  keywords: [
+    "service business software",
+    "agency ERP",
+    "project management CRM",
+    "client portal",
+    "business operating system",
+    "AI workforce",
+    "agency management software",
+  ],
+  authors: [{ name: "Bizosto", url: "https://www.bizosto.com" }],
+  creator: "Bizosto",
+  publisher: "LA CREATIVO GROUP, LLC",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
   openGraph: {
-    siteName: "Bizosto",
-    url: "https://www.bizosto.com",
     type: "website",
+    siteName: "Bizosto",
+    locale: "en_US",
+    url: "https://www.bizosto.com",
+    title: "Bizosto — The Operating System for Service Businesses",
+    description:
+      "CRM, projects, finance, HR, and client portal — connected in one system. Built for service businesses. 14-day free trial.",
     images: [
       {
-        url: "/og-placeholder.svg",
+        url: "/og?title=The+Operating+System+for+Service+Businesses",
         width: 1200,
         height: 630,
-        alt: "Bizosto",
+        alt: "Bizosto — The Operating System for Service Businesses",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@bizosto",
+    creator: "@bizosto",
+    title: "Bizosto — The Operating System for Service Businesses",
+    description:
+      "CRM, projects, finance, HR, and client portal — connected in one system. Built for service businesses.",
+    images: ["/og?title=The+Operating+System+for+Service+Businesses"],
+  },
+  alternates: {
+    canonical: "https://www.bizosto.com",
   },
 };
 
