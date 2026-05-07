@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
+import { adminDb } from "@/lib/firebaseAdmin";
 
 export const runtime = "nodejs";
-const ERP_INGEST_ENDPOINT = "https://dashboard.lacreativo.com/api/ingest/lead";
-const ERP_TENANT_ID = "bizosto";
+
+const TENANT_ID = "bizosto";
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 10;
@@ -10,9 +11,7 @@ const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 
 const getClientIp = (headers: Headers) => {
   const forwardedFor = headers.get("x-forwarded-for");
-  if (forwardedFor) {
-    return forwardedFor.split(",")[0]?.trim() ?? "unknown";
-  }
+  if (forwardedFor) return forwardedFor.split(",")[0]?.trim() ?? "unknown";
   return headers.get("x-real-ip") ?? "unknown";
 };
 
@@ -23,9 +22,7 @@ const isRateLimited = (ip: string) => {
     rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
     return false;
   }
-  if (entry.count >= RATE_LIMIT_MAX) {
-    return true;
-  }
+  if (entry.count >= RATE_LIMIT_MAX) return true;
   entry.count += 1;
   rateLimitStore.set(ip, entry);
   return false;
@@ -36,7 +33,7 @@ const normalizeField = (value: unknown) =>
 
 const optionalField = (value: unknown) => {
   const normalized = normalizeField(value);
-  return normalized ? normalized : undefined;
+  return normalized || undefined;
 };
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -59,19 +56,21 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const name = normalizeField(body.name);
-    const email = normalizeField(body.email).toLowerCase();
-    const company = normalizeField(body.company);
-    const message = normalizeField(body.message);
-    const page = normalizeField(body.page);
-    const source = normalizeField(body.source) || "website";
-    const honeypot = normalizeField(body.website);
-    if (honeypot) {
+
+    // Honeypot check
+    if (normalizeField(body.website)) {
       return NextResponse.json(
         { ok: false, code: "BAD_REQUEST", error: "Invalid submission." },
         { status: 400 }
       );
     }
+
+    const name = normalizeField(body.name);
+    const email = normalizeField(body.email).toLowerCase();
+    const company = normalizeField(body.company);
+    const message = normalizeField(body.message);
+    const page = normalizeField(body.page) || "/";
+    const source = normalizeField(body.source) || "website";
 
     if (!name) {
       return NextResponse.json(
@@ -79,14 +78,12 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-
     if (!email || !emailRegex.test(email)) {
       return NextResponse.json(
         { ok: false, code: "BAD_REQUEST", error: "Valid email is required." },
         { status: 400 }
       );
     }
-
     if (!company) {
       return NextResponse.json(
         { ok: false, code: "BAD_REQUEST", error: "Company is required." },
@@ -94,104 +91,41 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!message) {
-      return NextResponse.json(
-        { ok: false, code: "BAD_REQUEST", error: "Message is required." },
-        { status: 400 }
-      );
-    }
+    const now = new Date().toISOString();
+    const ref = adminDb.collection("leads").doc();
 
-    if (!page) {
-      return NextResponse.json(
-        { ok: false, code: "BAD_REQUEST", error: "Page is required." },
-        { status: 400 }
-      );
-    }
-
-    const apiKey = process.env.NEXT_PUBLIC_ERP_INGEST_KEY;
-    if (!apiKey) {
-      return NextResponse.json(
-        { ok: false, code: "CONFIG_MISSING", error: "Ingest configuration is missing." },
-        { status: 500 }
-      );
-    }
-
-    /**
-     * ERP assignment contract (ERP-side):
-     * - assignedToUserId (string)
-     * - assignedToEmail (string)
-     * - assignedToName (string)
-     * - assignedAt (timestamp)
-     *
-     * Notifications should be created for the assigned user using:
-     * - toUserId: assignedToUserId
-     * - deepLink conventions:
-     *   admin: /admin/sales/leads?open=<leadId>
-     *   sales_manager: /sales_manager/leads?open=<leadId>
-     *   sales: /sales/leads?open=<leadId>
-     */
-    const erpPayload = {
-      fullName: name,
+    await ref.set({
+      id: ref.id,
+      tenantId: TENANT_ID,
+      name,
       email,
-      phone: optionalField(body.meta?.phone),
+      phone: optionalField(body.meta?.phone) ?? null,
       company,
-      teamSize: optionalField(body.meta?.teamSize),
-      serviceType: optionalField(body.meta?.serviceType),
-      message,
+      teamSize: optionalField(body.meta?.teamSize) ?? null,
+      serviceType: optionalField(body.meta?.serviceType) ?? null,
+      message: message || `Website lead from ${page}`,
       source,
       page,
+      stage: "New",
+      status: "active",
+      assignedTo: null,
+      ownerName: null,
       meta: {
-        phone: optionalField(body.meta?.phone),
-        teamSize: optionalField(body.meta?.teamSize),
-        serviceType: optionalField(body.meta?.serviceType),
-        source,
-        page,
+        userAgent: optionalField(body.meta?.userAgent),
+        referrer: optionalField(body.meta?.referrer),
+        utm: body.meta?.utm || null,
       },
-      notificationHint: {
-        tenantId: ERP_TENANT_ID,
-        preferredRoles: ["admin", "sales_manager"],
-      },
-    };
-
-    const erpResponse = await fetch(ERP_INGEST_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-tenant-id": ERP_TENANT_ID,
-        "x-api-key": apiKey,
-      },
-      body: JSON.stringify(erpPayload),
+      createdAt: now,
+      updatedAt: now,
     });
 
-    if (!erpResponse.ok) {
-      const detail = await (async () => {
-        try {
-          const contentType = erpResponse.headers.get("content-type") ?? "";
-          if (contentType.includes("application/json")) {
-            const data = await erpResponse.json();
-            return typeof data === "string" ? data : JSON.stringify(data);
-          }
-          return await erpResponse.text();
-        } catch {
-          return "";
-        }
-      })();
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "ERP ingest failed",
-          detail: detail.slice(0, 200) || undefined,
-          status: erpResponse.status,
-        },
-        { status: 502 }
-      );
-    }
-
+    console.log(`[LEAD] Created lead ${ref.id} for ${email} from ${page}`);
     return NextResponse.json({ ok: true }, { status: 200 });
+
   } catch (error) {
-    console.error("Lead submission error", error);
+    console.error("[LEAD] Submission error:", error);
     return NextResponse.json(
-      { ok: false, code: "UPSTREAM_ERROR", error: "Unexpected error while processing lead." },
+      { ok: false, code: "SERVER_ERROR", error: "Unexpected error processing lead." },
       { status: 500 }
     );
   }
