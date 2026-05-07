@@ -15,5 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://www.bizosto.com/pricing", lastModified },
     { url: "https://www.bizosto.com/book-demo", lastModified },
     { url: "https://www.bizosto.com/contact", lastModified },
+    { url: "https://www.bizosto.com/about", lastModified },
+    { url: "https://www.bizosto.com/privacy", lastModified },
+    { url: "https://www.bizosto.com/terms", lastModified },
   ];
 }

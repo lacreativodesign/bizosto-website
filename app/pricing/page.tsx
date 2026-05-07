@@ -45,7 +45,7 @@ const faqs = [
   },
   {
     question: "Is there a setup fee?",
-    answer: "No setup fees, ever. What you see on the pricing page is what you pay. The optional Enterprise onboarding session ($499) is available if you want a guided rollout, but it's entirely your choice.",
+    answer: "No setup fees, ever. What you see on the pricing page is what you pay. No hidden charges, no surprise invoices.",
   },
   {
     question: "Why isn't Bizosto per-user like other tools?",

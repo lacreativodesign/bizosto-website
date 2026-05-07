@@ -147,7 +147,7 @@ export default function HomePage() {
               </p>
               <div className="grid gap-4 text-sm text-muted-foreground sm:grid-cols-3">
                 <div className="space-y-1">
-                  <p className="text-2xl font-semibold text-foreground">15</p>
+                  <p className="text-2xl font-semibold text-foreground">10</p>
                   <p>modules covering every business function</p>
                 </div>
                 <div className="space-y-1">
@@ -155,7 +155,7 @@ export default function HomePage() {
                   <p>user roles from sales to client portal</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-2xl font-semibold text-foreground">10+</p>
+                  <p className="text-2xl font-semibold text-foreground">14+</p>
                   <p>integrations with tools you already use</p>
                 </div>
               </div>
