@@ -15,7 +15,17 @@ export default function Footer() {
               The all-in-one platform for service businesses. CRM, projects, finance, HR, and
               client portal — connected, automated, and built to scale with you.
             </p>
-            <p className="text-xs text-muted-foreground">A product of LA CREATIVO GROUP, LLC</p>
+            <p className="text-xs text-muted-foreground">
+              A product of{" "}
+              <a
+                href="https://www.lacreativogroup.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 transition hover:text-foreground"
+              >
+                LA CREATIVO GROUP, LLC
+              </a>
+            </p>
           </div>
 
           <div className="space-y-3">
@@ -62,6 +72,11 @@ export default function Footer() {
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
+                <Link href="/about" className="transition hover:text-foreground">
+                  About Us
+                </Link>
+              </li>
+              <li>
                 <Link href="/book-demo" className="transition hover:text-foreground">
                   Book a Demo
                 </Link>
@@ -70,6 +85,16 @@ export default function Footer() {
                 <Link href="/contact" className="transition hover:text-foreground">
                   Contact
                 </Link>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/bizosto/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-foreground"
+                >
+                  LinkedIn
+                </a>
               </li>
             </ul>
           </div>
