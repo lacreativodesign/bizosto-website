@@ -1,7 +1,13 @@
 import type { MetadataRoute } from "next";
+import { getAllSlugs } from "@/lib/blog-posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
+
+  const blogUrls = getAllSlugs().map((slug) => ({
+    url: `https://www.bizosto.com/blog/${slug}`,
+    lastModified,
+  }));
 
   return [
     { url: "https://www.bizosto.com/", lastModified },
@@ -12,7 +18,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://www.bizosto.com/use-cases/consulting", lastModified },
     { url: "https://www.bizosto.com/use-cases/operations", lastModified },
     { url: "https://www.bizosto.com/how-it-works", lastModified },
+    { url: "https://www.bizosto.com/ai-workforce", lastModified },
     { url: "https://www.bizosto.com/pricing", lastModified },
+    { url: "https://www.bizosto.com/blog", lastModified },
+    ...blogUrls,
     { url: "https://www.bizosto.com/book-demo", lastModified },
     { url: "https://www.bizosto.com/contact", lastModified },
     { url: "https://www.bizosto.com/about", lastModified },
