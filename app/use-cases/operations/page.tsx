@@ -48,6 +48,7 @@ export default function OperationsPage() {
                 { title: "Audit trails", description: "Every action in Bizosto is logged — who did what, when, and from where. For compliance, for accountability, and for the moments when leadership asks 'what happened?'" },
                 { title: "Module-based rollout", description: "You don't have to implement everything on day one. Start with CRM and projects. Add finance when you're ready. Enable HR when you need it. The system grows with you." },
                 { title: "Integrations that stick", description: "Bizosto connects to Google Workspace, Microsoft 365, Slack, QuickBooks, and more. Your team keeps using the tools they know — Bizosto becomes the system that connects them all." },
+                { title: "AI that monitors operations so you can run them", description: "Four built-in AI agents — COO, Finance, Sales, and Reports — analyse your live data and surface what needs attention. The COO Agent delivers a daily business briefing. The Finance Agent monitors cash flow. The Sales Agent flags stalling pipeline. AI Reports answers any question with a live chart. Every recommended action requires your approval before it executes." },
               ].map((item, index) => (
                 <ScrollReveal key={item.title} delay={index * 60}>
                   <Card className="space-y-2">
