@@ -65,6 +65,30 @@ export async function POST(request: Request) {
       );
     }
 
+    // reCAPTCHA v3 verification — only blocks if score is very low (bot)
+    const recaptchaToken = normalizeField(body.recaptchaToken);
+    const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
+    if (recaptchaToken && recaptchaSecret) {
+      try {
+        const captchaRes = await fetch(
+          `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret}&response=${recaptchaToken}`,
+          { method: "POST" }
+        );
+        const captchaData = await captchaRes.json().catch(() => null);
+        if (captchaData && captchaData.success === true && typeof captchaData.score === "number") {
+          if (captchaData.score < 0.4) {
+            console.warn("[LEAD] reCAPTCHA score too low:", captchaData.score);
+            return NextResponse.json(
+              { ok: false, code: "BOT_DETECTED", error: "Submission blocked." },
+              { status: 400 }
+            );
+          }
+        }
+      } catch {
+        // reCAPTCHA verification failure is non-blocking — proceed
+      }
+    }
+
     const name = normalizeField(body.name);
     const email = normalizeField(body.email).toLowerCase();
     const company = normalizeField(body.company);

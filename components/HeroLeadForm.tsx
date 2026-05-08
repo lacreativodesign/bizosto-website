@@ -2,7 +2,19 @@
 
 import type { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
+import Script from "next/script";
 import Button from "@/components/Button";
+
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (cb: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
+
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
 interface FormState {
   fullName: string;
@@ -43,8 +55,6 @@ export default function HeroLeadForm() {
       nextErrors.email = "Enter a valid email.";
     }
     if (!form.company.trim()) nextErrors.company = "Company name is required.";
-    if (!form.phone.trim()) nextErrors.phone = "Phone number is required.";
-    if (!form.businessType.trim()) nextErrors.businessType = "Select a business type.";
     if (!form.teamSize.trim()) nextErrors.teamSize = "Select a team size.";
 
     setErrors(nextErrors);
@@ -59,6 +69,22 @@ export default function HeroLeadForm() {
     if (!validate()) return;
 
     setSubmitting(true);
+
+    let recaptchaToken = "";
+    try {
+      if (RECAPTCHA_SITE_KEY && typeof window !== "undefined" && window.grecaptcha) {
+        recaptchaToken = await new Promise<string>((resolve) => {
+          window.grecaptcha.ready(() => {
+            window.grecaptcha
+              .execute(RECAPTCHA_SITE_KEY, { action: "lead_form" })
+              .then(resolve)
+              .catch(() => resolve(""));
+          });
+        });
+      }
+    } catch {
+      // reCAPTCHA failure is non-blocking — proceed without token
+    }
 
     try {
       const utmParams = new URLSearchParams(window.location.search);
@@ -77,6 +103,7 @@ export default function HeroLeadForm() {
         email: form.email,
         company: form.company,
         message: `Homepage lead form. Company: ${form.company}. Team size: ${form.teamSize}. Nature of business: ${form.businessType}.`,
+        recaptchaToken,
         meta: {
           userAgent: navigator.userAgent,
           referrer: document.referrer || undefined,
@@ -203,7 +230,8 @@ export default function HeroLeadForm() {
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="phone">
-              Phone
+              Phone{" "}
+              <span className="font-normal text-muted-foreground">(optional)</span>
             </label>
             <input
               id="phone"
@@ -212,7 +240,6 @@ export default function HeroLeadForm() {
               value={form.phone}
               onChange={handleChange}
               placeholder="+1 (555) 000-0000"
-              required
             />
             {errors.phone ? <p className="text-xs text-primary">{errors.phone}</p> : null}
           </div>
@@ -220,14 +247,14 @@ export default function HeroLeadForm() {
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-foreground" htmlFor="businessType">
-              Nature of business
+              Nature of business{" "}
+              <span className="font-normal text-muted-foreground">(optional)</span>
             </label>
             <select
               id="businessType"
               name="businessType"
               value={form.businessType}
               onChange={handleChange}
-              required
             >
               <option value="">Select business type</option>
               <option value="Digital Agency">Digital Agency</option>
@@ -275,6 +302,10 @@ export default function HeroLeadForm() {
           </p>
         </div>
       </form>
+      <Script
+        src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+        strategy="lazyOnload"
+      />
     </div>
   );
 }
