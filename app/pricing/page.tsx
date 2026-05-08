@@ -163,6 +163,154 @@ export default function PricingPage() {
             </div>
           </Container>
         </Section>
+
+        {/* ── Add-ons, Upgrades & Services ──────────── */}
+        <Section>
+          <Container>
+            <ScrollReveal>
+              <SectionHeading
+                eyebrow="Add-ons & Services"
+                title="Everything you can add, upgrade, or buy — online, right now."
+                subtitle="No sales calls required. Every upgrade activates instantly. Every service purchase lands in the Bizosto team's queue."
+              />
+            </ScrollReveal>
+
+            {/* Annual billing */}
+            <ScrollReveal>
+              <div className="mt-10 rounded-2xl border border-primary/30 bg-primary/5 p-6 sm:p-8">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <p className="text-base font-semibold text-foreground">Annual Billing</p>
+                      <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-xs font-bold text-primary">
+                        Best value
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Pay annually and get 2 months free — a 16.7% saving on any plan.
+                      Switch at any time from your billing settings.
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-4 text-sm">
+                      <span className="text-muted-foreground">
+                        Starter: <strong className="text-foreground">$790/yr</strong>{" "}
+                        <span className="text-xs line-through opacity-50">$948</span>
+                      </span>
+                      <span className="text-muted-foreground">
+                        Pro: <strong className="text-foreground">$1,490/yr</strong>{" "}
+                        <span className="text-xs line-through opacity-50">$1,788</span>
+                      </span>
+                      <span className="text-muted-foreground">
+                        Enterprise: <strong className="text-foreground">$2,990/yr</strong>{" "}
+                        <span className="text-xs line-through opacity-50">$3,588</span>
+                      </span>
+                    </div>
+                  </div>
+                  <a
+                    href="https://app.bizosto.com/signup"
+                    className="inline-flex flex-shrink-0 items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+                  >
+                    Start with annual →
+                  </a>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Included features */}
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {[
+                {
+                  badge: "Included — Pro & Enterprise",
+                  badgeColor: "bg-green-500/10 text-green-600",
+                  title: "AI Workforce",
+                  description:
+                    "Four live AI agents — COO, Finance, Sales, and AI Reports — built into your dashboard. Connect your own OpenAI or Anthropic API key in Settings and activate instantly. No AI markup from Bizosto.",
+                  cta: null,
+                },
+                {
+                  badge: "Included — Pro & Enterprise",
+                  badgeColor: "bg-green-500/10 text-green-600",
+                  title: "Website Embed Integration",
+                  description:
+                    "One line of JavaScript code captures form submissions from any website — WordPress, Shopify, Wix, Squarespace, or custom HTML — and routes them as leads into your Bizosto CRM automatically.",
+                  cta: null,
+                },
+              ].map((item) => (
+                <ScrollReveal key={item.title}>
+                  <Card className="h-full space-y-3">
+                    <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold ${item.badgeColor}`}>
+                      {item.badge}
+                    </span>
+                    <p className="text-base font-semibold text-foreground">{item.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {/* Paid services */}
+            <div className="mt-4 grid gap-4 sm:grid-cols-3">
+              {[
+                {
+                  badge: "Professional Service",
+                  badgeColor: "bg-blue-500/10 text-blue-600",
+                  title: "Professional Onboarding",
+                  description:
+                    "A dedicated Bizosto team member sets up your workspace, imports your data, configures your modules, and trains your team. Go live in days, not weeks.",
+                  cta: { label: "Book a session", href: "/book-demo" },
+                },
+                {
+                  badge: "Professional Service",
+                  badgeColor: "bg-blue-500/10 text-blue-600",
+                  title: "Custom Integration Setup",
+                  description:
+                    "Need Bizosto connected to a tool that isn't in our integrations list? Our team scopes and builds custom integrations for your specific workflow requirements.",
+                  cta: { label: "Get a quote", href: "/contact" },
+                },
+                {
+                  badge: "Coming Soon — Free with any paid plan",
+                  badgeColor: "bg-amber-500/10 text-amber-700",
+                  title: "WordPress Plugin",
+                  description:
+                    "Install the Bizosto WordPress plugin to automatically sync Contact Form 7, WPForms, and WooCommerce orders directly into your CRM as leads — no Zapier required.",
+                  cta: null,
+                },
+              ].map((item) => (
+                <ScrollReveal key={item.title}>
+                  <Card className="h-full space-y-3">
+                    <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold ${item.badgeColor}`}>
+                      {item.badge}
+                    </span>
+                    <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                    {item.cta && (
+                      <a
+                        href={item.cta.href}
+                        className="inline-flex items-center text-sm font-semibold text-primary hover:underline"
+                      >
+                        {item.cta.label} →
+                      </a>
+                    )}
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {/* Platform fee note */}
+            <ScrollReveal>
+              <div className="mt-6 rounded-xl border border-border bg-surface-muted p-5 text-center">
+                <p className="text-sm font-semibold text-foreground">
+                  Payment terminal — 0.5% platform handling fee
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  When your clients pay invoices through the Bizosto payment terminal, a 0.5% platform
+                  handling fee applies on top of Stripe&apos;s standard processing rate. This only applies
+                  to client payments collected through Bizosto — not your subscription.
+                </p>
+              </div>
+            </ScrollReveal>
+          </Container>
+        </Section>
+
       </div>
     </PageShell>
   );
