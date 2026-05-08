@@ -35,8 +35,8 @@ const agents = [
   {
     icon: <TrendingUp className="h-5 w-5" />,
     name: "Finance Agent",
-    status: "Coming soon",
-    statusColor: "text-amber-600 bg-amber-500/10 border-amber-500/20",
+    status: "Available now",
+    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
     description:
       "Monitors your revenue, flags late payments, and drafts payment reminder emails — all requiring your approval before anything is sent. Finance intelligence without finance overhead.",
     capabilities: [
@@ -50,16 +50,31 @@ const agents = [
   {
     icon: <BarChart3 className="h-5 w-5" />,
     name: "Sales Agent",
-    status: "Coming soon",
-    statusColor: "text-amber-600 bg-amber-500/10 border-amber-500/20",
+    status: "Available now",
+    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
     description:
-      "Watches your pipeline, identifies stalling leads, and suggests follow-up actions. All inside Bizosto — no separate AI tool, no new login.",
+      "Watches your pipeline, identifies stalling leads, and proposes stage updates for your approval. All inside Bizosto — no separate AI tool, no new login.",
     capabilities: [
-      "Stalled lead identification",
-      "Follow-up action suggestions",
+      "Stalled lead identification (7+ days)",
+      "Stage update proposals (approval-gated)",
       "Deal stage progression tracking",
       "Pipeline velocity reporting",
       "Lead source performance analysis",
+    ],
+  },
+  {
+    icon: <Brain className="h-5 w-5" />,
+    name: "AI Reports",
+    status: "Available now",
+    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
+    description:
+      "Ask any question about your business in plain English and get a chart or table powered by your live data. No exports, no SQL, no waiting.",
+    capabilities: [
+      "Natural language question input",
+      "Bar, line, pie chart and table output",
+      "Revenue, leads, projects, invoices, team data",
+      "8 built-in data tools — always live",
+      "Accessible at Reports → AI Reports",
     ],
   },
 ];
