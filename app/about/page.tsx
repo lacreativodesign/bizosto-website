@@ -46,16 +46,28 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-4 text-base text-muted-foreground leading-relaxed">
                   <p>
-                    LA CREATIVO GROUP, LLC is a privately held group of companies operating across digital marketing, technology, publishing, and creative services — each built around the same obsession: execution over chaos, clarity over noise.
+                    LA CREATIVO GROUP, LLC is a privately held group of companies built around one core mission: helping businesses market better, operate smarter, and grow faster. The group&apos;s flagship company —{" "}
+                    <a
+                      href="https://lacreativo.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 hover:text-foreground transition-colors"
+                    >
+                      LA CREATIVO
+                    </a>
+                    {" "}— is a full-service digital marketing agency serving businesses across the United States, specialising in website design, mobile apps, digital marketing, SEO, branding, and process automation. Listed on Clutch among the top digital marketing agencies, LA CREATIVO&apos;s tagline has always been: <em>&quot;Where ideas become revenue-generating realities.&quot;</em>
                   </p>
                   <p>
-                    As the group scaled, coordinating teams, clients, projects, invoices, and people across multiple businesses became unsustainable. Every tool on the market was either built for a different type of company, priced for enterprise budgets, or too disconnected to deliver the visibility the group needed to operate with confidence.
+                    As LA CREATIVO scaled — managing more clients, more projects, more team members, and more deliverables — the operational complexity outgrew every tool on the market. CRM in one place. Projects in another. Finance in a third. HR nowhere. The team was spending as much time managing the tools as they were serving clients.
+                  </p>
+                  <p>
+                    Every solution evaluated was either built for a different type of company, priced for enterprise budgets, or too disconnected to give leadership the real-time visibility a fast-moving agency needs. So the decision was made to build exactly what was needed.
                   </p>
                   <p>
                     So we built our own.
                   </p>
                   <p>
-                    What started as an internal operating system became something the team relied on every single day. Leads stopped falling through the cracks. Projects shipped on time. Invoices went out the moment work was done. Finance connected to delivery. The entire team had clarity instead of chaos — not because of a new methodology, but because everyone was working from the same system.
+                    What started as an internal operating system became something the entire team relied on every single day. Leads stopped falling through the cracks. Projects shipped on time. Invoices went out the moment work was completed. Finance connected directly to delivery. The team had clarity instead of chaos — not because of a new methodology, but because everyone was working from the same system.
                   </p>
                 </div>
               </div>

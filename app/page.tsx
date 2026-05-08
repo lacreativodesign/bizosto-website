@@ -489,6 +489,84 @@ export default function HomePage() {
         </div>
       </Container>
 
+      {/* ── Market Trends ──────────────────────────── */}
+      <section className="section-spacing">
+        <Container>
+          <ScrollReveal>
+            <SectionHeading
+              eyebrow="The Market Is Moving"
+              title="2026 is the year service businesses stop improvising."
+              subtitle="The tools, pricing models, and manual processes that worked at 5 people are actively hurting you at 20. Here is what the market data is showing — and what the leading service businesses are doing about it."
+            />
+          </ScrollReveal>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                stat: "5–7",
+                label: "Disconnected tools",
+                description:
+                  "The average service business runs 5 to 7 separate tools for CRM, projects, finance, HR, and communication. Each tool is a data silo. Each gap between them is a revenue leak.",
+              },
+              {
+                stat: "18–24%",
+                label: "SaaS price increases since 2022",
+                description:
+                  "Major SaaS platforms have raised per-user prices significantly since 2022. Teams that haven't consolidated are paying more every year for the same disconnected stack.",
+              },
+              {
+                stat: "8–12h",
+                label: "Per week lost to tool-switching",
+                description:
+                  "Service business employees lose 8 to 12 hours per week to context-switching, manual data entry, and chasing status across applications. That is one full working day, every week.",
+              },
+              {
+                stat: "340%",
+                label: "Growth in AI business adoption",
+                description:
+                  "AI adoption in business operations accelerated dramatically between 2023 and 2025. Businesses that don't have AI built into their workflows are already operating at a structural disadvantage.",
+              },
+            ].map((item) => (
+              <ScrollReveal key={item.stat}>
+                <div className="card-hover rounded-xl border border-border bg-surface p-6 space-y-3 h-full">
+                  <p className="text-3xl font-bold text-primary">{item.stat}</p>
+                  <p className="text-sm font-semibold text-foreground">{item.label}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal>
+            <div className="mt-8 rounded-2xl border border-border bg-surface p-8 space-y-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                What leading service businesses are doing differently in 2026
+              </p>
+              <div className="grid gap-6 md:grid-cols-3">
+                {[
+                  {
+                    title: "Consolidating to a single platform",
+                    body: "The fastest-growing agencies and consultancies are cutting their tool stack from 6+ to 1 integrated operating system. The savings in subscriptions alone fund the switch — the productivity gains fund the next hire.",
+                  },
+                  {
+                    title: "Demanding flat pricing",
+                    body: "Per-user pricing punishes growth. Service businesses scaling from 10 to 25 people are actively switching to flat-rate platforms so their software costs don't scale faster than their revenue.",
+                  },
+                  {
+                    title: "Expecting AI to be built in",
+                    body: "In 2026, AI agents are not a luxury add-on. The businesses winning are the ones where AI reads their data, flags what matters, and drafts recommendations before the leadership team has had their morning coffee.",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="space-y-2">
+                    <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+        </Container>
+      </section>
+
       <section className="premium-section section-spacing">
         <Container className="relative z-10">
           <ScrollReveal>
