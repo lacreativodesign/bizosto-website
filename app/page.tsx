@@ -310,28 +310,35 @@ export default function HomePage() {
               subtitle="Bizosto AI Workforce gives service businesses intelligent agents that work inside your existing system — reading live data, surfacing what matters, and handling routine work automatically."
             />
           </ScrollReveal>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 emoji: "🤖",
                 name: "COO Agent",
-                badge: "Live now",
+                badge: "Live",
                 badgeColor: "bg-green-500/10 text-green-600 border-green-500/20",
-                description: "Every morning — a plain-English summary of your business health. Open leads, overdue invoices, active projects, team status. No dashboards to open. Just answers.",
+                description: "Daily plain-English briefing — overdue invoices, open leads, active projects, team status. No dashboards to open. Just answers.",
               },
               {
                 emoji: "💰",
                 name: "Finance Agent",
-                badge: "Coming soon",
-                badgeColor: "bg-amber-500/10 text-amber-600 border-amber-500/20",
-                description: "Monitors late payments, flags overdue invoices, and drafts collection emails — all requiring your approval before anything is sent. Finance intelligence without overhead.",
+                badge: "Live",
+                badgeColor: "bg-green-500/10 text-green-600 border-green-500/20",
+                description: "Flags overdue invoices, drafts payment reminders, monitors cash flow. Every action requires your approval before anything is sent.",
               },
               {
                 emoji: "📈",
                 name: "Sales Agent",
-                badge: "Coming soon",
-                badgeColor: "bg-amber-500/10 text-amber-600 border-amber-500/20",
-                description: "Watches your pipeline, spots stalling deals, and suggests follow-up actions. All inside Bizosto — no separate AI tool, no new login, no context-switching.",
+                badge: "Live",
+                badgeColor: "bg-green-500/10 text-green-600 border-green-500/20",
+                description: "Spots stalling leads, proposes stage updates. Approval-gated — nothing changes in your pipeline until you say so.",
+              },
+              {
+                emoji: "📊",
+                name: "AI Reports",
+                badge: "Live",
+                badgeColor: "bg-green-500/10 text-green-600 border-green-500/20",
+                description: "Ask any business question in plain English. Get a live chart in seconds. Revenue by client, leads by stage, invoice aging — all instant.",
               },
             ].map((agent) => (
               <ScrollReveal key={agent.name}>

@@ -6,7 +6,7 @@ import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
-import { BarChart3, ClipboardCheck, CreditCard, ShieldCheck, TrendingUp } from "lucide-react";
+import { BarChart3, Brain, ClipboardCheck, CreditCard, ShieldCheck, TrendingUp } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Every Module Your Service Business Needs — Built to Work Together",
@@ -44,6 +44,12 @@ const modules = [
     description:
       "11 user roles from Super Admin to Client. Full HR module with employee records, attendance, leave, onboarding, and payroll. Every person sees exactly what they need — nothing more.",
     icon: <ShieldCheck className="h-4 w-4" aria-hidden="true" />,
+  },
+  {
+    title: "AI Workforce — 4 Live Agents",
+    description:
+      "COO daily briefings, Finance Agent with approval-gated payment reminders, Sales Agent with pipeline analysis, and AI Reports that answer plain-English questions with live charts. Powered by your own OpenAI or Anthropic API key. Included on Pro and Enterprise plans.",
+    icon: <Brain className="h-4 w-4" aria-hidden="true" />,
   },
 ];
 
