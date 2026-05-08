@@ -54,6 +54,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/ai-workforce" className="transition hover:text-foreground">
+                  AI Workforce
+                </Link>
+              </li>
+              <li>
                 <Link href="/pricing" className="transition hover:text-foreground">
                   Pricing
                 </Link>
@@ -74,6 +79,11 @@ export default function Footer() {
               <li>
                 <Link href="/about" className="transition hover:text-foreground">
                   About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="transition hover:text-foreground">
+                  Blog
                 </Link>
               </li>
               <li>
