@@ -216,6 +216,77 @@ export default function HomePage() {
         </div>
       </Container>
 
+      {/* ── Competitor cost comparison ─────────────────────── */}
+      <section className="section-spacing">
+        <Container>
+          <ScrollReveal>
+            <SectionHeading
+              eyebrow="The Real Cost of Your Current Stack"
+              title="Your competitors are paying $779/month for less."
+              subtitle="The average 20-person service business runs Monday.com, HubSpot, and QuickBooks separately. That stack costs $779/month — and still doesn't cover HR, production workflows, or client portals. Bizosto covers everything for $149/month flat."
+            />
+          </ScrollReveal>
+          <ScrollReveal>
+            <div className="mt-8 overflow-x-auto rounded-2xl border border-border">
+              <table className="w-full min-w-[560px] text-sm">
+                <thead>
+                  <tr className="border-b border-border bg-surface-muted">
+                    <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Platform</th>
+                    <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">20 users/mo</th>
+                    <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">Finance</th>
+                    <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">HR</th>
+                    <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">AI Agents</th>
+                    <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">Client Portal</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {[
+                    { name: "Monday + HubSpot + QuickBooks", price: "$779+", finance: true, hr: false, ai: false, portal: false, you: false },
+                    { name: "HubSpot Professional", price: "$2,000+", finance: false, hr: false, ai: "Basic", portal: false, you: false },
+                    { name: "Zoho One", price: "$800–1,800", finance: true, hr: true, ai: "Basic", portal: false, you: false },
+                    { name: "Salesforce Essentials", price: "$1,200+", finance: false, hr: false, ai: "Add-on", portal: false, you: false },
+                    { name: "Bizosto Pro", price: "$149", finance: true, hr: false, ai: true, portal: true, you: true },
+                    { name: "Bizosto Enterprise", price: "$299", finance: true, hr: true, ai: true, portal: true, you: true },
+                  ].map((row) => (
+                    <tr
+                      key={row.name}
+                      className={`transition ${row.you ? "bg-primary/5 border-l-4 border-l-primary" : "bg-surface hover:bg-surface-muted"}`}
+                    >
+                      <td className="px-5 py-3 font-semibold text-foreground">
+                        {row.name}
+                        {row.you && (
+                          <span className="ml-2 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold text-primary">
+                            YOU
+                          </span>
+                        )}
+                      </td>
+                      <td className={`px-5 py-3 text-center font-bold ${row.you ? "text-primary" : "text-foreground"}`}>
+                        {row.price}
+                        <span className="text-xs font-normal text-muted-foreground">/mo</span>
+                      </td>
+                      {[row.finance, row.hr, row.ai, row.portal].map((val, i) => (
+                        <td key={i} className="px-5 py-3 text-center">
+                          {val === true ? (
+                            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/15 text-xs font-bold text-primary">✓</span>
+                          ) : val === false ? (
+                            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-surface-muted text-xs text-muted-foreground">—</span>
+                          ) : (
+                            <span className="text-xs text-muted-foreground">{val}</span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-center text-xs text-muted-foreground">
+              Competitor pricing based on published list prices for 20 users. Verified May 2026.
+            </p>
+          </ScrollReveal>
+        </Container>
+      </section>
+
       <section className="section-spacing">
         <Container className="relative z-10">
           <ScrollReveal>
