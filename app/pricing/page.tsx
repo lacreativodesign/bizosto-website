@@ -23,8 +23,10 @@ const highlights = [
   "Finance, invoicing, payroll & tax",
   "HR, attendance, leave & onboarding",
   "Client portal with payment collection",
-  "10+ integrations: Slack, Google, QuickBooks & more",
+  "14 integrations: Slack, Google, QuickBooks, Xero & more",
   "11 user roles — every team member covered",
+  "AI Workforce — 4 live agents built into your dashboard",
+  "Natural language reports — ask questions, get charts",
   "Real-time reports & performance dashboards",
   "Approval workflows & audit trails",
   "14-day free trial, all modules unlocked",
@@ -62,6 +64,18 @@ const faqs = [
   {
     question: "How does Bizosto compare to Zoho or HubSpot?",
     answer: "Zoho One costs $37–$90 per user per month. HubSpot Professional starts at $100 per user per month. For a team of 20, that's $740–$2,000/month just for one of those platforms. Bizosto gives your entire team full ERP capability for $149/month flat. One price. Every module. No per-user penalties.",
+  },
+  {
+    question: "Does Bizosto include AI features?",
+    answer: "Yes — AI Workforce is built into Pro and Enterprise plans at no extra charge. You get four live AI agents: COO (daily business briefings), Finance (overdue invoice monitoring with approval-gated payment reminders), Sales (pipeline analysis with approval-gated lead stage updates), and AI Reports (ask any question in plain English, get a live chart). You bring your own OpenAI or Anthropic API key — Bizosto never marks up your AI usage.",
+  },
+  {
+    question: "What is the Website Embed feature?",
+    answer: "Bizosto generates a one-line JavaScript snippet you paste into any website — WordPress, Shopify, Wix, Squarespace, Webflow, or custom HTML. It automatically captures form submissions and routes them into your Bizosto CRM as leads, tagged with the source page. No Zapier required. Available on Pro and Enterprise plans.",
+  },
+  {
+    question: "Is there a free trial for Pro or Enterprise?",
+    answer: "Yes. Every new workspace gets a full 14-day trial with every Pro and Enterprise module unlocked — including AI Workforce. No credit card required. You see the real product from day one.",
   },
 ];
 
