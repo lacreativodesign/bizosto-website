@@ -70,6 +70,7 @@ export default function ConsultingPage() {
                 { title: "Partner-level reporting", description: "Revenue per engagement, margin per client, delivery performance, and pipeline health — in dashboards your partners can review in five minutes, not five hours." },
                 { title: "Client portal", description: "Give each client their own portal to see engagement status, review and approve deliverables, view invoices, and communicate — professionally and on the record." },
                 { title: "HR for growing teams", description: "As your consulting firm grows, so does your people complexity. Bizosto HR manages employees, attendance, leave, onboarding, and payroll in the same system as your client work." },
+                { title: "AI agents that read your numbers", description: "Ask 'show me revenue by engagement this quarter' and get a chart in seconds. Or let the COO Agent brief you every morning on what's overdue, what's stalled, and what needs attention — in plain English. No dashboards to build, no exports to run." },
               ].map((item, index) => (
                 <ScrollReveal key={item.title} delay={index * 60}>
                   <Card className="space-y-2">

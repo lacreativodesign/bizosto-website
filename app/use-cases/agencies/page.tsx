@@ -42,6 +42,7 @@ const modules = [
   { title: "Client Portal", description: "Your clients get a branded portal to track progress, approve work, view invoices, and pay. Professional. Transparent. No chasing." },
   { title: "Finance & Invoicing", description: "Invoice on delivery, track retainers, manage expenses, and run payroll — all connected to the projects that generate the revenue." },
   { title: "Reports & Dashboards", description: "Revenue per client, delivery performance, team utilization, and pipeline health — live dashboards your leadership can act on." },
+  { title: "AI Workforce — Built In", description: "Four AI agents work inside your agency data. The COO Agent delivers a daily plain-English briefing on overdue invoices, open leads, and project health. The Finance Agent flags late-paying clients and drafts reminders. The Sales Agent spots stalling deals. AI Reports answers any question with a live chart. All approval-gated — nothing executes without you." },
 ];
 
 export default function AgenciesPage() {
