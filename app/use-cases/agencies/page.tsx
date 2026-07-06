@@ -138,7 +138,7 @@ export default function AgenciesPage() {
             <ScrollReveal>
               <CTASection
                 title="Ready to run your agency on one system?"
-                description="Start your free 14-day trial today — every module unlocked, your whole team included. Or book a walkthrough and we'll map your exact agency workflow into Bizosto."
+                description="Start your 14-day free trial today. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing. Or book a walkthrough and we'll map your exact agency workflow into Bizosto."
               />
             </ScrollReveal>
           </Container>

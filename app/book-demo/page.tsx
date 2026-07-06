@@ -65,7 +65,7 @@ export default function BookDemoPage() {
                   <Card className="space-y-3 border-primary/40 bg-primary/5">
                     <p className="text-sm font-semibold text-foreground">Rather start right now?</p>
                     <p className="text-sm text-muted-foreground">
-                      Skip the demo and sign up directly. Your 14-day trial gives you full access to every module from minute one. No credit card. No restrictions.
+                      Skip the demo and sign up directly. Your 14-day free trial starts the moment you sign up. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing.
                     </p>
                     <a
                       href="https://app.bizosto.com/signup"
