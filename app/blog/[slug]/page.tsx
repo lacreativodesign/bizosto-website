@@ -141,7 +141,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               Ready to run your service business from one system?
             </p>
             <p className="text-sm text-muted-foreground">
-              14-day free trial. Every module unlocked. No credit card required.
+              14-day free trial. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
               <a

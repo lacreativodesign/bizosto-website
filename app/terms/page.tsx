@@ -64,14 +64,15 @@ export default function TermsPage() {
             <h2 className="text-base font-semibold text-foreground">Free Trial</h2>
             <p>
               New accounts receive a fourteen (14) day free trial beginning on the date of
-              registration. No credit card is required to begin the trial. Full access to all modules
-              selected during signup is provided during the trial period.
+              registration. A valid payment method is required at signup to begin the trial. Full
+              access to the modules included in the plan selected during signup is provided during
+              the trial period.
             </p>
             <p>
-              By initiating a subscription at the end of the trial period, you expressly authorize
-              Bizosto to begin billing your designated payment method on a recurring monthly basis. If
-              no payment method is added before the trial ends, your account will enter a read-only
-              grace period.
+              You will not be charged during the trial. Unless you cancel before the end of the
+              fourteenth (14th) day, you expressly authorize Bizosto to begin billing your
+              designated payment method on a recurring basis starting on day fifteen (15). If you
+              cancel at any time before the end of the trial, you will not be charged.
             </p>
             <p>
               Bizosto reserves the right to modify or terminate free trial offers at any time without

@@ -4,7 +4,6 @@ import SectionHeading from "@/components/SectionHeading";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import FAQAccordion from "@/components/FAQAccordion";
-import TestimonialCard from "@/components/TestimonialCard";
 import Button from "@/components/Button";
 import HeroLeadForm from "@/components/HeroLeadForm";
 import PricingTiers from "@/components/PricingTiers";
@@ -100,7 +99,7 @@ const featureHighlights = [
 const faqs = [
   {
     question: "Is there a free trial?",
-    answer: "Yes — every new workspace gets a full 14-day trial with every module unlocked. No credit card. No restrictions. You see the real product from day one.",
+    answer: "Yes — every new workspace gets a full 14-day free trial on the plan you choose. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing. You see the real product from day one.",
   },
   {
     question: "Can I keep the tools I already use?",
@@ -130,10 +129,10 @@ export default function HomePage() {
               </span>
               <div className="space-y-5">
                 <h1 className="text-balance text-[2.6rem] font-semibold leading-[1.08] tracking-[-0.02em] text-foreground sm:text-5xl lg:text-[3.75rem]">
-                  One system. Every department. Zero tool-switching.
+                  The Operating System for Service Businesses
                 </h1>
                 <p className="max-w-xl text-base text-muted-foreground sm:text-lg">
-                  Bizosto connects your CRM, sales pipeline, project delivery, finance, HR, and client portal in one platform — so your team executes faster and you always know what's happening.
+                  A client portal that connects your team and your clients — backed by a dashboard for every role, predictable project delivery, and finance visibility from lead to paid invoice.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -143,7 +142,7 @@ export default function HomePage() {
                 </Button>
               </div>
               <p className="text-sm text-muted-foreground">
-                14-day free trial. No credit card required. Cancel anytime.
+                14-day free trial. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing.
               </p>
               <div className="grid gap-4 text-sm text-muted-foreground sm:grid-cols-3">
                 <div className="space-y-1">
@@ -456,35 +455,35 @@ export default function HomePage() {
       <Container className="section-spacing">
         <ScrollReveal>
           <SectionHeading
-            eyebrow="From Our Customers"
-            title="Real teams. Real results. No more tool chaos."
-            subtitle="These are the people who switched from six disconnected tools to one system that actually works."
+            eyebrow="Why Bizosto Exists"
+            title="Built inside a real service business — not a boardroom."
+            subtitle="Bizosto began as the internal operating system of a working digital agency. Six years of real client operations — quoting, delivery, invoicing, hiring — shaped every module before it ever had a name."
           />
         </ScrollReveal>
         <div className="mt-8 grid gap-6 md:grid-cols-3 md:gap-8">
           <ScrollReveal>
-            <TestimonialCard
-              quote="We were running on five different tools and still didn't know what was happening. Bizosto gave us one screen that tells us everything."
-              name="Alex Morgan"
-              title="COO"
-              company="Echelon Agency"
-            />
+            <div className="h-full rounded-2xl border border-border bg-surface p-6 space-y-2">
+              <p className="text-2xl font-semibold text-foreground">10 modules</p>
+              <p className="text-sm text-muted-foreground">
+                CRM, sales, projects, production, approvals, finance, HR, reports, notifications, and a client portal — one system, no integrations to babysit.
+              </p>
+            </div>
           </ScrollReveal>
           <ScrollReveal>
-            <TestimonialCard
-              quote="The moment our finance team could see project status and invoice directly from it, we stopped losing money on scope creep. That alone paid for Bizosto."
-              name="Priya Shah"
-              title="VP Operations"
-              company="Signal Dev Studio"
-            />
+            <div className="h-full rounded-2xl border border-border bg-surface p-6 space-y-2">
+              <p className="text-2xl font-semibold text-foreground">11 role dashboards</p>
+              <p className="text-sm text-muted-foreground">
+                Every seat gets its own view — sales, account management, production, finance, HR, leadership, and your clients — so nobody works blind.
+              </p>
+            </div>
           </ScrollReveal>
           <ScrollReveal>
-            <TestimonialCard
-              quote="I used to spend every Sunday pulling numbers from four different places. Now I open one dashboard and I'm done in five minutes."
-              name="Diego Torres"
-              title="Managing Partner"
-              company="Momentum Consulting"
-            />
+            <div className="h-full rounded-2xl border border-border bg-surface p-6 space-y-2">
+              <p className="text-2xl font-semibold text-foreground">Security first</p>
+              <p className="text-sm text-muted-foreground">
+                Tenant isolation, role-based permissions, and an append-only finance ledger are built into the core — not bolted on after the fact.
+              </p>
+            </div>
           </ScrollReveal>
         </div>
       </Container>
@@ -599,7 +598,7 @@ export default function HomePage() {
         <ScrollReveal>
           <CTASection
             title="Your business deserves a system, not a subscription pile."
-            description="Start your free 14-day trial today. Every module unlocked. Your whole team included. See why service businesses that try Bizosto don't go back."
+            description="Start your 14-day free trial today. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing. See why service businesses that try Bizosto don't go back."
             primaryAction="Book a Demo"
             secondaryAction="Contact"
           />

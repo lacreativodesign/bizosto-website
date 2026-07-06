@@ -35,7 +35,7 @@ const highlights = [
 const faqs = [
   {
     question: "Is there a free trial?",
-    answer: "Yes — every new workspace gets a full 14-day trial with every module unlocked. No credit card required. No restrictions. You see the real product from day one, not a locked-down demo version.",
+    answer: "Yes — every new workspace gets a full 14-day free trial on the plan you choose. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing. You see the real product from day one, not a locked-down demo version.",
   },
   {
     question: "What happens when my trial ends?",
@@ -75,7 +75,7 @@ const faqs = [
   },
   {
     question: "Is there a free trial for Pro or Enterprise?",
-    answer: "Yes. Every new workspace gets a full 14-day trial with every Pro and Enterprise module unlocked — including AI Workforce. No credit card required. You see the real product from day one.",
+    answer: "Yes. Start your 14-day free trial on Pro or Enterprise and every module in that plan is unlocked — including AI Workforce. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing.",
   },
 ];
 

@@ -151,7 +151,7 @@ export default function AboutPage() {
           <ScrollReveal>
             <CTASection
               title="The same system we built for ourselves — now yours."
-              description="Start your 14-day free trial and see what it feels like to run your entire service business from one place. No credit card. No restrictions. Every module unlocked from day one."
+              description="Start your 14-day free trial and see what it feels like to run your entire service business from one place. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing."
               primaryAction="Start Free Trial"
               secondaryAction="Book a Demo"
             />
