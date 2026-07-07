@@ -10,7 +10,7 @@ export default function Card({ children, className }: CardProps) {
   return (
     <div
       className={cn(
-        "card-hover rounded-xl border border-border bg-card p-6 shadow-sm shadow-slate-900/5",
+        "group card-hover rounded-xl border border-border bg-card p-6 shadow-sm shadow-slate-900/5",
         className
       )}
     >

@@ -26,6 +26,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
               className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left"
               onClick={() => setOpenIndex(isOpen ? null : index)}
               type="button"
+              aria-expanded={isOpen}
             >
               <span className="text-base font-semibold text-foreground">{item.question}</span>
               <span
@@ -38,9 +39,11 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
                 +
               </span>
             </button>
-            {isOpen ? (
-              <div className="px-6 pb-6 text-sm text-muted-foreground">{item.answer}</div>
-            ) : null}
+            <div className={cn("faq-panel", isOpen && "is-open")}>
+              <div>
+                <div className="px-6 pb-6 text-sm text-muted-foreground">{item.answer}</div>
+              </div>
+            </div>
           </Card>
         );
       })}
