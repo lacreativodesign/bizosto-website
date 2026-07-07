@@ -79,6 +79,7 @@ export default function ProductPage() {
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="The Platform"
                 title="Every module your team needs. None of the tools they hate."
                 subtitle="Bizosto was built by people who ran service businesses and got tired of the tool chaos. Every feature exists because it was needed — not because it looked good in a pitch deck."

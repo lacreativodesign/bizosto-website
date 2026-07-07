@@ -44,6 +44,7 @@ export default function BlogPage() {
         <Section variant="premium">
           <Container>
             <SectionHeading
+              as="h1"
               eyebrow="The Bizosto Blog"
               title="Insights for service business leaders."
               subtitle="Practical thinking on operations, finance, AI automation, client management, and the systems that make service businesses run."

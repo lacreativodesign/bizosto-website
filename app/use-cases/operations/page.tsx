@@ -24,6 +24,7 @@ export default function OperationsPage() {
           <Container>
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="Bizosto for Operations"
                 title="Operations leaders don't need another tool. They need the last one."
                 subtitle="The biggest challenge in ops isn't finding software — it's getting the whole company to actually use it. Bizosto is designed around adoption. Every role gets a view built for them. Every workflow has built-in accountability. Every report generates itself."

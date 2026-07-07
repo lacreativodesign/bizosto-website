@@ -24,6 +24,7 @@ export default function ContactPage() {
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="Get In Touch"
                 title="Tell us what you're trying to fix."
                 subtitle="You don't need to have everything figured out. Tell us where the pain is — too many tools, no visibility, projects going over budget, clients out of the loop — and we'll show you how Bizosto solves it."
@@ -38,7 +39,7 @@ export default function ContactPage() {
                   <Card className="space-y-3">
                     <p className="text-sm font-semibold text-foreground">What happens after you send this</p>
                     <p className="text-sm text-muted-foreground">
-                      A real person on our team reads every message. We don't hand you off to a bot or a generic drip sequence.
+                      A real person on our team reads every message. We don&apos;t hand you off to a bot or a generic drip sequence.
                     </p>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       <li>A reply from a real person within 1 business day</li>
