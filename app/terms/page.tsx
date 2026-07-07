@@ -369,7 +369,7 @@ export default function TermsPage() {
             <h2 className="text-base font-semibold text-foreground">Contact</h2>
             <p>LA CREATIVO GROUP, LLC</p>
             <p>Operating as: Bizosto</p>
-            <p>Email: legal@bizosto.com</p>
+            <p>Email: support@bizosto.com</p>
             <p>Website: www.bizosto.com</p>
           </div>
         </div>
