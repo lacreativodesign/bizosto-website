@@ -25,6 +25,7 @@ export default function AboutPage() {
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="About Bizosto"
                 title="Built by operators. For operators. Proven before it was ever sold."
                 subtitle="Bizosto didn't start in a pitch deck. It started in a problem — the same one every service business faces when they're trying to run a real operation on five disconnected tools."
@@ -87,7 +88,7 @@ export default function AboutPage() {
                   </p>
                   <p>
                     Other service businesses — agencies, consultancies, operations teams — started asking what we were running on. When we explained it, the response was always the same:{" "}
-                    <em>"We need that too."</em>
+                    <em>&quot;We need that too.&quot;</em>
                   </p>
                   <p>
                     That was the moment Bizosto became more than an internal tool. It became a decision: to give the broader service business community access to a system already proven in production — built by people who live the same operational challenges every day, and designed around how service businesses actually work.

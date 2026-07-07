@@ -38,6 +38,7 @@ export default function HowItWorksPage() {
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="The Flow"
                 title="The way your business should have always run."
                 subtitle="Most service businesses run on a patchwork of tools that don't talk to each other. Bizosto connects every step — from the first conversation with a client to the final payment — in one continuous, automated flow."

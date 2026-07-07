@@ -101,6 +101,7 @@ export default function IntegrationsPage() {
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="Integrations"
                 title="Bizosto connects to the tools your team already uses."
                 subtitle="You don't have to rip and replace your entire stack. Bizosto integrates deeply with the apps your team lives in — so data flows both ways, automatically, from day one."
