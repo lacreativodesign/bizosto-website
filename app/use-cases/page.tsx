@@ -55,6 +55,7 @@ export default function UseCasesPage() {
           <Container>
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="Use Cases"
                 title="Built for service businesses. Works for every type."
                 subtitle="Bizosto was designed around the way service businesses actually operate. Whatever your model — agency, consulting, managed services, or internal ops — the system adapts to your workflow, not the other way around."

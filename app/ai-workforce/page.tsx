@@ -110,6 +110,7 @@ export default function AIWorkforcePage() {
           <Container className="space-y-8">
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="AI Workforce"
                 title="Your business runs on Bizosto. Now your AI agents do too."
                 subtitle="Bizosto AI Workforce gives service businesses intelligent agents that work inside your existing system — reading live data, surfacing what matters, and handling routine work so your team doesn't have to."
@@ -119,13 +120,13 @@ export default function AIWorkforcePage() {
               <div className="flex flex-col gap-3 sm:flex-row">
                 <a
                   href="https://app.bizosto.com/signup"
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+                  className="btn-sheen inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm shadow-primary/20 transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/25"
                 >
                   Start Free Trial →
                 </a>
                 <a
                   href="/book-demo"
-                  className="inline-flex items-center justify-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition hover:bg-surface-muted"
+                  className="inline-flex items-center justify-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition duration-200 hover:border-primary/40 hover:text-primary"
                 >
                   Book a Demo
                 </a>

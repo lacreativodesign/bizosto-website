@@ -11,7 +11,7 @@ interface SectionProps {
 
 const variantStyles: Record<SectionVariant, string> = {
   default: "section-spacing",
-  premium: "premium-section section-spacing",
+  premium: "premium-section hero-aurora section-spacing",
   muted: "section-muted section-spacing",
 };
 
