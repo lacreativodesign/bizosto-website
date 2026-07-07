@@ -53,6 +53,7 @@ export default function AgenciesPage() {
           <Container>
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="Bizosto for Agencies"
                 title="Your agency has outgrown the tools you started with."
                 subtitle="You're running a serious business on a patchwork of subscriptions that don't talk to each other. Bizosto gives you one system where your pipeline, delivery, clients, and finance all live together — so your team stops switching tabs and starts doing the work."

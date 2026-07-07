@@ -21,6 +21,7 @@ export default function BookDemoPage() {
           <Container className="space-y-6">
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="Book a Demo"
                 title="See your business running on one system."
                 subtitle="This isn't a generic product demo. We'll walk through your actual workflows — your pipeline, your delivery process, your finance setup — and show you exactly how Bizosto fits."
@@ -31,7 +32,7 @@ export default function BookDemoPage() {
                 <ScrollReveal>
                   <Card className="space-y-4">
                     <div className="space-y-2">
-                      <p className="text-sm font-semibold text-foreground">What you'll see in 30 minutes</p>
+                      <p className="text-sm font-semibold text-foreground">What you&apos;ll see in 30 minutes</p>
                       <p className="text-sm text-muted-foreground">
                         We walk through your real workflows, not a scripted slideshow. Expect to leave with a clear rollout plan.
                       </p>
@@ -65,7 +66,7 @@ export default function BookDemoPage() {
                   <Card className="space-y-3 border-primary/40 bg-primary/5">
                     <p className="text-sm font-semibold text-foreground">Rather start right now?</p>
                     <p className="text-sm text-muted-foreground">
-                      Skip the demo and sign up directly. Your 14-day free trial starts the moment you sign up. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing.
+                      Skip the demo and sign up directly. Your 14-day free trial starts the moment you sign up. Card required - you won&apos;t be charged until day 15. Cancel anytime before then and pay nothing.
                     </p>
                     <a
                       href="https://app.bizosto.com/signup"

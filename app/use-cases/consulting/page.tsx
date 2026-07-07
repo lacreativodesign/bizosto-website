@@ -30,6 +30,7 @@ export default function ConsultingPage() {
           <Container>
             <ScrollReveal>
               <SectionHeading
+                as="h1"
                 eyebrow="Bizosto for Consulting"
                 title="Your consulting firm runs on relationships. Don't let operations slow them down."
                 subtitle="Consulting is a high-margin business when operations are tight. Bizosto gives you the system to track every engagement, utilize every consultant, and bill every retainer — without adding operational overhead to your team."
