@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { adminDb } from "@/lib/firebaseAdmin";
+import { getAdminDb } from "@/lib/firebaseAdmin";
 
 export const runtime = "nodejs";
 
@@ -116,6 +116,7 @@ export async function POST(request: Request) {
     }
 
     const now = new Date().toISOString();
+    const adminDb = getAdminDb();
     const ref = adminDb.collection("leads").doc();
 
     await ref.set({
