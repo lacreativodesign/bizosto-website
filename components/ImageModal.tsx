@@ -47,14 +47,14 @@ export default function ImageModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 px-6 py-10 backdrop-blur"
+      className="modal-fade fixed inset-0 z-50 flex items-center justify-center bg-background/80 px-6 py-10 backdrop-blur"
       role="dialog"
       aria-modal="true"
       aria-label="Product preview"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-5xl rounded-2xl border border-border bg-surface p-6 shadow-2xl"
+        className="modal-panel relative w-full max-w-5xl rounded-2xl border border-border bg-surface p-6 shadow-2xl"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-center justify-between gap-4">

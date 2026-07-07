@@ -1,5 +1,3 @@
-import Card from "@/components/Card";
-
 const rows = [
   { feature: "Users", starter: "10", pro: "20", enterprise: "Unlimited" },
   { feature: "Storage", starter: "20GB", pro: "75GB", enterprise: "250GB" },
@@ -51,20 +49,20 @@ export default function ComparisonTable() {
       <table className="w-full min-w-[540px] text-sm">
         <thead>
           <tr className="border-b border-border bg-surface-muted">
-            <th className="px-5 py-4 text-left font-semibold text-foreground">Feature</th>
+            <th className="sticky left-0 z-10 bg-surface-muted px-5 py-4 text-left font-semibold text-foreground">Feature</th>
             <th className="px-5 py-4 text-center font-semibold text-foreground">Starter</th>
-            <th className="px-5 py-4 text-center font-semibold text-primary">Pro ★</th>
+            <th className="bg-primary/[0.04] px-5 py-4 text-center font-semibold text-primary">Pro ★</th>
             <th className="px-5 py-4 text-center font-semibold text-foreground">Enterprise</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-border">
           {rows.map((row: Row) => (
-            <tr key={row.feature} className="bg-surface transition hover:bg-surface-muted">
-              <td className="px-5 py-3 font-medium text-foreground">{row.feature}</td>
+            <tr key={row.feature} className="bg-surface transition-colors duration-150 hover:bg-surface-muted">
+              <td className="sticky left-0 z-10 bg-inherit px-5 py-3 font-medium text-foreground">{row.feature}</td>
               <td className="px-5 py-3 text-center text-muted-foreground">
                 <Cell value={row.starter} />
               </td>
-              <td className="px-5 py-3 text-center text-muted-foreground">
+              <td className="bg-primary/[0.04] px-5 py-3 text-center text-muted-foreground">
                 <Cell value={row.pro} />
               </td>
               <td className="px-5 py-3 text-center text-muted-foreground">

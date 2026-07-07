@@ -47,7 +47,7 @@ export default function ScreenshotGallery() {
           <button
             key={item.src}
             type="button"
-            className="group relative rounded-2xl border border-border bg-surface p-4 text-left transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
+            className="tilt-hover group relative rounded-2xl border border-border bg-surface p-4 text-left hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
             onClick={() => handleOpen(index)}
           >
             <div className="flex min-h-[240px] items-center justify-center rounded-xl border border-border bg-surface-muted p-4">

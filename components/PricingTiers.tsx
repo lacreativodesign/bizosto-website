@@ -54,7 +54,7 @@ export default function PricingTiers() {
             key={tier.name}
             className={
               tier.highlight
-                ? "relative border-primary/60 bg-surface shadow-lg shadow-primary/10"
+                ? "relative border-primary/60 bg-surface shadow-xl shadow-primary/15 ring-1 ring-primary/30 lg:scale-[1.03]"
                 : "bg-card"
             }
           >
@@ -110,10 +110,10 @@ export default function PricingTiers() {
               </ul>
               <a
                 href={isAnnual ? tier.cta.annualHref : tier.cta.monthlyHref}
-                className={`mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
+                className={`mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
                   tier.highlight
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "bg-surface-muted text-foreground hover:bg-surface"
+                    ? "btn-sheen bg-primary text-primary-foreground shadow-sm shadow-primary/20 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/25"
+                    : "border border-border bg-surface-muted text-foreground hover:border-primary/40 hover:text-primary"
                 }`}
               >
                 {tier.cta.label}
