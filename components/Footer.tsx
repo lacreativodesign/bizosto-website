@@ -134,6 +134,21 @@ export default function Footer() {
                   Terms &amp; Conditions
                 </Link>
               </li>
+              <li>
+                <Link href="/refund-policy" className="transition hover:text-foreground">
+                  Refund Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookies" className="transition hover:text-foreground">
+                  Cookie Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/security" className="transition hover:text-foreground">
+                  Security
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

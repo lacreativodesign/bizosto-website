@@ -27,5 +27,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://www.bizosto.com/about", lastModified },
     { url: "https://www.bizosto.com/privacy", lastModified },
     { url: "https://www.bizosto.com/terms", lastModified },
+    { url: "https://www.bizosto.com/refund-policy", lastModified },
+    { url: "https://www.bizosto.com/cookies", lastModified },
+    { url: "https://www.bizosto.com/security", lastModified },
   ];
 }

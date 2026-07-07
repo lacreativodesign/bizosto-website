@@ -13,7 +13,7 @@ export default function TermsPage() {
         <SectionHeading title="Terms & Conditions" />
         <div className="space-y-6 text-sm text-muted-foreground">
           <p>Effective Date: March 1, 2026</p>
-          <p>Last Updated: March 1, 2026</p>
+          <p>Last Updated: July 7, 2026</p>
           <p>
             These Terms &amp; Conditions (&quot;Terms&quot;) constitute a legally binding agreement between
             you (&quot;Customer,&quot; &quot;you,&quot; or &quot;your&quot;) and LA CREATIVO GROUP, LLC, a Texas
@@ -86,9 +86,13 @@ export default function TermsPage() {
               Subscriptions are billed monthly in advance on the date your paid subscription begins.
               Current subscription plans and pricing are as follows:
             </p>
-            <p>Starter Plan: $99.00 per month</p>
-            <p>Pro Plan: $299.00 per month</p>
-            <p>Enterprise Plan: $799.00 per month</p>
+            <p>Starter Plan: $79.00 per month</p>
+            <p>Pro Plan: $149.00 per month</p>
+            <p>Enterprise Plan: $299.00 per month</p>
+            <p>
+              Annual billing is available at a discounted rate equivalent to two months free.
+              Annual subscriptions are billed yearly in advance.
+            </p>
             <p>
               All prices are listed in United States Dollars (USD) and are exclusive of applicable
               taxes unless otherwise stated.
@@ -128,13 +132,13 @@ export default function TermsPage() {
             </h2>
             <p>If a scheduled payment fails, the following process applies:</p>
             <p>
-              Bizosto will retry the payment automatically. During the retry period, your account
-              enters a grace period of seven (7) days during which access continues in a read-only
-              state. If payment is not successfully collected within seven (7) days of the grace
-              period beginning, your account will be soft-locked — access to data is restricted but
-              data is preserved. If payment remains outstanding after a further seven (7) days, your
-              account will be hard-locked and access will be fully suspended. Data is retained for
-              thirty (30) days after hard lock, after which it may be permanently deleted.
+              Bizosto will retry the payment automatically. Your account enters a grace period of
+              seven (7) days during which access continues normally. If payment is not successfully
+              collected by day eight (8), your account is placed in a read-only state — your data
+              remains accessible but changes are restricted. If payment remains outstanding on day
+              twenty-one (21), your account will be hard-locked and access will be fully suspended.
+              Data is retained for sixty (60) days after hard lock, after which it may be
+              permanently deleted.
             </p>
             <p>
               To restore access during any lock state, update your payment method in your billing
