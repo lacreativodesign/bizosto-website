@@ -294,6 +294,25 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(51, 92, 255, 0.5), transparent);
   }
+
+  .tilt-hover {
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .tilt-hover:hover {
+    transform: perspective(900px) rotateX(1.6deg) translateY(-6px);
+  }
+
+  .modal-fade {
+    animation: modal-fade 0.25s ease forwards;
+  }
+
+  .modal-panel {
+    animation: modal-panel 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 }
 
 @keyframes aurora-spin {
@@ -330,6 +349,26 @@
   }
 }
 
+@keyframes modal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-panel {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-aurora::before {
     animation: none;
@@ -358,6 +397,19 @@
   }
 
   .menu-pop {
+    animation: none;
+  }
+
+  .tilt-hover {
+    transition: none;
+  }
+
+  .tilt-hover:hover {
+    transform: none;
+  }
+
+  .modal-fade,
+  .modal-panel {
     animation: none;
   }
 }
