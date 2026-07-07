@@ -6,6 +6,7 @@ import CTASection from "@/components/CTASection";
 import FAQAccordion from "@/components/FAQAccordion";
 import Button from "@/components/Button";
 import HeroLeadForm from "@/components/HeroLeadForm";
+import OpsTicker from "@/components/OpsTicker";
 import PricingTiers from "@/components/PricingTiers";
 import ScrollReveal from "@/components/ScrollReveal";
 import ScreenshotGallery from "@/components/ScreenshotGallery";
@@ -121,9 +122,9 @@ export default function HomePage() {
   return (
     <PageShell>
       <div className="flex flex-col">
-        <section className="hero-surface section-spacing">
+        <section className="hero-surface hero-aurora section-spacing">
           <Container className="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
-            <ScrollReveal className="space-y-7">
+            <ScrollReveal className="hero-stagger space-y-7">
               <span className="inline-flex items-center rounded-full border border-border/70 bg-surface/80 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-muted-foreground shadow-sm">
                 BIZOSTO
               </span>
@@ -136,13 +137,13 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <a href="https://app.bizosto.com/signup" className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Start Free Trial →</a>
+                <a href="https://app.bizosto.com/signup" className="btn-sheen inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm shadow-primary/20 transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Start Free Trial →</a>
                 <Button href="/book-demo" variant="outline">
                   Book a Demo
                 </Button>
               </div>
               <p className="text-sm text-muted-foreground">
-                14-day free trial. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing.
+                14-day free trial. Card required - you won&apos;t be charged until day 15. Cancel anytime before then and pay nothing.
               </p>
               <div className="grid gap-4 text-sm text-muted-foreground sm:grid-cols-3">
                 <div className="space-y-1">
@@ -158,6 +159,7 @@ export default function HomePage() {
                   <p>integrations with tools you already use</p>
                 </div>
               </div>
+              <OpsTicker />
             </ScrollReveal>
             <ScrollReveal className="rounded-2xl border border-border bg-surface/90 p-6 shadow-xl shadow-slate-900/10 backdrop-blur">
               <div className="space-y-4">

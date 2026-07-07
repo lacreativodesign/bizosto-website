@@ -11,8 +11,10 @@
   --primary-foreground: #ffffff;
   --muted-foreground: #475569;
   --accent: #5b7bff;
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial,
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
     "Noto Sans", "Liberation Sans", sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI",
+    Roboto, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -43,6 +45,7 @@
   --color-accent: var(--accent);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
 }
 
 @layer base {
@@ -55,15 +58,15 @@
   }
 
   h1 {
-    @apply text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl;
+    @apply font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl;
   }
 
   h2 {
-    @apply text-3xl font-semibold leading-tight tracking-tight sm:text-4xl;
+    @apply font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl;
   }
 
   h3 {
-    @apply text-xl font-semibold leading-snug;
+    @apply font-display text-xl font-semibold leading-snug;
   }
 
   p {
@@ -171,5 +174,109 @@
     background:
       linear-gradient(135deg, rgba(51, 92, 255, 0.08), transparent 55%),
       var(--surface-muted);
+  }
+
+  .hero-aurora::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(51, 92, 255, 0.14) 70deg,
+      rgba(139, 164, 255, 0.1) 140deg,
+      transparent 210deg,
+      rgba(51, 92, 255, 0.08) 300deg,
+      transparent 360deg
+    );
+    animation: aurora-spin 26s linear infinite;
+    pointer-events: none;
+  }
+
+  .hero-stagger > * {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.35s; }
+  .hero-stagger > *:nth-child(5) { animation-delay: 0.45s; }
+  .hero-stagger > *:nth-child(6) { animation-delay: 0.55s; }
+
+  .btn-sheen {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-sheen::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80%;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(
+      100deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 80%
+    );
+    transform: skewX(-18deg);
+    transition: left 0.55s ease;
+    pointer-events: none;
+  }
+
+  .btn-sheen:hover::after {
+    left: 130%;
+  }
+
+  .ops-ticker-item {
+    animation: ticker-in 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@keyframes aurora-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rise-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ticker-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora::before {
+    animation: none;
+  }
+
+  .hero-stagger > * {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .btn-sheen::after {
+    display: none;
+  }
+
+  .ops-ticker-item {
+    animation: none;
   }
 }
