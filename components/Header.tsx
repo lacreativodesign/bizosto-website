@@ -1,8 +1,12 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Container from "@/components/Container";
 import LogoMark from "@/components/LogoMark";
 import ThemeToggle from "@/components/ThemeToggle";
 import MobileNav from "@/components/MobileNav";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/product", label: "Product" },
@@ -14,8 +18,29 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+    };
+    const frame = window.requestAnimationFrame(onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur">
+    <header
+      className={cn(
+        "sticky top-0 z-30 border-b backdrop-blur transition-[background-color,border-color,box-shadow] duration-300",
+        scrolled
+          ? "border-border bg-background/95 shadow-md shadow-slate-900/5"
+          : "border-transparent bg-background/80"
+      )}
+    >
       <Container className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <LogoMark />
@@ -25,7 +50,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="transition hover:text-foreground"
+              className="nav-link transition hover:text-foreground"
             >
               {link.label}
             </Link>
@@ -41,7 +66,7 @@ export default function Header() {
           <ThemeToggle />
           <a
             href="https://app.bizosto.com/signup"
-            className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="btn-sheen inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm shadow-primary/20 transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             Start Free Trial
           </a>

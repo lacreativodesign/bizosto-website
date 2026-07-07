@@ -28,7 +28,7 @@ export default function MobileNav() {
         Menu
       </button>
       {open ? (
-        <div className="absolute right-0 top-12 z-20 w-56 rounded-lg border border-border bg-surface p-4 shadow-lg">
+        <div className="menu-pop absolute right-0 top-12 z-20 w-56 rounded-lg border border-border bg-surface p-4 shadow-lg">
           <nav className="flex flex-col gap-3 text-sm text-foreground">
             {links.map((link) => (
               <Link

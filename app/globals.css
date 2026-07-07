@@ -236,6 +236,64 @@
   .ops-ticker-item {
     animation: ticker-in 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
+
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 100%;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .faq-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .faq-panel.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-panel > div {
+    overflow: hidden;
+  }
+
+  .menu-pop {
+    transform-origin: top right;
+    animation: menu-pop 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cta-band {
+    background:
+      radial-gradient(circle at 85% 0%, rgba(51, 92, 255, 0.18), transparent 55%),
+      linear-gradient(135deg, rgba(51, 92, 255, 0.1), transparent 60%),
+      var(--surface);
+  }
+
+  .cta-band::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(51, 92, 255, 0.5), transparent);
+  }
 }
 
 @keyframes aurora-spin {
@@ -261,6 +319,17 @@
   }
 }
 
+@keyframes menu-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-aurora::before {
     animation: none;
@@ -277,6 +346,18 @@
   }
 
   .ops-ticker-item {
+    animation: none;
+  }
+
+  .nav-link::after {
+    transition: none;
+  }
+
+  .faq-panel {
+    transition: none;
+  }
+
+  .menu-pop {
     animation: none;
   }
 }
