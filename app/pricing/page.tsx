@@ -29,7 +29,7 @@ const highlights = [
   "Natural language reports — ask questions, get charts",
   "Real-time reports & performance dashboards",
   "Approval workflows & audit trails",
-  "14-day free trial, all modules unlocked",
+  "14-day free trial on your chosen plan",
 ];
 
 const faqs = [
@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     question: "What happens when my trial ends?",
-    answer: "You'll be prompted to choose a plan and add a payment method. If you don't subscribe, your workspace enters a read-only grace period for 30 days before being locked. Your data is always safe.",
+    answer: "Because a card is required at signup, your paid plan starts automatically on day 15 — there's nothing extra to do. If you don't want to continue, cancel any time before day 15 and you won't be charged. If a payment later fails, we retry over several days before any access changes, and your data is always retained and recoverable.",
   },
   {
     question: "Can I change plans anytime?",
@@ -59,7 +59,7 @@ const faqs = [
   },
   {
     question: "Is there a fee when clients pay through Bizosto?",
-    answer: "A 0.5% platform handling fee applies to payments processed through the Bizosto payment terminal — on top of Stripe's standard processing fee. This only applies to client payments, not your subscription.",
+    answer: "Only on the Enterprise plan, and only when your own clients pay their invoices through Bizosto's built-in Stripe Connect payments. In that case a 0.5% platform handling fee applies on top of Stripe's standard processing fee. It never applies to your Bizosto subscription, and Starter and Pro have no such fee.",
   },
   {
     question: "How does Bizosto compare to Zoho or HubSpot?",
@@ -75,7 +75,7 @@ const faqs = [
   },
   {
     question: "Is there a free trial for Pro or Enterprise?",
-    answer: "Yes. Start your 14-day free trial on Pro or Enterprise and every module in that plan is unlocked — including AI Workforce. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing.",
+    answer: "Yes. Start your 14-day free trial on Pro or Enterprise and every module included in that plan is available — including AI Workforce on Pro and above. Card required — you won't be charged until day 15. Cancel anytime before then and pay nothing.",
   },
 ];
 
@@ -300,12 +300,13 @@ export default function PricingPage() {
             <ScrollReveal>
               <div className="mt-6 rounded-xl border border-border bg-surface-muted p-5 text-center">
                 <p className="text-sm font-semibold text-foreground">
-                  Payment terminal — 0.5% platform handling fee
+                  Enterprise client payments — 0.5% platform handling fee
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  When your clients pay invoices through the Bizosto payment terminal, a 0.5% platform
-                  handling fee applies on top of Stripe&apos;s standard processing rate. This only applies
-                  to client payments collected through Bizosto — not your subscription.
+                  On the Enterprise plan, when your own clients pay their invoices through Bizosto&apos;s
+                  built-in Stripe Connect payments, a 0.5% platform handling fee applies on top of
+                  Stripe&apos;s standard processing rate. It never applies to your Bizosto subscription, and
+                  Starter and Pro have no such fee.
                 </p>
               </div>
             </ScrollReveal>

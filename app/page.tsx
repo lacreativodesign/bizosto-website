@@ -114,7 +114,7 @@ const faqs = [
   {
     question: "Is there a fee when my clients pay through Bizosto?",
     answer:
-      "A 0.5% platform fee applies to client payments processed through Bizosto's payment terminal. There are no hidden fees, no per-user charges, and no surprise invoices on your subscription.",
+      "Only on the Enterprise plan, and only when your clients pay their invoices through Bizosto's built-in Stripe Connect payments — a 0.5% platform handling fee applies there, on top of Stripe's standard processing fee. It never applies to your subscription, and Starter and Pro have no such fee. No hidden fees and no per-user charges.",
   },
 ];
 

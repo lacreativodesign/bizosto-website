@@ -127,8 +127,9 @@ export default function PricingTiers() {
       </div>
 
       <p className="mt-6 text-center text-sm text-muted-foreground">
-        All prices subject to applicable local tax based on billing location. A 0.5% platform
-        handling fee applies to payments processed through Bizosto.
+        All prices subject to applicable local tax based on billing location. On the Enterprise
+        plan, a 0.5% platform handling fee applies only when your clients pay invoices through
+        Bizosto&apos;s built-in Stripe Connect payments — never to your subscription.
       </p>
     </>
   );

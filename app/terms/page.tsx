@@ -149,12 +149,13 @@ export default function TermsPage() {
           <div className="space-y-2">
             <h2 className="text-base font-semibold text-foreground">Platform Handling Fee</h2>
             <p>
-              A platform handling fee of zero point five percent (0.5%) applies to all payment
-              transactions processed through the Bizosto Platform, including but not limited to invoice
-              payments made by Tenants&apos; clients through the Bizosto payment infrastructure. This fee
-              is labeled &quot;Platform Handling Fee&quot; and is automatically deducted from each transaction
-              at the time of processing. This fee is separate from and in addition to Stripe&apos;s own
-              processing fees.
+              A platform handling fee of zero point five percent (0.5%) applies solely to invoice
+              payments made by a Tenant&apos;s own clients through the Bizosto Stripe Connect payment
+              infrastructure, which is available only on the Enterprise plan. This fee does not apply
+              to Bizosto subscription charges, and it does not apply to the Starter or Pro plans. It is
+              labeled &quot;Platform Handling Fee,&quot; is automatically deducted from each such client
+              transaction at the time of processing, and is separate from and in addition to Stripe&apos;s
+              own processing fees.
             </p>
           </div>
 
