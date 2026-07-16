@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAdminDb } from "@/lib/firebaseAdmin";
+import admin, { getAdminDb } from "@/lib/firebaseAdmin";
 
 export const runtime = "nodejs";
 
@@ -115,36 +115,62 @@ export async function POST(request: Request) {
       );
     }
 
-    const now = new Date().toISOString();
     const adminDb = getAdminDb();
     const ref = adminDb.collection("leads").doc();
+    // S34: match the ERP's canonical lead shape EXACTLY. The ERP inbox query is
+    // `.where("isDeleted", "==", false).orderBy("createdAt", "desc")`, and Firestore excludes
+    // documents that are MISSING the filtered field — so a website lead without isDeleted was
+    // written to the tenant but never appeared in the sales inbox. It also sorts by a Firestore
+    // Timestamp (createdAt.toDate()), so an ISO string sorted to the bottom / mistyped the query.
+    // We now write isDeleted:false, the ERP's status/stage vocabulary, and real server
+    // Timestamps, plus the same mirrored contact/company fields the ERP create route uses.
+    const serverTimestamp = admin.firestore.FieldValue.serverTimestamp();
+    const phone = optionalField(body.meta?.phone) ?? null;
 
     await ref.set({
       id: ref.id,
+      leadId: ref.id,
       tenantId: TENANT_ID,
+      // Mirrored contact/company fields — the ERP reads both the short and the contact* forms.
       name,
       email,
-      phone: optionalField(body.meta?.phone) ?? null,
+      phone,
       company,
+      companyName: company,
+      contactName: name,
+      contactEmail: email,
+      contactPhone: phone,
       teamSize: optionalField(body.meta?.teamSize) ?? null,
       serviceType: optionalField(body.meta?.serviceType) ?? null,
       message: message || `Website lead from ${page}`,
+      notes: message || `Website lead from ${page}`,
       source,
       page,
-      stage: "New",
-      status: "active",
-      assignedTo: null,
+      // ERP vocabulary: lowercase status, human-readable stage. A brand-new lead is "new".
+      status: "new",
+      stage: "New Lead",
+      disposition: null,
+      // Unassigned until a sales user picks it up in the ERP.
+      ownerUid: null,
+      ownerId: null,
       ownerName: null,
+      assignedTo: null,
+      createdBy: "website",
+      createdById: "website",
+      // The field whose ABSENCE hid these leads from the inbox.
+      isDeleted: false,
       meta: {
         userAgent: optionalField(body.meta?.userAgent),
         referrer: optionalField(body.meta?.referrer),
         utm: body.meta?.utm || null,
       },
-      createdAt: now,
-      updatedAt: now,
+      lastActivityAt: serverTimestamp,
+      createdAt: serverTimestamp,
+      updatedAt: serverTimestamp,
     });
 
-    console.log(`[LEAD] Created lead ${ref.id} for ${email} from ${page}`);
+    // S34: do not log the lead's email address (PII). The document id is enough to trace it.
+    console.log(`[LEAD] Created lead ${ref.id} from ${page}`);
     return NextResponse.json({ ok: true }, { status: 200 });
 
   } catch (error) {
