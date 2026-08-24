@@ -11,7 +11,7 @@ import Section from "@/components/Section";
 export const metadata: Metadata = {
   title: "Use Cases — How Service Businesses Use Bizosto",
   description:
-    "See how agencies, consulting firms, and operations teams use Bizosto to replace disconnected tools with one system that actually works.",
+    "See how agencies, consulting firms, and operations teams can connect sales, delivery, finance, and client workflows in Bizosto.",
   alternates: {
     canonical: "https://www.bizosto.com/use-cases",
   },
@@ -25,7 +25,7 @@ const useCases = [
     title: "Stop managing 8 tools. Start running one system.",
     description:
       "From the moment a brief lands to the day an invoice is paid — Bizosto connects your pipeline, production, client portal, and finance in one place. Your account managers stop chasing updates. Your clients stop emailing for status. Your finance team stops reconciling at month-end.",
-    outcomes: ["Pipeline → project handoff in one click", "Client portal with approvals and file sharing", "Invoice on delivery, not after chasing accounts"],
+    outcomes: ["Pipeline-to-project handoff with required approvals", "Client portal with approvals and file sharing", "Invoice workflow connected to delivery status"],
   },
   {
     href: "/use-cases/consulting",
@@ -33,8 +33,8 @@ const useCases = [
     eyebrow: "Consulting",
     title: "Every engagement tracked. Every retainer collected. Every consultant utilized.",
     description:
-      "Consulting firms run on relationships, expertise, and delivery. Bizosto gives you the operational backbone to scale both — without the administrative overhead. Track engagements, manage utilization, bill retainers automatically, and give partners a real-time view of the business.",
-    outcomes: ["Utilization tracking per consultant", "Retainer billing on autopilot", "Engagement reporting in real time"],
+      "Consulting firms run on relationships, expertise, and delivery. Bizosto brings engagement tracking, utilization, scheduled retainer workflows, and partner reporting into one tenant-scoped operating model.",
+    outcomes: ["Utilization tracking per consultant", "Structured retainer billing", "Current engagement reporting"],
   },
   {
     href: "/use-cases/operations",
@@ -43,7 +43,7 @@ const useCases = [
     title: "Your whole company on one system your team will actually use.",
     description:
       "Operations leaders don't just need software — they need buy-in. Bizosto is designed to be used, not avoided. Role-based access means every person sees exactly what they need. Approval workflows replace email chains. And reports that used to take a day to build now just show up.",
-    outcomes: ["11 user roles — every team member covered", "Approval workflows that replace email chains", "Real-time reports without manual building"],
+    outcomes: ["11 fixed roles", "Approval workflows with audit evidence", "Operational reports assembled from tenant records"],
   },
 ];
 

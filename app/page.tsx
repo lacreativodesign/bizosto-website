@@ -12,6 +12,12 @@ import ScrollReveal from "@/components/ScrollReveal";
 import ScreenshotGallery from "@/components/ScreenshotGallery";
 import PageShell from "@/components/PageShell";
 import {
+  selfServiceSignupEnabled,
+  signupCtaLabel,
+  signupHref,
+  trialAccessSummary,
+} from "@/lib/launch-stage";
+import {
   BarChart3,
   ClipboardCheck,
   CreditCard,
@@ -47,7 +53,7 @@ const outcomes = [
   {
     title: "Predictable revenue",
     description:
-      "Invoice clients the moment work is complete, track retainers automatically, and see your cash position without opening a single spreadsheet.",
+      "Connect invoicing, retainer tracking, and cash-position review to the work your team delivers.",
     icon: <TrendingUp className="h-4 w-4" aria-hidden="true" />,
   },
   {
@@ -68,31 +74,31 @@ const featureHighlights = [
   {
     title: "Data that drives decisions",
     description:
-      "Every number in Bizosto is live. Revenue, delivery performance, team utilization — real dashboards you can act on today, not export tomorrow.",
+      "Bring revenue, delivery performance, and team utilization into role-appropriate dashboards built for operational decisions.",
     icon: <Zap className="h-4 w-4" aria-hidden="true" />,
   },
   {
     title: "A client portal they'll actually use",
     description:
-      "Give clients their own login to see project progress, approve deliverables, view invoices, and pay — no WhatsApp thread required.",
+      "Give clients their own login to see project progress, approve deliverables, and view invoices. Eligible Enterprise workspaces can also enable Stripe Connect client payments.",
     icon: <MessageSquare className="h-4 w-4" aria-hidden="true" />,
   },
   {
     title: "Finance that follows your work",
     description:
-      "Invoices, expenses, payroll, and tax are connected to the projects that generate them. Know your margin before a project closes, not after.",
+      "On eligible plans, connect invoices, expenses, and financial reporting to the projects that generate them.",
     icon: <Landmark className="h-4 w-4" aria-hidden="true" />,
   },
   {
     title: "Reports that actually show up",
     description:
-      "No more building decks from exports. Bizosto generates delivery reports, revenue breakdowns, and performance dashboards automatically.",
+      "Bring delivery reports, revenue breakdowns, and performance dashboards into the same workspace as the underlying records.",
     icon: <BarChart3 className="h-4 w-4" aria-hidden="true" />,
   },
   {
     title: "Role-based access done right",
     description:
-      "11 user roles. Finance sees finance. HR sees HR. Clients see what you want them to see. Sensitive data never ends up in the wrong hands.",
+      "Eleven fixed roles support tenant-scoped views for finance, HR, delivery, sales, administration, and clients.",
     icon: <Lock className="h-4 w-4" aria-hidden="true" />,
   },
 ];
@@ -100,16 +106,16 @@ const featureHighlights = [
 const faqs = [
   {
     question: "Is there a free trial?",
-    answer: "Yes — every new workspace gets a full 14-day free trial on the plan you choose. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing. You see the real product from day one.",
+    answer: `Yes. ${trialAccessSummary}`,
   },
   {
     question: "Can I keep the tools I already use?",
     answer:
-      "Yes. Bizosto integrates with Google Workspace, Microsoft 365, Slack, QuickBooks, Xero, Mailchimp, DocuSign, Twilio, and Calendly. Bring your stack with you or replace it over time — your call.",
+      "Bizosto includes a catalog for Google Workspace, Microsoft 365, Slack, QuickBooks, Xero, Mailchimp, DocuSign, Twilio, Calendly, and other connectors. Availability varies by plan, provider configuration, and controlled-beta readiness.",
   },
   {
     question: "How long does it take to get up and running?",
-    answer: "Most teams are fully live within one to two weeks. Your workspace is configured, your team is invited, and your workflows are running before your trial ends.",
+    answer: "Controlled-beta onboarding is planned around your tenant, data, roles, and required integrations. Bizosto confirms a rollout sequence after reviewing that scope rather than promising an unverified timeline.",
   },
   {
     question: "Is there a fee when my clients pay through Bizosto?",
@@ -133,30 +139,32 @@ export default function HomePage() {
                   The Operating System for Service Businesses
                 </h1>
                 <p className="max-w-xl text-base text-muted-foreground sm:text-lg">
-                  A client portal that connects your team and your clients — backed by a dashboard for every role, predictable project delivery, and finance visibility from lead to paid invoice.
+                  A client portal that connects your team and your clients — backed by role-based dashboards, structured project delivery, and finance visibility from lead to paid invoice.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <a href="https://app.bizosto.com/signup" className="btn-sheen inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm shadow-primary/20 transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Start Free Trial →</a>
+                <a href={signupHref()} className="btn-sheen inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm shadow-primary/20 transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">{signupCtaLabel} →</a>
                 <Button href="/book-demo" variant="outline">
                   Book a Demo
                 </Button>
               </div>
               <p className="text-sm text-muted-foreground">
-                14-day free trial. Card required - you won&apos;t be charged until day 15. Cancel anytime before then and pay nothing.
+                {selfServiceSignupEnabled
+                  ? "14-day free trial. Card required — you won’t be charged until day 15. Cancel before then and pay nothing."
+                  : "Controlled beta is onboarding a limited number of workspaces. Invited teams receive a 14-day trial; card required, with no charge before day 15 if cancelled during the trial."}
               </p>
               <div className="grid gap-4 text-sm text-muted-foreground sm:grid-cols-3">
                 <div className="space-y-1">
-                  <p className="text-2xl font-semibold text-foreground">10</p>
-                  <p>modules covering every business function</p>
+                  <p className="text-2xl font-semibold text-foreground">$79</p>
+                  <p>Starter monthly price</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-2xl font-semibold text-foreground">11</p>
                   <p>user roles from sales to client portal</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-2xl font-semibold text-foreground">14+</p>
-                  <p>integrations with tools you already use</p>
+                  <p className="text-2xl font-semibold text-foreground">14 days</p>
+                  <p>free trial on the selected plan</p>
                 </div>
               </div>
               <OpsTicker />
@@ -164,7 +172,9 @@ export default function HomePage() {
             <ScrollReveal className="rounded-2xl border border-border bg-surface/90 p-6 shadow-xl shadow-slate-900/10 backdrop-blur">
               <div className="space-y-4">
                 <div>
-                  <p className="text-xl font-bold text-foreground">Start Your Free 14-Day Trial</p>
+                  <p className="text-xl font-bold text-foreground">
+                    {selfServiceSignupEnabled ? "Start Your Free 14-Day Trial" : "Request Controlled-Beta Access"}
+                  </p>
                 </div>
                 <HeroLeadForm />
               </div>
@@ -177,7 +187,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Why Bizosto"
             title="Your tools are expensive. Your disconnected stack is more expensive."
-            subtitle="The average service business loses 8–12 hours a week to tool-switching, manual updates, and chasing status across apps. Bizosto ends that."
+            subtitle="Disconnected tools create duplicate entry, unclear ownership, and slower handoffs. Bizosto brings those operating workflows into one tenant-scoped system."
           />
         </ScrollReveal>
         <div className="mt-8 grid gap-6 md:grid-cols-3 md:gap-8">
@@ -185,7 +195,7 @@ export default function HomePage() {
             {
               title: "One source of truth",
               description:
-                "When every team works from the same system, nothing gets lost in handoffs, nothing gets double-entered, and nothing falls through the cracks.",
+                "A shared system reduces duplicate entry and gives each handoff an explicit owner and record.",
               icon: <Database className="h-4 w-4" aria-hidden="true" />,
             },
             {
@@ -197,7 +207,7 @@ export default function HomePage() {
             {
               title: "Visibility you can act on",
               description:
-                "Know your revenue, project health, team performance, and cash position in real time — not at month-end when it's too late to change anything.",
+                "Bring revenue, project health, team performance, and cash-position signals into dashboards designed for timely review.",
               icon: <ShieldCheck className="h-4 w-4" aria-hidden="true" />,
             },
           ].map((item) => (
@@ -217,74 +227,31 @@ export default function HomePage() {
         </div>
       </Container>
 
-      {/* ── Competitor cost comparison ─────────────────────── */}
+      {/* Published plan facts; no volatile competitor-price claims. */}
       <section className="section-spacing">
         <Container>
           <ScrollReveal>
             <SectionHeading
-              eyebrow="The Real Cost of Your Current Stack"
-              title="Your competitors are paying $779/month for less."
-              subtitle="The average 20-person service business runs Monday.com, HubSpot, and QuickBooks separately. That stack costs $779/month — and still doesn't cover HR, production workflows, or client portals. Bizosto covers everything for $149/month flat."
+              eyebrow="Choose by operating scope"
+              title="Plan limits and modules are explicit."
+              subtitle="Bizosto publishes fixed monthly and annual prices without relying on volatile competitor comparisons. Choose the tier that matches your users, modules, portal seats, and storage."
             />
           </ScrollReveal>
-          <ScrollReveal>
-            <div className="mt-8 overflow-x-auto rounded-2xl border border-border">
-              <table className="w-full min-w-[560px] text-sm">
-                <thead>
-                  <tr className="border-b border-border bg-surface-muted">
-                    <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Platform</th>
-                    <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">20 users/mo</th>
-                    <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">Finance</th>
-                    <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">HR</th>
-                    <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">AI Agents</th>
-                    <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">Client Portal</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border">
-                  {[
-                    { name: "Monday + HubSpot + QuickBooks", price: "$779+", finance: true, hr: false, ai: false, portal: false, you: false },
-                    { name: "HubSpot Professional", price: "$2,000+", finance: false, hr: false, ai: "Basic", portal: false, you: false },
-                    { name: "Zoho One", price: "$800–1,800", finance: true, hr: true, ai: "Basic", portal: false, you: false },
-                    { name: "Salesforce Essentials", price: "$1,200+", finance: false, hr: false, ai: "Add-on", portal: false, you: false },
-                    { name: "Bizosto Pro", price: "$149", finance: true, hr: false, ai: true, portal: true, you: true },
-                    { name: "Bizosto Enterprise", price: "$299", finance: true, hr: true, ai: true, portal: true, you: true },
-                  ].map((row) => (
-                    <tr
-                      key={row.name}
-                      className={`transition ${row.you ? "bg-primary/5 border-l-4 border-l-primary" : "bg-surface hover:bg-surface-muted"}`}
-                    >
-                      <td className="px-5 py-3 font-semibold text-foreground">
-                        {row.name}
-                        {row.you && (
-                          <span className="ml-2 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold text-primary">
-                            YOU
-                          </span>
-                        )}
-                      </td>
-                      <td className={`px-5 py-3 text-center font-bold ${row.you ? "text-primary" : "text-foreground"}`}>
-                        {row.price}
-                        <span className="text-xs font-normal text-muted-foreground">/mo</span>
-                      </td>
-                      {[row.finance, row.hr, row.ai, row.portal].map((val, i) => (
-                        <td key={i} className="px-5 py-3 text-center">
-                          {val === true ? (
-                            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/15 text-xs font-bold text-primary">✓</span>
-                          ) : val === false ? (
-                            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-surface-muted text-xs text-muted-foreground">—</span>
-                          ) : (
-                            <span className="text-xs text-muted-foreground">{val}</span>
-                          )}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-3 text-center text-xs text-muted-foreground">
-              Competitor pricing based on published list prices for 20 users. Verified May 2026.
-            </p>
-          </ScrollReveal>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {[
+              { plan: "Starter", price: "$79/month · $790/year", detail: "10 internal users · CRM, Sales, Projects, Client Portal · 20 GB" },
+              { plan: "Pro", price: "$149/month · $1,490/year", detail: "20 internal users · adds Finance, Production, AI Workforce BYOK, Website Embed · 75 GB" },
+              { plan: "Enterprise", price: "$299/month · $2,990/year", detail: "Unlimited internal users · adds HR, eligible Stripe Connect client payments, white-label · 250 GB" },
+            ].map((tier) => (
+              <ScrollReveal key={tier.plan}>
+                <div className="h-full rounded-xl border border-border bg-surface p-6">
+                  <p className="text-lg font-semibold text-foreground">{tier.plan}</p>
+                  <p className="mt-2 text-sm font-semibold text-primary">{tier.price}</p>
+                  <p className="mt-3 text-sm text-muted-foreground">{tier.detail}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </Container>
       </section>
 
@@ -293,8 +260,8 @@ export default function HomePage() {
           <ScrollReveal>
             <SectionHeading
               eyebrow="What Changes"
-              title="From reactive chaos to predictable operations."
-              subtitle="Service businesses that run on Bizosto stop firefighting and start leading. Here is what that looks like in practice."
+              title="From reactive work to more structured operations."
+              subtitle="Bizosto is designed to make ownership, handoffs, and operating data easier to review. Here is what that model looks like."
             />
           </ScrollReveal>
           <div className="mt-8 grid gap-6 md:grid-cols-3 md:gap-8">
@@ -329,7 +296,7 @@ export default function HomePage() {
             {[
               {
                 title: "Capture every lead",
-                description: "Every enquiry lands in your CRM, gets assigned to the right person, and moves through your pipeline automatically. Nothing gets missed.",
+                description: "Capture enquiries in CRM, assign an owner, and move each opportunity through the approved sales pipeline.",
                 icon: <Inbox className="h-4 w-4" aria-hidden="true" />,
               },
               {
@@ -339,7 +306,7 @@ export default function HomePage() {
               },
               {
                 title: "Get paid and grow",
-                description: "Invoice the moment work is done, track what's been collected, manage payroll, and see your real margin — automatically connected to the work that generated it.",
+                description: "Create invoices from delivered work, track collections and expenses, and review financial performance alongside the projects that generated it.",
                 icon: <CreditCard className="h-4 w-4" aria-hidden="true" />,
               },
             ].map((step) => (
@@ -379,7 +346,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="AI Workforce"
               title="Your business runs on Bizosto. Now your AI agents do too."
-              subtitle="Bizosto AI Workforce gives service businesses intelligent agents that work inside your existing system — reading live data, surfacing what matters, and handling routine work automatically."
+              subtitle="Bizosto AI Workforce is a controlled-beta capability for surfacing tenant-scoped insights and preparing routine work inside the platform."
             />
           </ScrollReveal>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -410,7 +377,7 @@ export default function HomePage() {
                 name: "AI Reports",
                 badge: "Live",
                 badgeColor: "bg-green-500/10 text-green-600 border-green-500/20",
-                description: "Ask any business question in plain English. Get a live chart in seconds. Revenue by client, leads by stage, invoice aging — all instant.",
+                description: "Ask supported business questions in plain English and generate charts for areas such as revenue by client, leads by stage, and invoice aging.",
               },
             ].map((agent) => (
               <ScrollReveal key={agent.name}>
@@ -435,7 +402,7 @@ export default function HomePage() {
               Explore AI Workforce →
             </a>
             <p className="text-sm text-muted-foreground">
-              Powered by your own OpenAI or Anthropic key. Pro and Enterprise plans.
+              Tenant-controlled BYOK where applicable. Provider usage is separate. Pro and Enterprise plan scope.
             </p>
           </ScrollReveal>
         </Container>
@@ -465,9 +432,9 @@ export default function HomePage() {
         <div className="mt-8 grid gap-6 md:grid-cols-3 md:gap-8">
           <ScrollReveal>
             <div className="h-full rounded-2xl border border-border bg-surface p-6 space-y-2">
-              <p className="text-2xl font-semibold text-foreground">10 modules</p>
+              <p className="text-2xl font-semibold text-foreground">Plan-scoped modules</p>
               <p className="text-sm text-muted-foreground">
-                CRM, sales, projects, production, approvals, finance, HR, reports, notifications, and a client portal — one system, no integrations to babysit.
+                CRM, sales, projects, production, approvals, finance, HR, reports, notifications, and client portal capabilities are governed by the selected plan.
               </p>
             </div>
           </ScrollReveal>
@@ -475,7 +442,7 @@ export default function HomePage() {
             <div className="h-full rounded-2xl border border-border bg-surface p-6 space-y-2">
               <p className="text-2xl font-semibold text-foreground">11 role dashboards</p>
               <p className="text-sm text-muted-foreground">
-                Every seat gets its own view — sales, account management, production, finance, HR, leadership, and your clients — so nobody works blind.
+                Sales, account management, production, finance, HR, leadership, and clients receive role-appropriate views within the tenant.
               </p>
             </div>
           </ScrollReveal>
@@ -483,48 +450,48 @@ export default function HomePage() {
             <div className="h-full rounded-2xl border border-border bg-surface p-6 space-y-2">
               <p className="text-2xl font-semibold text-foreground">Security first</p>
               <p className="text-sm text-muted-foreground">
-                Tenant isolation, role-based permissions, and an append-only finance ledger are built into the core — not bolted on after the fact.
+                Tenant isolation, role-based permissions, and financial-history integrity are core platform design standards.
               </p>
             </div>
           </ScrollReveal>
         </div>
       </Container>
 
-      {/* ── Market Trends ──────────────────────────── */}
+      {/* Product principles; avoids unsupported market statistics. */}
       <section className="section-spacing">
         <Container>
           <ScrollReveal>
             <SectionHeading
-              eyebrow="The Market Is Moving"
-              title="2026 is the year service businesses stop improvising."
-              subtitle="The tools, pricing models, and manual processes that worked at 5 people are actively hurting you at 20. Here is what the market data is showing — and what the leading service businesses are doing about it."
+              eyebrow="Operating principles"
+              title="A service-business system should make its boundaries clear."
+              subtitle="Bizosto is being prepared for controlled beta around four measurable standards: connected workflows, explicit plan limits, human-approved AI actions, and tenant-scoped access."
             />
           </ScrollReveal>
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                stat: "5–7",
-                label: "Disconnected tools",
+                stat: "01",
+                label: "Connected workflow",
                 description:
-                  "The average service business runs 5 to 7 separate tools for CRM, projects, finance, HR, and communication. Each tool is a data silo. Each gap between them is a revenue leak.",
+                  "Sales, delivery, finance, and client records are designed to share tenant-scoped context instead of relying on manual re-entry.",
               },
               {
-                stat: "18–24%",
-                label: "SaaS price increases since 2022",
+                stat: "02",
+                label: "Published limits",
                 description:
-                  "Major SaaS platforms have raised per-user prices significantly since 2022. Teams that haven't consolidated are paying more every year for the same disconnected stack.",
+                  "Each plan publishes its user limit, modules, portal seats, storage, monthly price, and annual price.",
               },
               {
-                stat: "8–12h",
-                label: "Per week lost to tool-switching",
+                stat: "03",
+                label: "Human-approved AI",
                 description:
-                  "Service business employees lose 8 to 12 hours per week to context-switching, manual data entry, and chasing status across applications. That is one full working day, every week.",
+                  "AI Workforce uses tenant-controlled BYOK where applicable, and dangerous actions require explicit human approval.",
               },
               {
-                stat: "340%",
-                label: "Growth in AI business adoption",
+                stat: "04",
+                label: "Tenant boundaries",
                 description:
-                  "AI adoption in business operations accelerated dramatically between 2023 and 2025. Businesses that don't have AI built into their workflows are already operating at a structural disadvantage.",
+                  "Workspace boundaries are designed to keep tenant data separate, with cross-tenant access limited to explicitly authorized Super Admin governance.",
               },
             ].map((item) => (
               <ScrollReveal key={item.stat}>
@@ -537,34 +504,6 @@ export default function HomePage() {
             ))}
           </div>
 
-          <ScrollReveal>
-            <div className="mt-8 rounded-2xl border border-border bg-surface p-8 space-y-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-                What leading service businesses are doing differently in 2026
-              </p>
-              <div className="grid gap-6 md:grid-cols-3">
-                {[
-                  {
-                    title: "Consolidating to a single platform",
-                    body: "The fastest-growing agencies and consultancies are cutting their tool stack from 6+ to 1 integrated operating system. The savings in subscriptions alone fund the switch — the productivity gains fund the next hire.",
-                  },
-                  {
-                    title: "Demanding flat pricing",
-                    body: "Per-user pricing punishes growth. Service businesses scaling from 10 to 25 people are actively switching to flat-rate platforms so their software costs don't scale faster than their revenue.",
-                  },
-                  {
-                    title: "Expecting AI to be built in",
-                    body: "In 2026, AI agents are not a luxury add-on. The businesses winning are the ones where AI reads their data, flags what matters, and drafts recommendations before the leadership team has had their morning coffee.",
-                  },
-                ].map((item) => (
-                  <div key={item.title} className="space-y-2">
-                    <p className="text-sm font-semibold text-foreground">{item.title}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.body}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </ScrollReveal>
         </Container>
       </section>
 
@@ -573,8 +512,8 @@ export default function HomePage() {
           <ScrollReveal>
             <SectionHeading
               eyebrow="Pricing"
-              title="One flat price. Your whole team included."
-              subtitle="No per-user fees. No hidden charges. One monthly price covers everyone — whether you have 5 people or 50."
+              title="Fixed plan prices with explicit user limits."
+              subtitle="Starter supports 10 internal users, Pro supports 20, and Enterprise supports unlimited internal users. Choose monthly or annual billing."
             />
           </ScrollReveal>
           <ScrollReveal className="mt-8">
@@ -600,7 +539,7 @@ export default function HomePage() {
         <ScrollReveal>
           <CTASection
             title="Your business deserves a system, not a subscription pile."
-            description="Start your 14-day free trial today. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing. See why service businesses that try Bizosto don't go back."
+            description="Start a 14-day trial on your selected plan. A card is required, no charge is made during the trial, and cancelling before day 15 means you pay nothing."
             primaryAction="Book a Demo"
             secondaryAction="Contact"
           />

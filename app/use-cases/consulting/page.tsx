@@ -10,15 +10,15 @@ import Section from "@/components/Section";
 export const metadata: Metadata = {
   title: "Bizosto for Consulting Firms — Track Every Engagement, Bill Every Retainer",
   description:
-    "Bizosto helps consulting firms manage engagements, track consultant utilization, automate retainer billing, and give partners real-time visibility — in one connected system.",
+    "Bizosto helps consulting firms manage engagements, track consultant utilization, coordinate retainer billing, and give partners role-appropriate visibility in one connected system.",
   alternates: {
     canonical: "https://www.bizosto.com/use-cases/consulting",
   },
 };
 
 const outcomes = [
-  { metric: "100%", label: "Retainer visibility", description: "Every retainer is tracked against delivery. Know what's been billed, what's been delivered, and what's at risk — always." },
-  { metric: "Real-time", label: "Utilization tracking", description: "See each consultant's capacity, allocation, and availability. Stop over-promising and under-delivering." },
+  { metric: "Tracked", label: "Retainer visibility", description: "Review retainers against supported billing and delivery records." },
+  { metric: "Current", label: "Utilization tracking", description: "Review each consultant's recorded capacity, allocation, and availability." },
   { metric: "Automated", label: "Invoicing & collection", description: "Invoices go out on schedule, payment reminders are automated, and collections are tracked — without your team chasing." },
 ];
 
@@ -68,9 +68,9 @@ export default function ConsultingPage() {
                 { title: "Engagement management", description: "Every client engagement has a project in Bizosto with milestones, owners, deliverables, and approval gates. Nothing falls through the cracks between your consultants and the client." },
                 { title: "Retainer billing on autopilot", description: "Set up recurring invoices for retainer clients and let Bizosto handle the billing cycle. Track what's been paid, what's outstanding, and which clients are at risk." },
                 { title: "Consultant utilization", description: "See how every consultant is allocated across engagements. Spot over-utilization before it burns people out. Spot under-utilization before it hurts your margin." },
-                { title: "Partner-level reporting", description: "Revenue per engagement, margin per client, delivery performance, and pipeline health — in dashboards your partners can review in five minutes, not five hours." },
+                { title: "Partner-level reporting", description: "Review revenue per engagement, margin per client, delivery performance, and pipeline health from supported tenant records." },
                 { title: "Client portal", description: "Give each client their own portal to see engagement status, review and approve deliverables, view invoices, and communicate — professionally and on the record." },
-                { title: "HR for growing teams", description: "As your consulting firm grows, so does your people complexity. Bizosto HR manages employees, attendance, leave, onboarding, and payroll in the same system as your client work." },
+                { title: "HR for growing teams", description: "On Enterprise, Bizosto HR brings employee records, attendance, leave, and onboarding into the same operating system as client work." },
                 { title: "AI agents that read your numbers", description: "Ask 'show me revenue by engagement this quarter' and get a chart in seconds. Or let the COO Agent brief you every morning on what's overdue, what's stalled, and what needs attention — in plain English. No dashboards to build, no exports to run." },
               ].map((item, index) => (
                 <ScrollReveal key={item.title} delay={index * 60}>

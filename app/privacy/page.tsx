@@ -4,16 +4,17 @@ import SectionHeading from "@/components/SectionHeading";
 export const metadata = {
   title: "Privacy",
   description: "Bizosto privacy policy.",
+  alternates: { canonical: "https://www.bizosto.com/privacy" },
 };
 
 export default function PrivacyPage() {
   return (
     <div className="space-y-12 pb-20 pt-12">
       <Container className="space-y-6">
-        <SectionHeading title="Privacy Policy" />
+        <SectionHeading as="h1" title="Privacy Policy" />
         <div className="space-y-6 text-sm text-muted-foreground">
           <p>Effective Date: March 1, 2026</p>
-          <p>Last Updated: March 1, 2026</p>
+          <p>Last Updated: August 24, 2026</p>
           <p>
             LA CREATIVO GROUP, LLC, operating as Bizosto (&quot;Bizosto,&quot; &quot;we,&quot; &quot;our,&quot; or
             &quot;us&quot;), is committed to protecting the privacy of individuals and organizations that access
@@ -53,7 +54,8 @@ export default function PrivacyPage() {
               Information collected automatically: This includes IP addresses, device identifiers,
               browser type and version, operating system, session timestamps, referring URLs, pages
               visited, session duration, and other technical metadata. This information is collected
-              via server logs, analytics tools, and error monitoring services (Sentry).
+              via server logs and, on the marketing website, optional analytics only after consent
+              where analytics has been configured.
             </p>
           </div>
 
@@ -81,8 +83,9 @@ export default function PrivacyPage() {
               obligations:
             </p>
             <p>
-              Firebase / Google Cloud (Google LLC): Authentication, database, and cloud infrastructure.
-              Data is stored on Google Cloud servers. Privacy policy: policies.google.com/privacy
+              Firebase / Google Cloud (Google LLC): authentication, database, cloud infrastructure,
+              and Firebase/Google Cloud Storage where that storage capability is activated. Privacy
+              policy: policies.google.com/privacy
             </p>
             <p>
               Stripe, Inc.: Payment processing for subscriptions and Stripe Connect. Stripe processes
@@ -94,13 +97,8 @@ export default function PrivacyPage() {
               notices, notifications).
             </p>
             <p>
-              Uploadcare (Uploadcare Inc.): File and media storage and delivery for content uploaded to
-              the Platform.
-            </p>
-            <p>
-              Sentry (Functional Software, Inc.): Error monitoring and application performance
-              monitoring. Error reports may include technical user context such as user ID and tenant
-              ID.
+              Vercel Inc.: hosting and delivery of the website and application. Runtime telemetry
+              depends on the services configured for the applicable environment.
             </p>
             <p>We do not sell, rent, or trade your personal information to any third party.</p>
           </div>
@@ -129,13 +127,14 @@ export default function PrivacyPage() {
             <h2 className="text-base font-semibold text-foreground">Data Retention</h2>
             <p>
               We retain account and usage data for the duration of your active subscription. Following
-              account cancellation or termination, data is retained for thirty (30) days to allow for
-              data export. After this period, data is permanently deleted from our systems unless a
-              longer retention period is required by applicable law.
+              voluntary or for-cause account termination, data is retained for thirty (30) days to
+              allow for data export. After this period, data is permanently deleted from our systems
+              unless a longer retention period is required by applicable law. A separate sixty (60)
+              day window applies after a hard lock caused by non-payment.
             </p>
             <p>
-              You may request a data export at any time. Export requests will be fulfilled within ten
-              (10) business days.
+              You may request a data export. Requests are subject to identity and authority
+              verification and will be handled under the applicable legal and operational process.
             </p>
           </div>
 
@@ -145,8 +144,9 @@ export default function PrivacyPage() {
               Bizosto implements administrative, technical, and organizational safeguards to protect
               your information against unauthorized access, disclosure, alteration, or destruction.
               Measures include encrypted data transmission (TLS/HTTPS), role-based access controls,
-              multi-factor authentication options, secure Firebase infrastructure, and continuous error
-              and security monitoring via Sentry. No system can guarantee absolute security. In the
+              Firebase and Google Cloud infrastructure, and environment-specific operational monitoring.
+              Authentication features such as MFA or SSO are available only when configured for the
+              applicable workspace and supported plan. No system can guarantee absolute security. In the
               event of a data breach that affects your personal information, we will notify you as
               required by applicable law.
             </p>

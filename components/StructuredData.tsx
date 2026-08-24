@@ -1,3 +1,5 @@
+import { trialAccessSummary } from "@/lib/launch-stage";
+
 /**
  * S37: JSON-LD structured data for search engines.
  *
@@ -26,7 +28,7 @@ const organization = {
   url: SITE_URL,
   logo: `${SITE_URL}/favicon-32.png`,
   description:
-    "Bizosto is the operating system for service businesses — CRM, sales, projects, finance, HR, and AI agents in one flat-priced platform.",
+    "Bizosto is the operating system for service businesses, with plan-scoped CRM, sales, projects, finance, production, HR, client portal, and AI Workforce capabilities.",
   sameAs: [] as string[],
 };
 
@@ -38,7 +40,7 @@ const softwareApplication = {
   operatingSystem: "Web",
   url: SITE_URL,
   description:
-    "An all-in-one ERP for service businesses: CRM, sales, project delivery, finance, HR, and AI Workforce — one flat price, no per-user fees.",
+    "A plan-based operating platform for service businesses, with CRM, sales, project delivery, finance, production, HR, client portal, and AI Workforce capabilities.",
   offers: [
     {
       "@type": "Offer",
@@ -54,7 +56,7 @@ const softwareApplication = {
       price: "149",
       priceCurrency: "USD",
       description:
-        "Full ERP for the whole team, including AI Workforce. Billed monthly, flat — no per-user fees.",
+        "Up to 20 internal users, with Starter modules plus Finance, Production, AI Workforce BYOK, and Website Embed. Billed monthly.",
       url: `${SITE_URL}/pricing`,
     },
     {
@@ -78,15 +80,15 @@ const faqPage = {
       name: "Is there a free trial?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Every new workspace gets a full 14-day free trial on the plan you choose. A card is required, but you are not charged until day 15, and you can cancel any time before then and pay nothing.",
+        text: trialAccessSummary,
       },
     },
     {
       "@type": "Question",
-      name: "Why isn't Bizosto per-user like other tools?",
+      name: "How do Bizosto internal-user limits work?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Per-user pricing punishes growth. Bizosto charges a flat monthly fee so you can scale your team without scaling your software costs.",
+        text: "Starter includes up to 10 internal users, Pro up to 20, and Enterprise unlimited internal users. Each tier has a fixed monthly or annual price.",
       },
     },
     {
@@ -102,7 +104,7 @@ const faqPage = {
       name: "Does Bizosto include AI features?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "AI Workforce is built into Pro and Enterprise plans at no extra charge, with COO, Finance, Sales, and Reports agents. You bring your own OpenAI or Anthropic API key and Bizosto never marks up your AI usage.",
+        text: "AI Workforce is included in Pro and Enterprise plan scope with tenant-controlled BYOK where applicable. Provider usage is separate, availability varies during controlled beta, and dangerous actions require human approval.",
       },
     },
     {
@@ -110,7 +112,7 @@ const faqPage = {
       name: "Is there a setup fee?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No setup fees. What you see on the pricing page is what you pay — no hidden charges.",
+        text: "Self-service subscriptions use the published plan prices. Optional professional onboarding and custom integration work are separately scoped and quoted before purchase.",
       },
     },
   ],

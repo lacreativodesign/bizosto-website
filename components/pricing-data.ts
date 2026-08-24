@@ -1,3 +1,5 @@
+import { signupCtaLabel, signupHref } from "@/lib/launch-stage";
+
 export interface PricingTier {
   name: string;
   monthlyPrice: string;
@@ -19,17 +21,17 @@ export const pricingTiers: PricingTier[] = [
     annualSaving: "Save $158",
     who: "For small teams replacing scattered tools. Up to 10 users.",
     cta: {
-      label: "Start Free Trial",
-      monthlyHref: "https://app.bizosto.com/signup?plan=starter&billing=monthly",
-      annualHref: "https://app.bizosto.com/signup?plan=starter&billing=annual",
+      label: signupCtaLabel,
+      monthlyHref: signupHref("starter", "monthly"),
+      annualHref: signupHref("starter", "annual"),
     },
     benefits: [
       "Up to 10 users",
-      "20GB storage",
+      "20 GB storage",
       "CRM, Sales & Project management",
       "10 client portal seats",
       "Notifications & basic Reports",
-      "Email support (48h response)",
+      "Email support",
     ],
   },
   {
@@ -40,21 +42,21 @@ export const pricingTiers: PricingTier[] = [
     annualSaving: "Save $298",
     who: "For growing teams that need finance and production. Up to 20 users.",
     cta: {
-      label: "Start Free Trial",
-      monthlyHref: "https://app.bizosto.com/signup?plan=pro&billing=monthly",
-      annualHref: "https://app.bizosto.com/signup?plan=pro&billing=annual",
+      label: signupCtaLabel,
+      monthlyHref: signupHref("pro", "monthly"),
+      annualHref: signupHref("pro", "annual"),
     },
     highlight: true,
     benefits: [
       "Up to 20 users",
-      "75GB storage",
+      "75 GB storage",
       "Full Finance & Production suite",
       "Unlimited client portal seats",
       "Approvals & full Reports",
-      "AI Workforce — COO, Finance & Sales agents",
-      "Natural language AI reports",
-      "Website embed integration",
-      "Priority support + live chat",
+      "AI Workforce with tenant BYOK (controlled beta)",
+      "Natural language AI reports (controlled beta)",
+      "Website embed integration (controlled beta)",
+      "Priority email support",
     ],
   },
   {
@@ -63,21 +65,21 @@ export const pricingTiers: PricingTier[] = [
     annualPrice: "$2,990/year",
     annualPerMonth: "$249.17/month",
     annualSaving: "Save $598",
-    who: "For larger teams needing HR and unlimited everything.",
+    who: "For teams needing HR, unlimited internal users, and Enterprise capabilities.",
     cta: {
-      label: "Start Free Trial",
-      monthlyHref: "https://app.bizosto.com/signup?plan=enterprise&billing=monthly",
-      annualHref: "https://app.bizosto.com/signup?plan=enterprise&billing=annual",
+      label: signupCtaLabel,
+      monthlyHref: signupHref("enterprise", "monthly"),
+      annualHref: signupHref("enterprise", "annual"),
     },
     benefits: [
       "Unlimited users",
-      "250GB storage",
-      "All modules including HR",
-      "Client Stripe Connect payments",
-      "AI Workforce — all 4 agents + AI Reports",
-      "Website embed integration",
+      "250 GB storage",
+      "Pro modules plus HR",
+      "Eligible Stripe Connect client payments",
+      "AI Workforce with tenant BYOK (controlled beta)",
+      "Website embed integration (controlled beta)",
       "White-label options",
-      "Dedicated same-day support",
+      "Enterprise onboarding support",
     ],
   },
 ];

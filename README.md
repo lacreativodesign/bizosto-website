@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bizosto marketing website
 
-## Getting Started
+The public website for Bizosto, the Operating System for Service Businesses. It uses the Next.js App Router and is deployed separately from the Bizosto application.
 
-First, run the development server:
+## Local development
+
+Use Node.js 22 and the committed lockfile:
 
 ```bash
+npm ci
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The lead forms intentionally do not write to Firebase. The server route validates the request, verifies reCAPTCHA in production, and proxies a tenant-scoped request to the canonical application endpoint at `/api/ingest/leads`. Configure the server-only ingest API key and the reCAPTCHA values listed in `.env.example`; never prefix a secret with `NEXT_PUBLIC_`. Local and preview environments fail closed if they point at `app.bizosto.com`, so use an isolated application endpoint and tenant key for form testing.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality gate
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run check
+```
 
-## Learn More
+The check runs ESLint with zero warnings, TypeScript, lead-contract tests, and a production build. The same sequence runs for pull requests in `.github/workflows/quality.yml`.
 
-To learn more about Next.js, take a look at the following resources:
+## Release constraints
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Marketing claims must match the current application behavior and locked plan matrix.
+- Provider integrations and AI features remain controlled-beta capabilities until their current release is verified for the target workspace.
+- Production form submission requires HTTPS ingest, a tenant-scoped API key, reCAPTCHA action and hostname validation, and explicit visitor consent.
+- Analytics is optional and loads only after visitor consent when a valid GTM ID is configured.
+- Do not deploy from an audit branch or run write-capable browser tests against shared production or preview data.

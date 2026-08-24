@@ -5,11 +5,12 @@ import ScrollReveal from "@/components/ScrollReveal";
 import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
 import CTASection from "@/components/CTASection";
+import { trialAccessSummary } from "@/lib/launch-stage";
 
 export const metadata: Metadata = {
   title: "About Bizosto — Built by Operators, for Operators",
   description:
-    "Bizosto is a product of LA CREATIVO GROUP, LLC. Built to run our own service businesses, shared with the world when we realised it worked better than anything else available.",
+    "Bizosto is a product of LA CREATIVO GROUP, LLC, shaped by the operating needs of service businesses and prepared for controlled beta.",
   alternates: {
     canonical: "https://www.bizosto.com/about",
   },
@@ -27,7 +28,7 @@ export default function AboutPage() {
               <SectionHeading
                 as="h1"
                 eyebrow="About Bizosto"
-                title="Built by operators. For operators. Proven before it was ever sold."
+                title="Built by operators, for service-business operators."
                 subtitle="Bizosto didn't start in a pitch deck. It started in a problem — the same one every service business faces when they're trying to run a real operation on five disconnected tools."
               />
             </ScrollReveal>
@@ -84,17 +85,17 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-4 text-base text-muted-foreground leading-relaxed">
                   <p>
-                    The transformation inside LA CREATIVO GROUP was impossible to ignore. Productivity increased. Processes ran themselves. Growth accelerated. Work that used to require manual chasing, version-controlled spreadsheets, and daily status meetings started happening automatically — because the system made it impossible for things to fall through.
+                    The internal experience shaped Bizosto around clearer ownership, shared operating records, and structured handoffs. Work that had depended on manual chasing, version-controlled spreadsheets, and status meetings could be brought into one system.
                   </p>
                   <p>
                     Other service businesses — agencies, consultancies, operations teams — started asking what we were running on. When we explained it, the response was always the same:{" "}
                     <em>&quot;We need that too.&quot;</em>
                   </p>
                   <p>
-                    That was the moment Bizosto became more than an internal tool. It became a decision: to give the broader service business community access to a system already proven in production — built by people who live the same operational challenges every day, and designed around how service businesses actually work.
+                    That was the moment Bizosto became more than an internal tool. It became a decision to prepare the system for controlled-beta service businesses — built by people who live the same operational challenges and designed around how service businesses actually work.
                   </p>
                   <p>
-                    Bizosto exists because we believe every service business deserves to run with the same clarity and efficiency we built for ourselves. Not a watered-down product designed to appeal to everyone. A focused, opinionated operating system built for the specific chaos of running a service business — and proven to tame it.
+                    Bizosto exists because we believe every service business deserves greater operating clarity. It is a focused, opinionated system shaped around the practical complexity of sales, delivery, finance, people operations, and client work.
                   </p>
                 </div>
               </div>
@@ -152,7 +153,7 @@ export default function AboutPage() {
           <ScrollReveal>
             <CTASection
               title="The same system we built for ourselves — now yours."
-              description="Start your 14-day free trial and see what it feels like to run your entire service business from one place. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing."
+              description={trialAccessSummary}
               primaryAction="Start Free Trial"
               secondaryAction="Book a Demo"
             />

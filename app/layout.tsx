@@ -4,8 +4,10 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ThemeScript from "@/components/ThemeScript";
-import Script from "next/script";
+import AnalyticsConsent from "@/components/AnalyticsConsent";
 import StructuredData from "@/components/StructuredData";
+
+const isPublicProduction = process.env.VERCEL_ENV === "production";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.bizosto.com"),
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Bizosto",
   },
   description:
-    "Bizosto connects CRM, projects, finance, HR, and client portal into one system built for service businesses with 10–200 people. 14-day free trial.",
+    "Bizosto connects CRM, projects, finance, HR, and the client portal in one system built for agencies, creative teams, and service businesses. 14-day free trial.",
   keywords: [
     "service business software",
     "agency ERP",
@@ -28,9 +30,13 @@ export const metadata: Metadata = {
   creator: "Bizosto",
   publisher: "LA CREATIVO GROUP, LLC",
   robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    index: isPublicProduction,
+    follow: isPublicProduction,
+    googleBot: {
+      index: isPublicProduction,
+      follow: isPublicProduction,
+      "max-image-preview": "large",
+    },
   },
   openGraph: {
     type: "website",
@@ -51,15 +57,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@bizosto",
-    creator: "@bizosto",
     title: "Bizosto — The Operating System for Service Businesses",
     description:
       "CRM, projects, finance, HR, and client portal — connected in one system. Built for service businesses.",
     images: ["/og?title=The+Operating+System+for+Service+Businesses"],
-  },
-  alternates: {
-    canonical: "https://www.bizosto.com",
   },
   icons: {
     icon: [
@@ -81,40 +82,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MFXFFQ96');`,
-          }}
-        />
         <StructuredData />
       </head>
       <body>
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MFXFFQ96"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
         <ThemeScript />
         <div className="flex min-h-screen flex-col bg-background">
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <AnalyticsConsent />
       </body>
     </html>
   );

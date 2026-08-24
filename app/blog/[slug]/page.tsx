@@ -4,6 +4,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import PageShell from "@/components/PageShell";
 import { getPost, getAllSlugs, type BlogSection } from "@/lib/blog-posts";
+import { selfServiceSignupEnabled, signupCtaLabel, signupHref } from "@/lib/launch-stage";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -12,9 +13,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const post = getPost(params.slug);
+  const { slug } = await params;
+  const post = getPost(slug);
   if (!post) return {};
 
   const ogTitle = encodeURIComponent(post.title);
@@ -97,8 +99,9 @@ function formatDate(dateStr: string): string {
   });
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getPost(params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPost(slug);
   if (!post) notFound();
 
   return (
@@ -141,14 +144,16 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               Ready to run your service business from one system?
             </p>
             <p className="text-sm text-muted-foreground">
-              14-day free trial. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing.
+              {selfServiceSignupEnabled
+                ? "14-day free trial. Card required — you won’t be charged until day 15. Cancel before then and pay nothing."
+                : "Request controlled-beta access. Invited workspaces receive a 14-day trial; card required, with no charge before day 15 if cancelled during the trial."}
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
               <a
-                href="https://app.bizosto.com/signup"
+                href={signupHref()}
                 className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
               >
-                Start Free Trial →
+                {signupCtaLabel} →
               </a>
               <Link
                 href="/blog"

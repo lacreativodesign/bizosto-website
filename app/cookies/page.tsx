@@ -4,16 +4,17 @@ import SectionHeading from "@/components/SectionHeading";
 export const metadata = {
   title: "Cookie Policy",
   description: "Bizosto cookie policy.",
+  alternates: { canonical: "https://www.bizosto.com/cookies" },
 };
 
 export default function CookiePolicyPage() {
   return (
     <div className="space-y-12 pb-20 pt-12">
       <Container className="space-y-6">
-        <SectionHeading title="Cookie Policy" />
+        <SectionHeading as="h1" title="Cookie Policy" />
         <div className="space-y-6 text-sm text-muted-foreground">
           <p>Effective Date: July 7, 2026</p>
-          <p>Last Updated: July 7, 2026</p>
+          <p>Last Updated: August 24, 2026</p>
           <p>
             This Cookie Policy explains how LA CREATIVO GROUP, LLC, operating as Bizosto
             (&quot;Bizosto,&quot; &quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), uses cookies and similar technologies on our
@@ -44,11 +45,11 @@ export default function CookiePolicyPage() {
           <div className="space-y-2">
             <h2 className="text-base font-semibold text-foreground">Analytics</h2>
             <p>
-              Our website uses Google Tag Manager to manage measurement and analytics tags,
-              including Google Analytics. These tags help us understand how visitors use our
+              If analytics is configured and you choose &quot;Accept analytics,&quot; our website uses Google
+              Tag Manager to manage measurement tags, which may include Google Analytics. These tags help us understand how visitors use our
               website — for example, which pages are visited and how visitors arrive at our site.
               Google may set cookies (such as &quot;_ga&quot;) on your device for this purpose. Information
-              collected is aggregated and used to improve our website. For details on how Google
+              collected is used to improve our website. Analytics does not load before consent. For details on how Google
               processes this data, see policies.google.com/privacy.
             </p>
             <p>We do not use third-party advertising cookies.</p>
@@ -68,7 +69,7 @@ export default function CookiePolicyPage() {
             <h2 className="text-base font-semibold text-foreground">Local Storage</h2>
             <p>
               Our website stores your display theme preference (light, dark, or system) in your
-              browser&apos;s local storage under the key &quot;bizosto-theme&quot;. This value stays on your
+              browser&apos;s local storage under the versioned key &quot;bizosto-theme:v1&quot;. This value stays on your
               device, is not transmitted to us, and is used only to remember your preferred
               appearance.
             </p>

@@ -6,11 +6,12 @@ import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
 import CTASection from "@/components/CTASection";
 import { Bot, Brain, TrendingUp, BarChart3, ShieldCheck, Key } from "lucide-react";
+import { signupCtaLabel, signupHref } from "@/lib/launch-stage";
 
 export const metadata: Metadata = {
   title: "AI Workforce — Intelligent Agents for Your Service Business | Bizosto",
   description:
-    "Bizosto AI Workforce gives your service business AI agents that work inside your existing system — analysing data, surfacing insights, and handling routine work. Powered by your own API key.",
+    "Explore Bizosto's controlled-beta, plan-scoped AI capabilities, tenant-controlled BYOK model, and human-approval boundaries.",
   alternates: {
     canonical: "https://www.bizosto.com/ai-workforce",
   },
@@ -20,8 +21,8 @@ const agents = [
   {
     icon: <Bot className="h-5 w-5" />,
     name: "COO Agent",
-    status: "Available now",
-    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
+    status: "Controlled beta",
+    statusColor: "text-amber-700 bg-amber-500/10 border-amber-500/30 dark:text-amber-300",
     description:
       "Your AI chief of operations. Every morning it reads your business — open leads, overdue invoices, active projects, team performance — and delivers a plain-English summary of what needs your attention today.",
     capabilities: [
@@ -35,8 +36,8 @@ const agents = [
   {
     icon: <TrendingUp className="h-5 w-5" />,
     name: "Finance Agent",
-    status: "Available now",
-    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
+    status: "Controlled beta",
+    statusColor: "text-amber-700 bg-amber-500/10 border-amber-500/30 dark:text-amber-300",
     description:
       "Monitors your revenue, flags late payments, and drafts payment reminder emails — all requiring your approval before anything is sent. Finance intelligence without finance overhead.",
     capabilities: [
@@ -50,8 +51,8 @@ const agents = [
   {
     icon: <BarChart3 className="h-5 w-5" />,
     name: "Sales Agent",
-    status: "Available now",
-    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
+    status: "Controlled beta",
+    statusColor: "text-amber-700 bg-amber-500/10 border-amber-500/30 dark:text-amber-300",
     description:
       "Watches your pipeline, identifies stalling leads, and proposes stage updates for your approval. All inside Bizosto — no separate AI tool, no new login.",
     capabilities: [
@@ -65,15 +66,15 @@ const agents = [
   {
     icon: <Brain className="h-5 w-5" />,
     name: "AI Reports",
-    status: "Available now",
-    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
+    status: "Controlled beta",
+    statusColor: "text-amber-700 bg-amber-500/10 border-amber-500/30 dark:text-amber-300",
     description:
       "Ask any question about your business in plain English and get a chart or table powered by your live data. No exports, no SQL, no waiting.",
     capabilities: [
       "Natural language question input",
       "Bar, line, pie chart and table output",
       "Revenue, leads, projects, invoices, team data",
-      "8 built-in data tools — always live",
+      "Built-in tenant-scoped data tools",
       "Accessible at Reports → AI Reports",
     ],
   },
@@ -84,13 +85,13 @@ const howItWorks = [
     step: "01",
     title: "Connect your AI key",
     description:
-      "Go to Settings → AI Workforce and paste in your OpenAI or Anthropic API key. Your key, your account, your bill — Bizosto never touches your AI spend.",
+      "A permitted workspace administrator configures a tenant-controlled provider key in AI Workforce settings. Provider usage is billed under the tenant's provider account.",
   },
   {
     step: "02",
     title: "Activate an agent",
     description:
-      "Turn on the COO Agent from your dashboard. Click Generate — the agent reads your live business data and produces a summary in seconds.",
+      "Enable an available controlled-beta agent for the workspace, then generate an output from the tenant-scoped data it is permitted to read.",
   },
   {
     step: "03",
@@ -119,10 +120,10 @@ export default function AIWorkforcePage() {
             <ScrollReveal>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="https://app.bizosto.com/signup"
+                  href={signupHref()}
                   className="btn-sheen inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm shadow-primary/20 transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/25"
                 >
-                  Start Free Trial →
+                  {signupCtaLabel} →
                 </a>
                 <a
                   href="/book-demo"
@@ -152,7 +153,7 @@ export default function AIWorkforcePage() {
                   Bizosto AI Workforce is a task execution system — not a conversation interface.
                 </h2>
                 <p className="text-base text-muted-foreground leading-relaxed">
-                  Each agent has a defined role, a set of tools it can call, and a clear boundary between what it can observe and what it can act on. Agents read your live Bizosto data — leads, projects, invoices, team — and produce structured outputs. Write actions (sending emails, updating records) always require your approval before they execute. Nothing happens in your business without a human in the loop.
+                  Each agent has a defined role, a bounded set of tools, and a separation between read and write actions. Dangerous actions such as sending communications or changing records require explicit human approval. AI Workforce is available during controlled beta, with availability varying by provider configuration and workspace readiness.
                 </p>
               </div>
             </ScrollReveal>
@@ -237,20 +238,20 @@ export default function AIWorkforcePage() {
                     </p>
                   </div>
                   <h2 className="text-2xl font-semibold text-foreground leading-snug">
-                    Your AI bill goes to you — not through us.
+                    Use a tenant-controlled provider key.
                   </h2>
                   <div className="space-y-3 text-base text-muted-foreground leading-relaxed">
                     <p>
-                      Bizosto AI Workforce uses a Bring Your Own Key model. You connect your own OpenAI or Anthropic API key in Settings — and all AI usage is billed directly by your chosen provider to your account.
+                      Bizosto AI Workforce uses a Bring Your Own Key model where applicable. A permitted workspace administrator connects a supported provider key, and usage is governed and billed by that provider.
                     </p>
                     <p>
-                      Bizosto charges for access to the AI Workforce platform as part of your plan. The AI tokens you consume are between you and your AI provider. No markup, no hidden usage fees, no surprises.
+                      AI Workforce is included in Pro and Enterprise plan scope. Provider usage charges are separate from the Bizosto subscription and remain the tenant&apos;s responsibility.
                     </p>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2 pt-2">
                     {[
-                      { icon: <ShieldCheck className="h-4 w-4" />, title: "Your data stays in your account", body: "Your API key means your AI requests go directly to OpenAI or Anthropic — never through a shared Bizosto key." },
-                      { icon: <Key className="h-4 w-4" />, title: "Works with OpenAI and Anthropic", body: "Connect a GPT-4o key or a Claude key. Switch providers anytime from your settings page." },
+                      { icon: <ShieldCheck className="h-4 w-4" />, title: "Tenant-scoped configuration", body: "Provider credentials and agent settings are scoped to the workspace and must be managed by a permitted administrator." },
+                      { icon: <Key className="h-4 w-4" />, title: "Supported provider options", body: "Provider and model availability depends on the tenant's own provider account and controlled-beta readiness." },
                     ].map((item) => (
                       <div key={item.title} className="rounded-xl border border-border bg-surface-muted p-4 space-y-2">
                         <div className="flex items-center gap-2 text-primary">{item.icon}<p className="text-sm font-semibold text-foreground">{item.title}</p></div>
@@ -270,13 +271,13 @@ export default function AIWorkforcePage() {
             <div className="mx-auto max-w-2xl rounded-xl border border-border bg-surface p-6 text-center space-y-3">
               <p className="text-sm font-semibold text-foreground">Available on Pro and Enterprise plans</p>
               <p className="text-sm text-muted-foreground">
-                AI Workforce is included on Pro ($149/mo) and Enterprise ($299/mo) plans. Start your 14-day free trial — all modules and AI Workforce unlocked from day one.
+                AI Workforce is included in Pro ($149/month) and Enterprise ($299/month) plan scope. Controlled-beta access requires a supported tenant BYOK configuration.
               </p>
               <a
-                href="https://app.bizosto.com/signup"
+                href={signupHref()}
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
               >
-                Start Free Trial →
+                {signupCtaLabel} →
               </a>
             </div>
           </ScrollReveal>
@@ -287,7 +288,7 @@ export default function AIWorkforcePage() {
           <ScrollReveal>
             <CTASection
               title="Your competitors are still doing this manually."
-              description="Give your service business an AI team that works inside your existing system — reading your data, surfacing what matters, and handling the routine so you can focus on what grows the business."
+              description="Request controlled-beta access to plan-scoped AI capabilities for tenant data, operational insights, and approval-gated routine work."
               primaryAction="Start Free Trial"
               secondaryAction="Book a Demo"
             />

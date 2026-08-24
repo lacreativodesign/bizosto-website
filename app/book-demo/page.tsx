@@ -6,11 +6,13 @@ import ContactForm from "@/components/ContactForm";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
+import { selfServiceSignupEnabled, signupCtaLabel, signupHref } from "@/lib/launch-stage";
 
 export const metadata: Metadata = {
   title: "Book a Live Bizosto Walkthrough — See Your Workflows in Action",
   description:
     "Book a personalised Bizosto demo. We'll map your exact service business workflow and show you how each module connects — so you can make a decision with confidence.",
+  alternates: { canonical: "https://www.bizosto.com/book-demo" },
 };
 
 export default function BookDemoPage() {
@@ -64,15 +66,19 @@ export default function BookDemoPage() {
               <div className="space-y-4">
                 <ScrollReveal>
                   <Card className="space-y-3 border-primary/40 bg-primary/5">
-                    <p className="text-sm font-semibold text-foreground">Rather start right now?</p>
+                    <p className="text-sm font-semibold text-foreground">
+                      {selfServiceSignupEnabled ? "Rather start right now?" : "Ready to join the controlled beta?"}
+                    </p>
                     <p className="text-sm text-muted-foreground">
-                      Skip the demo and sign up directly. Your 14-day free trial starts the moment you sign up. Card required - you won&apos;t be charged until day 15. Cancel anytime before then and pay nothing.
+                      {selfServiceSignupEnabled
+                        ? "Skip the demo and sign up directly. Your 14-day free trial starts when you sign up. Card required — you won’t be charged until day 15. Cancel before then and pay nothing."
+                        : "Submit a request and we’ll review your workflow for controlled-beta onboarding. Invited workspaces receive a 14-day trial; card required, with no charge before day 15 if cancelled during the trial."}
                     </p>
                     <a
-                      href="https://app.bizosto.com/signup"
+                      href={signupHref()}
                       className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
                     >
-                      Start Free Trial →
+                      {signupCtaLabel} →
                     </a>
                     <p className="text-xs text-muted-foreground">
                       Or fill the form to book your personalised walkthrough.

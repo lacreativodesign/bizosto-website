@@ -4,16 +4,17 @@ import SectionHeading from "@/components/SectionHeading";
 export const metadata = {
   title: "Terms",
   description: "Bizosto terms and conditions.",
+  alternates: { canonical: "https://www.bizosto.com/terms" },
 };
 
 export default function TermsPage() {
   return (
     <div className="space-y-12 pb-20 pt-12">
       <Container className="space-y-6">
-        <SectionHeading title="Terms & Conditions" />
+        <SectionHeading as="h1" title="Terms & Conditions" />
         <div className="space-y-6 text-sm text-muted-foreground">
           <p>Effective Date: March 1, 2026</p>
-          <p>Last Updated: July 7, 2026</p>
+          <p>Last Updated: August 24, 2026</p>
           <p>
             These Terms &amp; Conditions (&quot;Terms&quot;) constitute a legally binding agreement between
             you (&quot;Customer,&quot; &quot;you,&quot; or &quot;your&quot;) and LA CREATIVO GROUP, LLC, a Texas
@@ -111,18 +112,15 @@ export default function TermsPage() {
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-base font-semibold text-foreground">Automatic Tax Calculation</h2>
+            <h2 className="text-base font-semibold text-foreground">Applicable Taxes</h2>
             <p>
-              Bizosto uses Stripe Tax to automatically calculate and apply applicable taxes to
-              subscription fees based on your billing address and applicable local, state, federal, or
-              international tax regulations. The tax amount will be displayed on your invoice. LA
-              CREATIVO GROUP, LLC complies with all applicable United States tax laws, including Texas
-              state tax regulations and US economic nexus rules.
+              Subscription prices may be exclusive of taxes. Where LA CREATIVO GROUP, LLC is legally
+              required and the billing configuration is active, applicable taxes will be presented at
+              checkout or on the invoice based on the billing information you provide.
             </p>
             <p>
-              By providing your billing address, you confirm it is accurate. Tax rates are determined
-              by Stripe Tax based on your billing location. Bizosto is not responsible for errors
-              arising from inaccurate billing address information provided by you.
+              By providing a billing address, you confirm it is accurate. You remain responsible for
+              taxes that apply to your purchase except where Bizosto is required to collect and remit them.
             </p>
           </div>
 
@@ -217,14 +215,15 @@ export default function TermsPage() {
             <h2 className="text-base font-semibold text-foreground">Data Retention and Deletion</h2>
             <p>
               Customer data and content stored within the Platform is retained for the duration of the
-              active subscription. Following cancellation or termination, data is retained for thirty
-              (30) days to allow for data export requests. After this period, data is permanently
-              deleted from Bizosto&apos;s systems unless a longer retention period is required by
-              applicable law.
+              active subscription. Following voluntary or for-cause account termination, data is
+              retained for thirty (30) days to allow for data export requests. After this period, data
+              is permanently deleted from Bizosto&apos;s systems unless a longer retention period is
+              required by applicable law. This termination window is separate from the sixty (60) day
+              retention window that starts after a non-payment hard lock.
             </p>
             <p>
-              Customers may request a data export at any time by contacting Bizosto support. Data
-              export requests will be processed within ten (10) business days.
+              Customers may request a data export by contacting Bizosto support. Requests are subject
+              to identity and authority verification and the applicable legal and operational process.
             </p>
           </div>
 

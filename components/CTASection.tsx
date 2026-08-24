@@ -1,10 +1,27 @@
 import Button from "@/components/Button";
+import { signupCtaLabel, signupHref } from "@/lib/launch-stage";
 
 interface CTASectionProps {
   title: string;
   description: string;
   primaryAction?: string;
   secondaryAction?: string;
+}
+
+function isSignupAction(label: string): boolean {
+  const normalized = label.toLowerCase();
+  return normalized.includes("trial") || normalized.includes("start now");
+}
+
+function destinationFor(label: string): string {
+  const normalized = label.toLowerCase();
+  if (isSignupAction(label)) return signupHref();
+  if (normalized.includes("demo") || normalized.includes("walkthrough")) return "/book-demo";
+  return "/contact";
+}
+
+function displayLabel(label: string): string {
+  return isSignupAction(label) ? signupCtaLabel : label;
 }
 
 export default function CTASection({
@@ -21,9 +38,9 @@ export default function CTASection({
           <p className="text-sm text-muted-foreground sm:text-base">{description}</p>
         </div>
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-          <Button href="/book-demo">{primaryAction}</Button>
-          <Button href="/contact" variant="outline">
-            {secondaryAction}
+          <Button href={destinationFor(primaryAction)}>{displayLabel(primaryAction)}</Button>
+          <Button href={destinationFor(secondaryAction)} variant="outline">
+            {displayLabel(secondaryAction)}
           </Button>
         </div>
       </div>
