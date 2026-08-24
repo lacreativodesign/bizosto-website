@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Container from "@/components/Container";
 import LogoMark from "@/components/LogoMark";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
+import { signupCtaLabel, signupHref } from "@/lib/launch-stage";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -64,8 +66,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="https://app.bizosto.com/signup" className="transition hover:text-foreground">
-                  Start Free Trial
+                <a href={signupHref()} className="transition hover:text-foreground">
+                  {signupCtaLabel}
                 </a>
               </li>
             </ul>
@@ -120,8 +122,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://app.bizosto.com/signup" className="transition hover:text-foreground">
-                  Create Account
+                <a href={signupHref()} className="transition hover:text-foreground">
+                  {signupCtaLabel}
                 </a>
               </li>
               <li>
@@ -145,6 +147,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <CookieSettingsButton />
+              </li>
+              <li>
                 <Link href="/security" className="transition hover:text-foreground">
                   Security
                 </Link>
@@ -155,7 +160,7 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground">
           <p>© {currentYear} LA CREATIVO GROUP, LLC. All rights reserved.</p>
-          <p>Bizosto® — Business Operating System</p>
+          <p>Bizosto — Operating System for Service Businesses</p>
         </div>
       </Container>
     </footer>

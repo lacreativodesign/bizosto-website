@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { signupCtaLabel, signupHref } from "@/lib/launch-stage";
 
 const links = [
   { href: "/product", label: "Product" },
@@ -17,6 +18,15 @@ const links = [
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
   return (
     <div className="relative md:hidden">
       <button
@@ -24,12 +34,16 @@ export default function MobileNav() {
         onClick={() => setOpen((prev) => !prev)}
         type="button"
         aria-expanded={open}
+        aria-controls="mobile-navigation-menu"
       >
         Menu
       </button>
       {open ? (
-        <div className="menu-pop absolute right-0 top-12 z-20 w-56 rounded-lg border border-border bg-surface p-4 shadow-lg">
-          <nav className="flex flex-col gap-3 text-sm text-foreground">
+        <div
+          id="mobile-navigation-menu"
+          className="menu-pop absolute right-0 top-12 z-20 w-56 rounded-lg border border-border bg-surface p-4 shadow-lg"
+        >
+          <nav className="flex flex-col gap-3 text-sm text-foreground" aria-label="Mobile navigation">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -50,11 +64,11 @@ export default function MobileNav() {
               Sign In
             </a>
             <a
-              href="https://app.bizosto.com/signup"
+              href={signupHref()}
               className="block rounded-md bg-primary px-2 py-2 text-center text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
               onClick={() => setOpen(false)}
             >
-              Start Free Trial
+              {signupCtaLabel}
             </a>
           </div>
         </div>

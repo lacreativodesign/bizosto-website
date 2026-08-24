@@ -1,12 +1,14 @@
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
 
-export const runtime = "edge";
-
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const title = searchParams.get("title") || "The Operating System for Service Businesses";
-  const eyebrow = searchParams.get("eyebrow") || "Bizosto";
+  const clean = (value: string | null, fallback: string, maximum: number) => {
+    const normalized = value?.replace(/[\u0000-\u001f\u007f]/g, "").trim();
+    return normalized ? normalized.slice(0, maximum) : fallback;
+  };
+  const title = clean(searchParams.get("title"), "The Operating System for Service Businesses", 90);
+  const eyebrow = clean(searchParams.get("eyebrow"), "Bizosto", 30);
 
   return new ImageResponse(
     (
@@ -163,6 +165,10 @@ export async function GET(req: NextRequest) {
         />
       </div>
     ),
-    { width: 1200, height: 630 }
+    {
+      width: 1200,
+      height: 630,
+      headers: { "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800" },
+    }
   );
 }

@@ -7,6 +7,7 @@ import LogoMark from "@/components/LogoMark";
 import ThemeToggle from "@/components/ThemeToggle";
 import MobileNav from "@/components/MobileNav";
 import { cn } from "@/lib/utils";
+import { signupCtaLabel, signupHref } from "@/lib/launch-stage";
 
 const navLinks = [
   { href: "/product", label: "Product" },
@@ -42,10 +43,13 @@ export default function Header() {
       )}
     >
       <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2" aria-label="Bizosto home">
           <LogoMark />
         </Link>
-        <nav className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex">
+        <nav
+          className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex"
+          aria-label="Primary navigation"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -65,10 +69,10 @@ export default function Header() {
           </a>
           <ThemeToggle />
           <a
-            href="https://app.bizosto.com/signup"
+            href={signupHref()}
             className="btn-sheen inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm shadow-primary/20 transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            Start Free Trial
+            {signupCtaLabel}
           </a>
         </div>
         <div className="flex items-center gap-3 md:hidden">

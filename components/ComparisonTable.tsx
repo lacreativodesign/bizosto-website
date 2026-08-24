@@ -1,6 +1,6 @@
 const rows = [
   { feature: "Users", starter: "10", pro: "20", enterprise: "Unlimited" },
-  { feature: "Storage", starter: "20GB", pro: "75GB", enterprise: "250GB" },
+  { feature: "Storage", starter: "20 GB", pro: "75 GB", enterprise: "250 GB" },
   { feature: "CRM & Sales pipeline", starter: true, pro: true, enterprise: true },
   { feature: "Project management", starter: true, pro: true, enterprise: true },
   { feature: "Notifications", starter: true, pro: true, enterprise: true },
@@ -12,11 +12,11 @@ const rows = [
   { feature: "AI Workforce agents", starter: false, pro: true, enterprise: true },
   { feature: "Natural language AI reports", starter: false, pro: true, enterprise: true },
   { feature: "Website embed integration", starter: false, pro: true, enterprise: true },
-  { feature: "HR & Payroll", starter: false, pro: false, enterprise: true },
+  { feature: "HR module", starter: false, pro: false, enterprise: true },
   { feature: "Client Stripe Connect", starter: false, pro: false, enterprise: true },
   { feature: "White-label options", starter: false, pro: false, enterprise: true },
   { feature: "Client portal seats", starter: "10", pro: "Unlimited", enterprise: "Unlimited" },
-  { feature: "Support", starter: "Email 48h", pro: "Priority + Chat", enterprise: "Dedicated same-day" },
+  { feature: "Support", starter: "Email", pro: "Priority email", enterprise: "Onboarding support" },
 ];
 
 type Row = {
@@ -47,6 +47,9 @@ export default function ComparisonTable() {
   return (
     <div className="overflow-x-auto rounded-2xl border border-border">
       <table className="w-full min-w-[540px] text-sm">
+        <caption className="sr-only">
+          Bizosto Starter, Pro, and Enterprise plan features and limits
+        </caption>
         <thead>
           <tr className="border-b border-border bg-surface-muted">
             <th className="sticky left-0 z-10 bg-surface-muted px-5 py-4 text-left font-semibold text-foreground">Feature</th>

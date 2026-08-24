@@ -40,6 +40,13 @@ export default function Button({
   );
 
   if (href) {
+    if (/^https?:\/\//.test(href)) {
+      return (
+        <a className={classes} href={href}>
+          {children}
+        </a>
+      );
+    }
     return (
       <Link className={classes} href={href}>
         {children}

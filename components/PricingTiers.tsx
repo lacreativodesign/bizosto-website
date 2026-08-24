@@ -12,10 +12,15 @@ export default function PricingTiers() {
     <>
       {/* Billing toggle */}
       <div className="mb-8 flex flex-col items-center gap-3">
-        <div className="inline-flex items-center rounded-full border border-border bg-surface p-1">
+        <div
+          className="inline-flex items-center rounded-full border border-border bg-surface p-1"
+          role="group"
+          aria-label="Billing interval"
+        >
           <button
             type="button"
             onClick={() => setIsAnnual(false)}
+            aria-pressed={!isAnnual}
             className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
               !isAnnual
                 ? "bg-primary text-primary-foreground shadow-sm"
@@ -27,6 +32,7 @@ export default function PricingTiers() {
           <button
             type="button"
             onClick={() => setIsAnnual(true)}
+            aria-pressed={isAnnual}
             className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
               isAnnual
                 ? "bg-primary text-primary-foreground shadow-sm"
@@ -38,7 +44,7 @@ export default function PricingTiers() {
         </div>
         {isAnnual ? (
           <p className="text-sm font-semibold text-green-600">
-            🎉 2 months free — pay for 10, get 12
+            2 months free — pay for 10, get 12
           </p>
         ) : (
           <p className="text-sm text-muted-foreground">
@@ -119,7 +125,7 @@ export default function PricingTiers() {
                 {tier.cta.label}
               </a>
               <p className="mt-2 text-center text-xs text-muted-foreground">
-                14-day free trial • Cancel anytime
+                Card required • No charge before day 15 if cancelled during trial
               </p>
             </div>
           </Card>

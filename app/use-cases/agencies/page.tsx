@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
+import { trialAccessSummary } from "@/lib/launch-stage";
 import Card from "@/components/Card";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageShell from "@/components/PageShell";
@@ -10,7 +11,7 @@ import Section from "@/components/Section";
 export const metadata: Metadata = {
   title: "Bizosto for Agencies — One System for Your Entire Agency Operation",
   description:
-    "Bizosto replaces the 6–8 tools your agency runs on. CRM, project delivery, production, client portal, finance, and HR — connected in one platform built for agencies.",
+    "Connect agency CRM, project delivery, production, client portal, finance, and plan-scoped HR workflows in Bizosto.",
   alternates: {
     canonical: "https://www.bizosto.com/use-cases/agencies",
   },
@@ -27,7 +28,7 @@ const painPoints = [
   },
   {
     problem: "Your account managers don't know what production is working on.",
-    solution: "Every job is in the same system. AMs see client status. Production sees their queue. Finance sees what's been invoiced. Everyone works from the same record, in real time.",
+    solution: "Every job is in the same system. AMs see client status, Production sees its queue, and Finance sees what has been invoiced from a shared operating record.",
   },
   {
     problem: "You find out a project was unprofitable after it's delivered.",
@@ -40,9 +41,9 @@ const modules = [
   { title: "Sales Pipeline", description: "Track deals from first conversation to signed proposal. Approval workflows ensure nothing moves forward without sign-off." },
   { title: "Project & Production", description: "Brief → assign → QA → deliver. Every job has owners, milestones, and file management. Your production team always knows what's next." },
   { title: "Client Portal", description: "Your clients get a branded portal to track progress, approve work, view invoices, and pay. Professional. Transparent. No chasing." },
-  { title: "Finance & Invoicing", description: "Invoice on delivery, track retainers, manage expenses, and run payroll — all connected to the projects that generate the revenue." },
+  { title: "Finance & Invoicing", description: "Invoice on delivery, track retainers, and manage expenses alongside the projects that generate the revenue." },
   { title: "Reports & Dashboards", description: "Revenue per client, delivery performance, team utilization, and pipeline health — live dashboards your leadership can act on." },
-  { title: "AI Workforce — Built In", description: "Four AI agents work inside your agency data. The COO Agent delivers a daily plain-English briefing on overdue invoices, open leads, and project health. The Finance Agent flags late-paying clients and drafts reminders. The Sales Agent spots stalling deals. AI Reports answers any question with a live chart. All approval-gated — nothing executes without you." },
+  { title: "AI Workforce — Controlled Beta", description: "Plan-scoped AI capabilities can prepare operations briefings, flag finance and sales follow-ups, and generate supported reports. Tenant-controlled BYOK is used where applicable, and dangerous actions require explicit human approval." },
 ];
 
 export default function AgenciesPage() {
@@ -91,8 +92,8 @@ export default function AgenciesPage() {
             <ScrollReveal>
               <SectionHeading
                 eyebrow="What You Get"
-                title="Every module your agency needs. None of the ones you don't."
-                subtitle="Start with CRM and projects. Add finance and HR when you're ready. Every module is connected to every other — so enabling one unlocks capabilities across the whole system."
+                title="Plan-scoped modules for agency operations."
+                subtitle="Starter includes CRM, Sales, Projects, and Client Portal. Pro adds Finance and Production; Enterprise adds HR and other Enterprise capabilities."
               />
             </ScrollReveal>
             <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -139,7 +140,7 @@ export default function AgenciesPage() {
             <ScrollReveal>
               <CTASection
                 title="Ready to run your agency on one system?"
-                description="Start your 14-day free trial today. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing. Or book a walkthrough and we'll map your exact agency workflow into Bizosto."
+                description={`${trialAccessSummary} Or book a walkthrough and we’ll review how your agency workflow maps to Bizosto.`}
               />
             </ScrollReveal>
           </Container>

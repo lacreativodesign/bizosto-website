@@ -9,16 +9,17 @@ import Section from "@/components/Section";
 import { BarChart3, Brain, ClipboardCheck, CreditCard, ShieldCheck, TrendingUp } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Every Module Your Service Business Needs — Built to Work Together",
+  title: "Bizosto Modules — Built to Work Together by Plan",
   description:
-    "Explore Bizosto's full module suite — CRM, sales pipeline, project delivery, production, finance, HR, client portal, and more. One platform, every function, total visibility.",
+    "Explore Bizosto's plan-scoped modules for CRM, sales, project delivery, production, finance, HR, and the client portal.",
+  alternates: { canonical: "https://www.bizosto.com/product" },
 };
 
 const modules = [
   {
     title: "CRM & Sales Pipeline",
     description:
-      "From first enquiry to signed deal — every lead is captured, qualified, and moved through your pipeline with automated follow-ups and SLA tracking. Never lose a prospect in a spreadsheet again.",
+      "From first enquiry to signed deal, capture and qualify leads through the approved pipeline with ownership, follow-up tracking, and tenant-scoped records.",
     icon: <TrendingUp className="h-4 w-4" aria-hidden="true" />,
   },
   {
@@ -30,25 +31,25 @@ const modules = [
   {
     title: "Finance & Revenue",
     description:
-      "Invoices, payments, payroll, expenses, tax, and financial reporting — all connected directly to the projects that generate them. Know your margin before a project closes, not after.",
+      "Invoices, payments, expenses, and financial reporting connect to the projects that generate them, supporting margin and revenue review in one operating record.",
     icon: <CreditCard className="h-4 w-4" aria-hidden="true" />,
   },
   {
     title: "Reports & Analytics",
     description:
-      "Revenue performance, delivery health, team utilization, sales pipeline, and HR data — in real-time dashboards you can act on today. No exporting. No building decks. Just answers.",
+      "Bring revenue performance, delivery health, team utilization, sales pipeline, and HR data into plan- and role-appropriate dashboards.",
     icon: <BarChart3 className="h-4 w-4" aria-hidden="true" />,
   },
   {
     title: "Roles, Permissions & HR",
     description:
-      "11 user roles from Super Admin to Client. Full HR module with employee records, attendance, leave, onboarding, and payroll. Every person sees exactly what they need — nothing more.",
+      "11 user roles from Super Admin to Client. Enterprise HR includes employee records, attendance, leave, and onboarding, with role-appropriate workspace views.",
     icon: <ShieldCheck className="h-4 w-4" aria-hidden="true" />,
   },
   {
-    title: "AI Workforce — 4 Live Agents",
+    title: "AI Workforce — Controlled-Beta Agents",
     description:
-      "COO daily briefings, Finance Agent with approval-gated payment reminders, Sales Agent with pipeline analysis, and AI Reports that answer plain-English questions with live charts. Powered by your own OpenAI or Anthropic API key. Included on Pro and Enterprise plans.",
+      "Controlled-beta COO briefings, finance monitoring, sales pipeline analysis, and natural-language AI reports. Tenant-controlled BYOK is used where applicable, provider usage is separate, and dangerous actions require human approval.",
     icon: <Brain className="h-4 w-4" aria-hidden="true" />,
   },
 ];
@@ -62,7 +63,7 @@ const outcomes = [
   {
     title: "Accountability built in, not bolted on.",
     description:
-      "Every task has an owner. Every project has a deadline. Every approval has a chain. Bizosto doesn't let things slip — it makes dropping the ball impossible to hide.",
+      "Give tasks, projects, and approvals explicit owners and states so stalled work is visible and easier to address.",
   },
   {
     title: "Delivery you can promise — and prove.",
@@ -81,7 +82,7 @@ export default function ProductPage() {
               <SectionHeading
                 as="h1"
                 eyebrow="The Platform"
-                title="Every module your team needs. None of the tools they hate."
+                title="Choose the plan-scoped modules your team needs."
                 subtitle="Bizosto was built by people who ran service businesses and got tired of the tool chaos. Every feature exists because it was needed — not because it looked good in a pitch deck."
               />
             </ScrollReveal>
@@ -103,8 +104,8 @@ export default function ProductPage() {
             <ScrollReveal>
               <SectionHeading
                 eyebrow="What's Inside"
-                title="15 modules. One platform. Zero tool-switching."
-                subtitle="Each module is built to share data with every other module — so when a deal closes, a project starts. When a project delivers, an invoice goes out. When an invoice is paid, your reports update. It all just works."
+                title="Plan-scoped modules designed to share one operating record."
+                subtitle="Sales, delivery, finance, HR, and client-portal capabilities share tenant-scoped context. Automated handoffs remain subject to role, approval, plan, and lifecycle rules."
               />
             </ScrollReveal>
             <ScrollReveal className="mt-8">
@@ -130,9 +131,9 @@ export default function ProductPage() {
                     "Every project, every team member, every client, and every invoice — visible from one screen. Your leadership team stops asking for updates because the answers are always there.",
                 },
                 {
-                  title: "Numbers that tell the truth — automatically.",
+                  title: "Numbers connected to the work.",
                   description:
-                    "Bizosto generates your financial and operational reports without anyone having to build them. Revenue, margin, utilization, and delivery risk are always current, always accurate.",
+                    "Bizosto assembles financial and operational reports from tenant records. Accuracy depends on complete source data and remains subject to review and reconciliation.",
                 },
               ].map((item, index) => (
                 <ScrollReveal key={item.title} delay={index * 90}>

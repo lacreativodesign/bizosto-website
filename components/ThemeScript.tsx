@@ -1,8 +1,11 @@
-import Script from "next/script";
-
 const script = `(() => {
-  const storageKey = "bizosto-theme";
-  const stored = window.localStorage.getItem(storageKey) || "system";
+  const storageKey = "bizosto-theme:v1";
+  let stored = "system";
+  try {
+    stored = window.localStorage.getItem(storageKey) || window.localStorage.getItem("bizosto-theme") || "system";
+    window.localStorage.setItem(storageKey, stored);
+    window.localStorage.removeItem("bizosto-theme");
+  } catch {}
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const useDark = stored === "dark" || (stored === "system" && prefersDark);
   document.documentElement.classList.toggle("dark", useDark);
@@ -10,5 +13,5 @@ const script = `(() => {
 })();`;
 
 export default function ThemeScript() {
-  return <Script id="theme-script" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: script }} />;
+  return <script id="theme-script" dangerouslySetInnerHTML={{ __html: script }} />;
 }

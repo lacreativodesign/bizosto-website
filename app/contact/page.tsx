@@ -8,7 +8,7 @@ import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
 
 export const metadata: Metadata = {
-  title: "Contact Bizosto — We'll Reply Within One Business Day",
+  title: "Contact Bizosto",
   description:
     "Get in touch with the Bizosto team. Tell us about your service business, your current tools, and your goals — and we'll come back with a tailored plan.",
   alternates: {
@@ -42,7 +42,7 @@ export default function ContactPage() {
                       A real person on our team reads every message. We don&apos;t hand you off to a bot or a generic drip sequence.
                     </p>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>A reply from a real person within 1 business day</li>
+                      <li>A response from the Bizosto team as soon as possible</li>
                       <li>A personalised walkthrough of the modules relevant to your business</li>
                       <li>A rollout plan based on your actual workflows — not a template</li>
                     </ul>
@@ -51,8 +51,13 @@ export default function ContactPage() {
                 <ScrollReveal delay={110}>
                   <Card className="space-y-3">
                     <p className="text-sm font-semibold text-foreground">Prefer to reach out directly?</p>
-                    <p className="text-sm text-muted-foreground">hello@bizosto.com</p>
-                    <p className="text-sm text-muted-foreground">+1 (555) 212-9090</p>
+                    <a
+                      className="text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground"
+                      href="mailto:hello@bizosto.com"
+                    >
+                      hello@bizosto.com
+                    </a>
+                    <p className="text-xs text-muted-foreground">Email is our verified direct contact channel.</p>
                   </Card>
                 </ScrollReveal>
               </div>

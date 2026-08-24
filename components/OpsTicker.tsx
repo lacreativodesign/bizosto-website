@@ -45,7 +45,7 @@ export default function OpsTicker() {
         {event.text}
       </span>
       <span className="ml-auto hidden shrink-0 font-mono text-[0.6rem] uppercase tracking-widest text-muted-foreground/70 sm:inline">
-        Live inside Bizosto
+        Illustrative activity
       </span>
     </div>
   );

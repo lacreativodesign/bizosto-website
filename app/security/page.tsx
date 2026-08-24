@@ -4,6 +4,7 @@ import SectionHeading from "@/components/SectionHeading";
 export const metadata = {
   title: "Security",
   description: "How Bizosto protects your business data.",
+  alternates: { canonical: "https://www.bizosto.com/security" },
 };
 
 export default function SecurityPage() {
@@ -11,19 +12,20 @@ export default function SecurityPage() {
     <div className="space-y-12 pb-20 pt-12">
       <Container className="space-y-6">
         <SectionHeading
+          as="h1"
           title="Security"
-          subtitle="Security is built into the core of Bizosto — not bolted on after the fact. Here is how we protect your business data."
+          subtitle="Bizosto is designed around tenant boundaries, role-based access, secure sessions, encrypted infrastructure, and auditable financial history."
         />
         <div className="space-y-6 text-sm text-muted-foreground">
-          <p>Last Updated: July 7, 2026</p>
+          <p>Last Updated: August 24, 2026</p>
 
           <div className="space-y-2">
             <h2 className="text-base font-semibold text-foreground">Tenant Isolation</h2>
             <p>
               Bizosto is a multi-tenant platform where every workspace&apos;s data is isolated at the
-              application layer. Every record is scoped to your workspace, and every data access is
-              validated server-side against the authenticated user&apos;s workspace — your data is
-              never visible to another tenant.
+              application layer. Records and requests are designed to be scoped to an authenticated
+              workspace. Cross-tenant access is prohibited except for explicitly authorized Super
+              Admin governance.
             </p>
           </div>
 
@@ -32,8 +34,8 @@ export default function SecurityPage() {
             <p>
               Access within a workspace is governed by eleven fixed roles spanning administration,
               sales, account management, production, finance, HR, and client access. Each role sees
-              only the modules and data appropriate to it, and permissions are enforced on the
-              server for every request — not just hidden in the interface.
+              only the modules and data appropriate to it. Server-side authorization, not interface
+              visibility alone, is the required enforcement standard for protected operations.
             </p>
           </div>
 
@@ -59,9 +61,9 @@ export default function SecurityPage() {
           <div className="space-y-2">
             <h2 className="text-base font-semibold text-foreground">API Security</h2>
             <p>
-              Every API route in the platform is covered by an enforced route contract that defines
-              its authentication and access requirements, verified by automated tests in our
-              continuous integration pipeline. Server-side rate limiting protects against abuse.
+              Protected API routes are designed to enforce authentication, workspace, role, method,
+              and resource ownership on the server. Additional provider- and platform-level safeguards
+              may vary by deployment environment.
             </p>
           </div>
 
@@ -77,8 +79,7 @@ export default function SecurityPage() {
           <div className="space-y-2">
             <h2 className="text-base font-semibold text-foreground">Infrastructure</h2>
             <p>
-              Bizosto runs on Vercel and Google Cloud (Firebase), enterprise-grade providers with
-              extensive physical and network security programs. We do not operate our own physical
+              Bizosto runs on Vercel and Google Cloud (Firebase). We do not operate our own physical
               servers. Payment card data is processed by Stripe and is never stored on Bizosto
               systems.
             </p>

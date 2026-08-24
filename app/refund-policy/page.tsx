@@ -4,16 +4,17 @@ import SectionHeading from "@/components/SectionHeading";
 export const metadata = {
   title: "Refund & Cancellation Policy",
   description: "Bizosto refund and cancellation policy.",
+  alternates: { canonical: "https://www.bizosto.com/refund-policy" },
 };
 
 export default function RefundPolicyPage() {
   return (
     <div className="space-y-12 pb-20 pt-12">
       <Container className="space-y-6">
-        <SectionHeading title="Refund & Cancellation Policy" />
+        <SectionHeading as="h1" title="Refund & Cancellation Policy" />
         <div className="space-y-6 text-sm text-muted-foreground">
           <p>Effective Date: July 7, 2026</p>
-          <p>Last Updated: July 7, 2026</p>
+          <p>Last Updated: August 24, 2026</p>
           <p>
             This Refund &amp; Cancellation Policy applies to all subscriptions to the Bizosto
             platform, operated by LA CREATIVO GROUP, LLC, a Texas limited liability company

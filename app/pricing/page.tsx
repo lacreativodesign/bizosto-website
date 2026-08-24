@@ -7,11 +7,12 @@ import ComparisonTable from "@/components/ComparisonTable";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageShell from "@/components/PageShell";
 import Section from "@/components/Section";
+import { signupCtaLabel, signupHref, trialAccessSummary } from "@/lib/launch-stage";
 
 export const metadata: Metadata = {
-  title: "Simple, Flat Pricing — Your Whole Team for One Monthly Fee",
+  title: "Simple, Flat Plan Pricing — Monthly or Annual",
   description:
-    "Bizosto pricing starts at $79/month for your entire team. No per-user fees. No hidden charges. Compare Starter, Pro, and Enterprise plans.",
+    "Compare Bizosto Starter, Pro, and Enterprise: $79, $149, or $299 monthly, with annual billing priced at ten months.",
   alternates: {
     canonical: "https://www.bizosto.com/pricing",
   },
@@ -19,15 +20,14 @@ export const metadata: Metadata = {
 
 const highlights = [
   "CRM, leads, deals & client management",
-  "Project delivery & production workflows",
-  "Finance, invoicing, payroll & tax",
-  "HR, attendance, leave & onboarding",
-  "Client portal with payment collection",
-  "14 integrations: Slack, Google, QuickBooks, Xero & more",
-  "11 user roles — every team member covered",
-  "AI Workforce — 4 live agents built into your dashboard",
-  "Natural language reports — ask questions, get charts",
-  "Real-time reports & performance dashboards",
+  "Project delivery; Production on Pro and Enterprise",
+  "Finance on Pro and Enterprise",
+  "HR on Enterprise",
+  "Client portal: 10 Starter seats; unlimited on Pro and Enterprise",
+  "Integration catalog with controlled-beta availability",
+  "11 fixed roles with plan and permission controls",
+  "AI Workforce BYOK in Pro and Enterprise plan scope",
+  "Reports and operational dashboards",
   "Approval workflows & audit trails",
   "14-day free trial on your chosen plan",
 ];
@@ -35,11 +35,11 @@ const highlights = [
 const faqs = [
   {
     question: "Is there a free trial?",
-    answer: "Yes — every new workspace gets a full 14-day free trial on the plan you choose. Card required - you won't be charged until day 15. Cancel anytime before then and pay nothing. You see the real product from day one, not a locked-down demo version.",
+    answer: `Yes. ${trialAccessSummary}`,
   },
   {
     question: "What happens when my trial ends?",
-    answer: "Because a card is required at signup, your paid plan starts automatically on day 15 — there's nothing extra to do. If you don't want to continue, cancel any time before day 15 and you won't be charged. If a payment later fails, we retry over several days before any access changes, and your data is always retained and recoverable.",
+    answer: "The selected paid plan starts automatically on day 15 unless you cancel during the trial. After a later failed payment, Bizosto applies a 7-day grace period, read-only access on day 8, and hard lock on day 21. Data is retained for 60 days after a non-payment hard lock and may then be deleted.",
   },
   {
     question: "Can I change plans anytime?",
@@ -47,11 +47,11 @@ const faqs = [
   },
   {
     question: "Is there a setup fee?",
-    answer: "No setup fees, ever. What you see on the pricing page is what you pay. No hidden charges, no surprise invoices.",
+    answer: "Self-service subscriptions use the plan prices shown here. Optional professional onboarding or custom integration work is separately scoped and quoted before purchase.",
   },
   {
-    question: "Why isn't Bizosto per-user like other tools?",
-    answer: "Because per-user pricing punishes growth. When you hire your 11th person, your tool bill shouldn't jump. Bizosto charges a flat monthly fee so you can scale your team without scaling your software costs.",
+    question: "How do the internal-user limits work?",
+    answer: "Bizosto prices by plan rather than metering every seat. Starter includes up to 10 internal users, Pro up to 20, and Enterprise unlimited internal users. Moving beyond a plan limit requires a plan change.",
   },
   {
     question: "Can I enable or disable specific modules?",
@@ -62,20 +62,20 @@ const faqs = [
     answer: "Only on the Enterprise plan, and only when your own clients pay their invoices through Bizosto's built-in Stripe Connect payments. In that case a 0.5% platform handling fee applies on top of Stripe's standard processing fee. It never applies to your Bizosto subscription, and Starter and Pro have no such fee.",
   },
   {
-    question: "How does Bizosto compare to Zoho or HubSpot?",
-    answer: "Zoho One costs $37–$90 per user per month. HubSpot Professional starts at $100 per user per month. For a team of 20, that's $740–$2,000/month just for one of those platforms. Bizosto gives your entire team full ERP capability for $149/month flat. One price. Every module. No per-user penalties.",
+    question: "Which modules are included in each plan?",
+    answer: "Starter includes CRM, Sales, Projects, and Client Portal. Pro adds Finance, Production, AI Workforce BYOK, and Website Embed. Enterprise adds HR, eligible Stripe Connect client payments, and white-label capabilities. The comparison table lists the exact limits.",
   },
   {
     question: "Does Bizosto include AI features?",
-    answer: "Yes — AI Workforce is built into Pro and Enterprise plans at no extra charge. You get four live AI agents: COO (daily business briefings), Finance (overdue invoice monitoring with approval-gated payment reminders), Sales (pipeline analysis with approval-gated lead stage updates), and AI Reports (ask any question in plain English, get a live chart). You bring your own OpenAI or Anthropic API key — Bizosto never marks up your AI usage.",
+    answer: "AI Workforce is included in Pro and Enterprise plan scope and uses tenant-controlled BYOK where applicable. Availability varies by provider setup and controlled-beta readiness. Dangerous actions require explicit human approval, and provider usage charges are separate.",
   },
   {
     question: "What is the Website Embed feature?",
-    answer: "Bizosto generates a one-line JavaScript snippet you paste into any website — WordPress, Shopify, Wix, Squarespace, Webflow, or custom HTML. It automatically captures form submissions and routes them into your Bizosto CRM as leads, tagged with the source page. No Zapier required. Available on Pro and Enterprise plans.",
+    answer: "Website Embed is included in Pro and Enterprise plan scope for routing supported website submissions into tenant-scoped CRM intake. Availability and supported form behavior vary during controlled beta.",
   },
   {
     question: "Is there a free trial for Pro or Enterprise?",
-    answer: "Yes. Start your 14-day free trial on Pro or Enterprise and every module included in that plan is available — including AI Workforce on Pro and above. Card required — you won't be charged until day 15. Cancel anytime before then and pay nothing.",
+    answer: "Yes. Invited workspaces can use a 14-day trial on Pro or Enterprise to evaluate the selected plan's included modules. Controlled-beta capabilities such as AI Workforce require a supported provider setup. A card is required, no charge is made during the trial, and cancelling before day 15 means you pay nothing.",
   },
 ];
 
@@ -89,8 +89,8 @@ export default function PricingPage() {
               <SectionHeading
                 as="h1"
                 eyebrow="Pricing"
-                title="One flat price covers your whole team. Always."
-                subtitle="While other platforms charge per user and watch your bill grow as you hire — Bizosto charges one flat monthly fee. Grow your team. The price doesn't move."
+                title="Three flat plan tiers. Monthly or annual."
+                subtitle="Each plan has a fixed price and a defined internal-user limit: 10 on Starter, 20 on Pro, and unlimited on Enterprise. Annual billing is priced at ten months."
                 align="center"
               />
             </ScrollReveal>
@@ -98,7 +98,7 @@ export default function PricingPage() {
               <PricingTiers />
             </ScrollReveal>
             <p className="mt-6 text-center text-sm text-muted-foreground">
-              Final pricing depends on modules and team size.
+              Prices and included limits are shown above. Optional professional services are quoted separately.
             </p>
           </Container>
         </Section>
@@ -126,8 +126,8 @@ export default function PricingPage() {
             <ScrollReveal>
               <SectionHeading
                 eyebrow="What's Included"
-                title="Everything your service business needs — in every plan."
-                subtitle="Every Bizosto plan includes the core platform. Higher tiers unlock more modules, more storage, and dedicated support. No surprises, no add-ons, no gotchas."
+                title="Core workflows in Starter. More operating depth in higher tiers."
+                subtitle="Plan entitlements determine modules, internal-user limits, portal seats, and storage. The comparison above is the authoritative marketing summary."
                 align="center"
               />
             </ScrollReveal>
@@ -149,7 +149,7 @@ export default function PricingPage() {
               <SectionHeading
                 eyebrow="Pricing FAQ"
                 title="Every pricing question, answered honestly."
-                subtitle="We believe in transparent pricing. No sales calls needed to find out what it costs. No hidden fees to discover after you sign up."
+                subtitle="Plan prices, limits, and the Enterprise Stripe Connect platform fee are published here. Controlled-beta onboarding begins with an access request."
               />
             </ScrollReveal>
             <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -171,8 +171,8 @@ export default function PricingPage() {
             <ScrollReveal>
               <SectionHeading
                 eyebrow="Add-ons & Services"
-                title="Everything you can add, upgrade, or buy — online, right now."
-                subtitle="No sales calls required. Every upgrade activates instantly. Every service purchase lands in the Bizosto team's queue."
+                title="Annual billing and optional services."
+                subtitle="Annual plan prices are fixed below. Professional onboarding and custom work require a written scope and quote."
               />
             </ScrollReveal>
 
@@ -207,10 +207,10 @@ export default function PricingPage() {
                     </div>
                   </div>
                   <a
-                    href="https://app.bizosto.com/signup"
+                    href={signupHref(undefined, "annual")}
                     className="inline-flex flex-shrink-0 items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
                   >
-                    Start with annual →
+                    {signupCtaLabel} →
                   </a>
                 </div>
               </div>
@@ -220,19 +220,19 @@ export default function PricingPage() {
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {[
                 {
-                  badge: "Included — Pro & Enterprise",
-                  badgeColor: "bg-green-500/10 text-green-600",
+                  badge: "Pro & Enterprise scope — controlled beta",
+                  badgeColor: "bg-amber-500/10 text-amber-700 dark:text-amber-300",
                   title: "AI Workforce",
                   description:
-                    "Four live AI agents — COO, Finance, Sales, and AI Reports — built into your dashboard. Connect your own OpenAI or Anthropic API key in Settings and activate instantly. No AI markup from Bizosto.",
+                    "Tenant-controlled BYOK capabilities for operations, finance, sales, and reporting. Availability varies by provider setup during controlled beta; dangerous actions remain human-approval gated.",
                   cta: null,
                 },
                 {
-                  badge: "Included — Pro & Enterprise",
-                  badgeColor: "bg-green-500/10 text-green-600",
+                  badge: "Pro & Enterprise scope — controlled beta",
+                  badgeColor: "bg-amber-500/10 text-amber-700 dark:text-amber-300",
                   title: "Website Embed Integration",
                   description:
-                    "One line of JavaScript code captures form submissions from any website — WordPress, Shopify, Wix, Squarespace, or custom HTML — and routes them as leads into your Bizosto CRM automatically.",
+                    "Routes supported website submissions into tenant-scoped CRM intake. Installation and form compatibility must be validated for each target website.",
                   cta: null,
                 },
               ].map((item) => (
@@ -256,7 +256,7 @@ export default function PricingPage() {
                   badgeColor: "bg-blue-500/10 text-blue-600",
                   title: "Professional Onboarding",
                   description:
-                    "A dedicated Bizosto team member sets up your workspace, imports your data, configures your modules, and trains your team. Go live in days, not weeks.",
+                    "A scoped service for workspace setup, data-import planning, module configuration, and team enablement. Timing and price are confirmed in writing.",
                   cta: { label: "Book a session", href: "/book-demo" },
                 },
                 {
@@ -264,15 +264,15 @@ export default function PricingPage() {
                   badgeColor: "bg-blue-500/10 text-blue-600",
                   title: "Custom Integration Setup",
                   description:
-                    "Need Bizosto connected to a tool that isn't in our integrations list? Our team scopes and builds custom integrations for your specific workflow requirements.",
+                    "A separately scoped feasibility review and implementation service for integrations outside the available connector catalog.",
                   cta: { label: "Get a quote", href: "/contact" },
                 },
                 {
-                  badge: "Coming Soon — Free with any paid plan",
+                  badge: "Planned capability",
                   badgeColor: "bg-amber-500/10 text-amber-700",
                   title: "WordPress Plugin",
                   description:
-                    "Install the Bizosto WordPress plugin to automatically sync Contact Form 7, WPForms, and WooCommerce orders directly into your CRM as leads — no Zapier required.",
+                    "A future WordPress connection is planned for supported website submissions. Availability, included form providers, and commercial terms will be published before release.",
                   cta: null,
                 },
               ].map((item) => (

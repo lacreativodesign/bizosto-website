@@ -10,13 +10,14 @@ export const metadata: Metadata = {
   title: "How Bizosto Works — From First Lead to Final Invoice",
   description:
     "See how Bizosto connects lead capture, project delivery, client communication, finance, and reporting in one automated flow for service businesses.",
+  alternates: { canonical: "https://www.bizosto.com/how-it-works" },
 };
 
 const steps = [
   {
     title: "Every lead enters the same system.",
     description:
-      "Whether it comes from your website, an email, or a referral — every enquiry lands in your CRM, gets assigned to the right person, and starts moving through your pipeline automatically. No more leads dying in inboxes.",
+      "Capture supported website, email, and referral enquiries in CRM, assign an owner, and move each opportunity through the approved pipeline.",
   },
   {
     title: "Deals become projects without the friction.",
@@ -26,7 +27,7 @@ const steps = [
   {
     title: "Deliver the work. Get paid. See the numbers.",
     description:
-      "Projects close, invoices go out automatically, payments are tracked, and your financial reports update in real time. By the time your leadership team asks what the month looks like — Bizosto already knows.",
+      "Connect delivered projects to invoicing, payment tracking, and financial reporting so leadership can review current workspace records in one place.",
   },
 ];
 

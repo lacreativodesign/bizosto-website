@@ -10,7 +10,7 @@ import Section from "@/components/Section";
 export const metadata: Metadata = {
   title: "Bizosto for Operations Teams — The System Your Whole Company Will Actually Use",
   description:
-    "Bizosto gives operations leaders the platform to standardize workflows, enforce accountability, replace spreadsheets, and give leadership real-time visibility — in one system every team adopts.",
+    "Bizosto gives operations leaders a platform for standardized workflows, explicit accountability, fewer spreadsheet handoffs, and role-appropriate operational visibility.",
   alternates: {
     canonical: "https://www.bizosto.com/use-cases/operations",
   },
@@ -43,12 +43,12 @@ export default function OperationsPage() {
             </ScrollReveal>
             <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
-                { title: "11 user roles", description: "Every person in your company has a role in Bizosto — from Super Admin to Client. Each role sees exactly what they need and nothing they don't. No training required to navigate a cluttered interface." },
+                { title: "11 user roles", description: "Fixed roles span Super Admin through Client and are designed to expose only permitted tenant modules and records." },
                 { title: "Approval workflows", description: "Every decision that currently happens over email, Slack, or a sticky note can have a proper approval chain in Bizosto. Requests, sign-offs, and escalations — all logged, all trackable." },
-                { title: "Real-time dashboards", description: "The weekly reporting meeting that costs everyone two hours? Bizosto makes it five minutes. Revenue, delivery status, team performance, and pipeline are always current — no one needs to build the deck." },
+                { title: "Operational dashboards", description: "Review revenue, delivery status, team performance, and pipeline signals from the current tenant records available to your role." },
                 { title: "Audit trails", description: "Every action in Bizosto is logged — who did what, when, and from where. For compliance, for accountability, and for the moments when leadership asks 'what happened?'" },
                 { title: "Module-based rollout", description: "You don't have to implement everything on day one. Start with CRM and projects. Add finance when you're ready. Enable HR when you need it. The system grows with you." },
-                { title: "Integrations that stick", description: "Bizosto connects to Google Workspace, Microsoft 365, Slack, QuickBooks, and more. Your team keeps using the tools they know — Bizosto becomes the system that connects them all." },
+                { title: "Integration catalog", description: "Controlled-beta connections include Google Workspace, Microsoft 365, Slack, QuickBooks, and more. Availability varies by plan, provider configuration, and integration readiness." },
                 { title: "AI that monitors operations so you can run them", description: "Four built-in AI agents — COO, Finance, Sales, and Reports — analyse your live data and surface what needs attention. The COO Agent delivers a daily business briefing. The Finance Agent monitors cash flow. The Sales Agent flags stalling pipeline. AI Reports answers any question with a live chart. Every recommended action requires your approval before it executes." },
               ].map((item, index) => (
                 <ScrollReveal key={item.title} delay={index * 60}>
@@ -73,7 +73,7 @@ export default function OperationsPage() {
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {[
                 { before: "Status updates happen in 6 different places — Slack, email, WhatsApp, spreadsheets, stand-ups, and random DMs.", after: "Every project and task has one status, in one place. Anyone can check it in 10 seconds." },
-                { before: "Reporting takes a full day to compile because the data lives in 4 different tools.", after: "Dashboards update automatically. The monthly report takes 5 minutes to review, not 5 hours to build." },
+                { before: "Reporting requires manual compilation because data lives in several tools.", after: "Role-appropriate dashboards assemble supported tenant records for a more direct review." },
                 { before: "Approvals happen over email. Nobody knows what's been approved, by whom, or when.", after: "Every approval has a chain, a timestamp, and an audit trail. Accountability is built in." },
                 { before: "New hires spend their first week figuring out which tool to use for what.", after: "Bizosto is their one system from day one. Their role determines their view — there's nothing irrelevant to navigate." },
               ].map((item, index) => (
