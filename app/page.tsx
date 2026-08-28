@@ -145,18 +145,52 @@ export default function HomePage() {
               <p className="text-sm text-muted-foreground">
                 14-day free trial. Card required - you won&apos;t be charged until day 15. Cancel anytime before then and pay nothing.
               </p>
-              <div className="grid gap-4 text-sm text-muted-foreground sm:grid-cols-3">
-                <div className="space-y-1">
-                  <p className="text-2xl font-semibold text-foreground">10</p>
-                  <p>modules covering every business function</p>
+              <div
+                className="grid gap-3 sm:grid-cols-3"
+                aria-label="Bizosto trust and pricing highlights"
+              >
+                <a
+                  href="https://www.saashub.com/bizosto?utm_source=badge&utm_campaign=badge&utm_content=bizosto&badge_variant=color&badge_kind=approved"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Bizosto's approved listing on SaaSHub"
+                  className="flex min-h-20 items-center justify-center rounded-xl border border-border bg-surface/80 px-4 py-3 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                >
+                  {/* SaaSHub provides this remote image as its official approved badge. */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1"
+                    alt="SaaSHub Approved badge for Bizosto"
+                    width={150}
+                    height={56}
+                    className="h-auto w-[150px] max-w-full"
+                  />
+                </a>
+                <div className="flex min-h-20 items-center gap-3 rounded-xl border border-border bg-surface/80 px-4 py-3 shadow-sm">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div className="leading-tight">
+                    <p className="text-sm font-semibold text-foreground">
+                      14-day full access
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      No charge until day 15
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-1">
-                  <p className="text-2xl font-semibold text-foreground">11</p>
-                  <p>user roles from sales to client portal</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-2xl font-semibold text-foreground">14+</p>
-                  <p>integrations with tools you already use</p>
+                <div className="flex min-h-20 items-center gap-3 rounded-xl border border-border bg-surface/80 px-4 py-3 shadow-sm">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <UsersRound className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div className="leading-tight">
+                    <p className="text-sm font-semibold text-foreground">
+                      No per-user fees
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      One flat price for your team
+                    </p>
+                  </div>
                 </div>
               </div>
               <OpsTicker />
