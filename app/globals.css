@@ -11,10 +11,6 @@
   --primary-foreground: #ffffff;
   --muted-foreground: #475569;
   --accent: #5b7bff;
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
-    "Noto Sans", "Liberation Sans", sans-serif;
-  --font-display: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI",
-    Roboto, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -43,9 +39,9 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-dm-sans);
   --font-mono: var(--font-mono);
-  --font-display: var(--font-display);
+  --font-display: var(--font-sora);
 }
 
 @layer base {
