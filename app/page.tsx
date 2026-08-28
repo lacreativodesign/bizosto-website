@@ -162,7 +162,7 @@ export default function HomePage() {
                     src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1"
                     alt="SaaSHub Approved badge for Bizosto"
                     width={150}
-                    height={56}
+                    height={50}
                     className="h-auto w-[150px] max-w-full"
                   />
                 </a>
