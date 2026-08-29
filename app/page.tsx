@@ -9,12 +9,15 @@ import {
   CircleDollarSign,
   ClipboardCheck,
   CreditCard,
+  DatabaseZap,
   Gauge,
   Layers3,
   LockKeyhole,
   MessageSquare,
+  Radar,
   ShieldCheck,
   Sparkles,
+  UserRoundCheck,
   UsersRound,
   Workflow,
 } from "lucide-react";
@@ -46,6 +49,24 @@ const workflowSteps = [
   { label: "Delivery", detail: "Reviewed and signed off", icon: Workflow },
   { label: "Payment", detail: "Invoiced and reconciled", icon: CreditCard },
 ];
+
+const operatingOutcomes = [
+  {
+    title: "One record",
+    copy: "No duplicate entry between sales, delivery, and finance.",
+    icon: DatabaseZap,
+  },
+  {
+    title: "One accountable owner",
+    copy: "The next action always belongs to someone.",
+    icon: UserRoundCheck,
+  },
+  {
+    title: "One live view",
+    copy: "Leadership sees the business as it is, not as it was.",
+    icon: Radar,
+  },
+] as const;
 
 const modules = [
   {
@@ -199,7 +220,10 @@ export default function HomePage() {
                         <p className="font-display text-lg font-semibold text-foreground">{step.label}</p>
                         <p className="text-sm text-muted-foreground">{step.detail}</p>
                       </div>
-                      <ArrowRight className="h-4 w-4 text-primary/60" aria-hidden="true" />
+                      <span className="workflow-step__state" aria-label="Connected workflow stage">
+                        <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span>Connected</span>
+                      </span>
                     </li>
                   );
                 })}
@@ -208,16 +232,16 @@ export default function HomePage() {
           </div>
 
           <div className="editorial-outcomes mt-16 grid border-y border-border md:grid-cols-3">
-            {[
-              ["One record", "No duplicate entry between sales, delivery, and finance."],
-              ["One accountable owner", "The next action always belongs to someone."],
-              ["One live view", "Leadership sees the business as it is, not as it was."],
-            ].map(([title, copy]) => (
-              <div key={title} className="px-0 py-7 md:px-8 md:first:pl-0 md:last:pr-0">
-                <p className="font-display text-xl font-semibold tracking-tight text-foreground">{title}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{copy}</p>
-              </div>
-            ))}
+            {operatingOutcomes.map((outcome) => {
+              const Icon = outcome.icon;
+              return (
+                <div key={outcome.title} className="editorial-outcome px-0 py-7 md:px-8 md:first:pl-0 md:last:pr-0">
+                  <span className="editorial-outcome__icon"><Icon className="h-5 w-5" aria-hidden="true" /></span>
+                  <p className="mt-5 font-display text-xl font-semibold tracking-tight text-foreground">{outcome.title}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{outcome.copy}</p>
+                </div>
+              );
+            })}
           </div>
         </Container>
       </Section>

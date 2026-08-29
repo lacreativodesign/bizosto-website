@@ -139,7 +139,7 @@ export default function AIWorkforcePage() {
         <Container className="section-spacing">
           <div className="mx-auto max-w-3xl">
             <ScrollReveal>
-              <div className="rounded-2xl border border-border bg-surface p-8 space-y-4">
+              <div className="card-hover rounded-2xl border border-border bg-surface p-8 space-y-4">
                 <div className="flex items-center gap-3">
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface-muted text-primary">
                     <Brain className="h-4 w-4" />
@@ -172,7 +172,7 @@ export default function AIWorkforcePage() {
             <div className="mt-8 grid gap-6 lg:grid-cols-3">
               {agents.map((agent) => (
                 <ScrollReveal key={agent.name}>
-                  <div className="flex h-full flex-col rounded-xl border border-border bg-surface p-6 space-y-4">
+                  <div className="card-hover flex h-full flex-col rounded-xl border border-border bg-surface p-6 space-y-4">
                     <div className="flex items-start justify-between gap-3">
                       <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface-muted text-primary">
                         {agent.icon}
@@ -212,7 +212,7 @@ export default function AIWorkforcePage() {
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {howItWorks.map((step) => (
               <ScrollReveal key={step.step}>
-                <div className="rounded-xl border border-border bg-surface p-6 space-y-3">
+                <div className="card-hover rounded-xl border border-border bg-surface p-6 space-y-3">
                   <span className="text-3xl font-semibold text-primary/25 leading-none">{step.step}</span>
                   <p className="text-sm font-semibold text-foreground">{step.title}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
@@ -227,7 +227,7 @@ export default function AIWorkforcePage() {
           <Container>
             <div className="mx-auto max-w-3xl">
               <ScrollReveal>
-                <div className="rounded-2xl border border-border bg-surface p-8 space-y-6">
+                <div className="card-hover rounded-2xl border border-border bg-surface p-8 space-y-6">
                   <div className="flex items-center gap-3">
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface-muted text-primary">
                       <Key className="h-4 w-4" />
@@ -267,7 +267,7 @@ export default function AIWorkforcePage() {
         {/* Plan requirement */}
         <Container className="section-spacing">
           <ScrollReveal>
-            <div className="mx-auto max-w-2xl rounded-xl border border-border bg-surface p-6 text-center space-y-3">
+            <div className="card-hover mx-auto max-w-2xl rounded-xl border border-border bg-surface p-6 text-center space-y-3">
               <p className="text-sm font-semibold text-foreground">Available on Pro and Enterprise plans</p>
               <p className="text-sm text-muted-foreground">
                 AI Workforce is included on Pro ($149/mo) and Enterprise ($299/mo) plans. Start your 14-day free trial — all modules and AI Workforce unlocked from day one.

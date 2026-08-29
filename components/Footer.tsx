@@ -28,7 +28,7 @@ export default function Footer() {
             <p className="max-w-md text-base leading-relaxed text-slate-400">
               One intelligent operating system for sales, delivery, finance, people, and every client relationship.
             </p>
-            <a href="https://app.bizosto.com/signup" className="inline-flex items-center gap-2 text-sm font-bold text-cyan-300 transition hover:text-cyan-200">
+            <a href="https://app.bizosto.com/signup" className="footer-trial-pill inline-flex items-center gap-2 text-sm font-bold text-white">
               Start your 14-day trial <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
             <p className="text-xs text-slate-500">

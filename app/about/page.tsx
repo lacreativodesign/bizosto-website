@@ -38,7 +38,7 @@ export default function AboutPage() {
         <Container className="section-spacing">
           <div className="mx-auto max-w-3xl space-y-6">
             <ScrollReveal>
-              <div className="rounded-2xl border border-border bg-surface p-8 space-y-6">
+              <div className="card-hover rounded-2xl border border-border bg-surface p-8 space-y-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                   The Origin
                 </p>
@@ -75,7 +75,7 @@ export default function AboutPage() {
             </ScrollReveal>
 
             <ScrollReveal>
-              <div className="rounded-2xl border border-border bg-surface p-8 space-y-6">
+              <div className="card-hover rounded-2xl border border-border bg-surface p-8 space-y-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                   Why We Opened It Up
                 </p>
@@ -131,7 +131,7 @@ export default function AboutPage() {
                   },
                 ].map((item) => (
                   <ScrollReveal key={item.number}>
-                    <div className="flex gap-6 rounded-xl border border-border bg-surface p-6">
+                    <div className="card-hover flex gap-6 rounded-xl border border-border bg-surface p-6">
                       <span className="flex-shrink-0 text-3xl font-semibold leading-none text-primary/30">
                         {item.number}
                       </span>
