@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import FeatureGrid from "@/components/FeatureGrid";
@@ -85,6 +86,24 @@ export default function ProductPage() {
                 subtitle="Bizosto was built by people who ran service businesses and got tired of the tool chaos. Every feature exists because it was needed — not because it looked good in a pitch deck."
               />
             </ScrollReveal>
+            <ScrollReveal>
+              <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#071225] p-3 shadow-2xl shadow-black/25">
+                <div className="flex items-center justify-between gap-4 px-2 pb-3 pt-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                  <span>Bizosto operations command</span>
+                  <span className="inline-flex items-center gap-2 text-emerald-300"><span className="h-1.5 w-1.5 rounded-full bg-emerald-300" />Live workspace</span>
+                </div>
+                <div className="relative aspect-[16/8.4] overflow-hidden rounded-[1.25rem] border border-white/10">
+                  <Image
+                    src="/screenshots/erp-admin-dark.png"
+                    alt="Bizosto operations command dashboard"
+                    fill
+                    priority
+                    sizes="(max-width: 1280px) 100vw, 1200px"
+                    className="object-cover object-top"
+                  />
+                </div>
+              </div>
+            </ScrollReveal>
             <div className="grid gap-6 md:grid-cols-3">
               {outcomes.map((item, index) => (
                 <ScrollReveal key={item.title} delay={index * 80}>
@@ -160,3 +179,4 @@ export default function ProductPage() {
     </PageShell>
   );
 }
+

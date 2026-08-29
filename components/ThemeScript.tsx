@@ -1,5 +1,3 @@
-import Script from "next/script";
-
 const script = `(() => {
   const storageKey = "bizosto-theme";
   const stored = window.localStorage.getItem(storageKey) || "system";
@@ -10,5 +8,5 @@ const script = `(() => {
 })();`;
 
 export default function ThemeScript() {
-  return <Script id="theme-script" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: script }} />;
+  return <script id="theme-script" dangerouslySetInnerHTML={{ __html: script }} />;
 }
