@@ -154,7 +154,7 @@ export default function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="View Bizosto's approved listing on SaaSHub"
-                  className="flex min-h-20 items-center justify-center rounded-xl border border-border bg-surface/80 px-4 py-3 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  className="flex min-h-20 items-center justify-center px-2 py-3 transition duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
                   {/* SaaSHub provides this remote image as its official approved badge. */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -162,7 +162,7 @@ export default function HomePage() {
                     src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1"
                     alt="SaaSHub Approved badge for Bizosto"
                     width={150}
-                    height={56}
+                    height={50}
                     className="h-auto w-[150px] max-w-full"
                   />
                 </a>
