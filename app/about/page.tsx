@@ -103,7 +103,7 @@ export default function AboutPage() {
         </Container>
 
         {/* Principles */}
-        <section className="section-spacing">
+        <section className="section-muted section-spacing">
           <Container>
             <div className="mx-auto max-w-3xl">
               <ScrollReveal>

@@ -21,7 +21,7 @@ export default function FeatureGrid({ items }: FeatureGridProps) {
         <ScrollReveal key={item.title}>
           <Card className="space-y-3">
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface-muted text-primary transition duration-300 group-hover:scale-105 group-hover:border-primary/40 group-hover:bg-primary/10">
+              <span className="icon-tile inline-flex h-9 w-9 items-center justify-center rounded-xl border text-primary transition duration-300 group-hover:scale-105 group-hover:border-primary/40">
                 {item.icon}
               </span>
               <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>

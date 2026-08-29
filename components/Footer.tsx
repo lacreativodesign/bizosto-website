@@ -20,19 +20,19 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="site-footer border-t border-white/10 bg-[#06101f] text-white">
+    <footer className="site-footer border-t">
       <Container className="py-14 sm:py-16">
-        <div className="grid gap-12 border-b border-white/10 pb-12 lg:grid-cols-[1.35fr_0.65fr_0.65fr_0.65fr]">
+        <div className="site-footer__rule grid gap-12 border-b pb-12 lg:grid-cols-[1.35fr_0.65fr_0.65fr_0.65fr]">
           <div className="space-y-6">
-            <LogoMark className="text-white" />
-            <p className="max-w-md text-base leading-relaxed text-slate-400">
+            <LogoMark />
+            <p className="site-footer__copy max-w-md text-base leading-relaxed">
               One intelligent operating system for sales, delivery, finance, people, and every client relationship.
             </p>
             <a href="https://app.bizosto.com/signup" className="footer-trial-pill inline-flex items-center gap-2 text-sm font-bold text-white">
               Start your 14-day trial <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
-            <p className="text-xs text-slate-500">
-              A product of <a href="https://www.lacreativogroup.com" target="_blank" rel="noopener noreferrer" className="underline decoration-white/20 underline-offset-4 transition hover:text-white">LA CREATIVO GROUP, LLC</a>
+            <p className="site-footer__copy text-xs">
+              A product of <a href="https://www.lacreativogroup.com" target="_blank" rel="noopener noreferrer" className="site-footer__link underline decoration-current/20 underline-offset-4 transition">LA CREATIVO GROUP, LLC</a>
             </p>
           </div>
 
@@ -41,11 +41,11 @@ export default function Footer() {
           <FooterColumn title="Legal" links={legalLinks} />
         </div>
 
-        <div className="flex flex-col gap-5 pt-7 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="site-footer__copy flex flex-col gap-5 pt-7 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>© {currentYear} LA CREATIVO GROUP, LLC. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <a href="https://www.linkedin.com/company/bizosto/" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">LinkedIn</a>
-            <a href="https://app.bizosto.com/login" className="transition hover:text-white">Sign in</a>
+            <a href="https://www.linkedin.com/company/bizosto/" target="_blank" rel="noopener noreferrer" className="site-footer__link transition">LinkedIn</a>
+            <a href="https://app.bizosto.com/login" className="site-footer__link transition">Sign in</a>
             <span>Bizosto® — Business Operating System</span>
           </div>
         </div>
@@ -57,10 +57,10 @@ export default function Footer() {
 function FooterColumn({ title, links }: { title: string; links: ReadonlyArray<readonly [string, string]> }) {
   return (
     <div className="space-y-4">
-      <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-200">{title}</p>
-      <ul className="space-y-3 text-sm text-slate-400">
+      <p className="site-footer__heading text-xs font-bold uppercase tracking-[0.2em]">{title}</p>
+      <ul className="site-footer__copy space-y-3 text-sm">
         {links.map(([label, href]) => (
-          <li key={href}><Link href={href} className="transition hover:text-white">{label}</Link></li>
+          <li key={href}><Link href={href} className="site-footer__link transition">{label}</Link></li>
         ))}
       </ul>
     </div>

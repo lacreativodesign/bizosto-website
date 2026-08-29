@@ -37,7 +37,7 @@ export default function PricingTiers() {
           </button>
         </div>
         {isAnnual ? (
-          <p className="text-sm font-semibold text-green-600">
+          <p className="text-sm font-semibold text-green-700 dark:text-green-300">
             🎉 2 months free — pay for 10, get 12
           </p>
         ) : (
@@ -74,7 +74,7 @@ export default function PricingTiers() {
                     <span className="text-xs text-muted-foreground">
                       {tier.annualPrice} billed annually
                     </span>
-                    <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-semibold text-green-600">
+                    <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-semibold text-green-700 dark:text-green-300">
                       {tier.annualSaving}
                     </span>
                   </div>

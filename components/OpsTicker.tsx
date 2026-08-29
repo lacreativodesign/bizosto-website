@@ -32,7 +32,7 @@ export default function OpsTicker() {
 
   return (
     <div
-      className="flex items-center gap-3 rounded-full border border-border/70 bg-surface/80 px-4 py-2 text-xs text-muted-foreground shadow-sm backdrop-blur"
+      className="flex items-center gap-3 rounded-full border border-border/70 bg-surface/80 px-4 py-2 text-xs text-muted-foreground shadow-[var(--shadow-soft)] backdrop-blur"
       aria-live="off"
     >
       <span className="relative flex h-2 w-2 shrink-0">

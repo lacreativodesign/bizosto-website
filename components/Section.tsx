@@ -10,8 +10,8 @@ interface SectionProps {
 }
 
 const variantStyles: Record<SectionVariant, string> = {
-  default: "section-spacing",
-  premium: "premium-section hero-aurora section-spacing",
+  default: "section-default section-spacing",
+  premium: "premium-section page-hero section-spacing",
   muted: "section-muted section-spacing",
 };
 

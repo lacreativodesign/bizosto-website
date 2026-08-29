@@ -132,7 +132,7 @@ export default function ProductPage() {
           </Container>
         </Section>
 
-        <Section>
+        <Section variant="muted">
           <Container>
             <ScrollReveal>
               <SectionHeading
@@ -179,4 +179,3 @@ export default function ProductPage() {
     </PageShell>
   );
 }
-

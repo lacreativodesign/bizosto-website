@@ -49,7 +49,7 @@ export default function ScreenshotGallery() {
             key={item.src}
             type="button"
             className={cn(
-              "product-gallery-card group relative overflow-hidden rounded-[1.6rem] border border-border bg-surface p-3 text-left shadow-2xl shadow-black/10",
+              "product-gallery-card surface-card group relative overflow-hidden rounded-[1.6rem] border border-border p-3 text-left",
               index === 0 && "lg:col-span-3"
             )}
             onClick={() => setActiveIndex(index)}

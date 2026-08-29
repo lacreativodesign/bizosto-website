@@ -50,7 +50,7 @@ export default function MarketplaceBadges() {
               className="h-auto w-[132px] sm:w-[142px]"
             />
           </span>
-          <ArrowUpRight className="h-3.5 w-3.5 text-white/45" aria-hidden="true" />
+          <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground/60" aria-hidden="true" />
         </a>
 
         {directoryProfiles.map((profile) => (
@@ -69,7 +69,7 @@ export default function MarketplaceBadges() {
               <span className="marketplace-badge__overline">View profile</span>
               <span className="marketplace-badge__name">{profile.name}</span>
             </span>
-            <ArrowUpRight className="h-3.5 w-3.5 text-white/45" aria-hidden="true" />
+            <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground/60" aria-hidden="true" />
           </a>
         ))}
       </div>

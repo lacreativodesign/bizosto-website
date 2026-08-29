@@ -21,7 +21,7 @@ const agents = [
     icon: <Bot className="h-5 w-5" />,
     name: "COO Agent",
     status: "Available now",
-    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
+    statusColor: "status-success",
     description:
       "Your AI chief of operations. Every morning it reads your business — open leads, overdue invoices, active projects, team performance — and delivers a plain-English summary of what needs your attention today.",
     capabilities: [
@@ -36,7 +36,7 @@ const agents = [
     icon: <TrendingUp className="h-5 w-5" />,
     name: "Finance Agent",
     status: "Available now",
-    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
+    statusColor: "status-success",
     description:
       "Monitors your revenue, flags late payments, and drafts payment reminder emails — all requiring your approval before anything is sent. Finance intelligence without finance overhead.",
     capabilities: [
@@ -51,7 +51,7 @@ const agents = [
     icon: <BarChart3 className="h-5 w-5" />,
     name: "Sales Agent",
     status: "Available now",
-    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
+    statusColor: "status-success",
     description:
       "Watches your pipeline, identifies stalling leads, and proposes stage updates for your approval. All inside Bizosto — no separate AI tool, no new login.",
     capabilities: [
@@ -66,7 +66,7 @@ const agents = [
     icon: <Brain className="h-5 w-5" />,
     name: "AI Reports",
     status: "Available now",
-    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
+    statusColor: "status-success",
     description:
       "Ask any question about your business in plain English and get a chart or table powered by your live data. No exports, no SQL, no waiting.",
     capabilities: [
@@ -120,13 +120,13 @@ export default function AIWorkforcePage() {
               <div className="flex flex-col gap-3 sm:flex-row">
                 <a
                   href="https://app.bizosto.com/signup"
-                  className="btn-sheen inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm shadow-primary/20 transition duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/25"
+                  className="button-primary btn-sheen inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-200 hover:-translate-y-0.5"
                 >
                   Start Free Trial →
                 </a>
                 <a
                   href="/book-demo"
-                  className="inline-flex items-center justify-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition duration-200 hover:border-primary/40 hover:text-primary"
+                  className="button-outline inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-200 hover:-translate-y-0.5"
                 >
                   Book a Demo
                 </a>
@@ -160,7 +160,7 @@ export default function AIWorkforcePage() {
         </Container>
 
         {/* Agents */}
-        <section className="section-spacing">
+        <section className="section-muted section-spacing">
           <Container>
             <ScrollReveal>
               <SectionHeading
@@ -223,7 +223,7 @@ export default function AIWorkforcePage() {
         </Container>
 
         {/* BYOK */}
-        <section className="section-spacing">
+        <section className="section-muted section-spacing">
           <Container>
             <div className="mx-auto max-w-3xl">
               <ScrollReveal>
@@ -274,7 +274,7 @@ export default function AIWorkforcePage() {
               </p>
               <a
                 href="https://app.bizosto.com/signup"
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+                className="button-primary btn-sheen mt-2 inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5"
               >
                 Start Free Trial →
               </a>

@@ -16,12 +16,12 @@ export const metadata: Metadata = {
 };
 
 const categoryColors: Record<string, string> = {
-  Operations: "bg-blue-500/10 text-blue-600 border-blue-500/20",
-  Finance: "bg-green-500/10 text-green-600 border-green-500/20",
-  AI: "bg-purple-500/10 text-purple-600 border-purple-500/20",
-  "Client Experience": "bg-amber-500/10 text-amber-600 border-amber-500/20",
-  Security: "bg-red-500/10 text-red-600 border-red-500/20",
-  Pricing: "bg-slate-500/10 text-slate-600 border-slate-500/20",
+  Operations: "bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-300",
+  Finance: "bg-green-500/10 text-green-700 border-green-500/20 dark:text-green-300",
+  AI: "bg-purple-500/10 text-purple-700 border-purple-500/20 dark:text-purple-300",
+  "Client Experience": "bg-amber-500/10 text-amber-700 border-amber-500/20 dark:text-amber-300",
+  Security: "bg-red-500/10 text-red-700 border-red-500/20 dark:text-red-300",
+  Pricing: "bg-slate-500/10 text-slate-700 border-slate-500/20 dark:text-slate-300",
 };
 
 function formatDate(dateStr: string): string {
@@ -56,7 +56,7 @@ export default function BlogPage() {
           {/* Featured post */}
           <Link
             href={`/blog/${featured.slug}`}
-            className="group block rounded-2xl border border-border bg-surface p-8 transition hover:border-primary/40 hover:shadow-md mb-8"
+            className="article-card card-hover group mb-8 block rounded-2xl border border-border p-8 transition hover:border-primary/40"
           >
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <span
@@ -82,7 +82,7 @@ export default function BlogPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col rounded-xl border border-border bg-surface p-6 transition hover:border-primary/40 hover:shadow-md"
+                className="article-card card-hover group flex flex-col rounded-xl border border-border p-6 transition hover:border-primary/40"
               >
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <span

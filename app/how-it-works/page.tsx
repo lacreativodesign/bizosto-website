@@ -60,7 +60,7 @@ export default function HowItWorksPage() {
           </Container>
         </Section>
 
-        <Section>
+        <Section variant="muted">
           <Container>
             <ScrollReveal>
               <SectionHeading
