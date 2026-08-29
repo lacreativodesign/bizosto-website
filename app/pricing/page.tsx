@@ -178,7 +178,7 @@ export default function PricingPage() {
 
             {/* Annual billing */}
             <ScrollReveal>
-              <div className="mt-10 rounded-2xl border border-primary/30 bg-primary/5 p-6 sm:p-8">
+              <div className="card-hover mt-10 rounded-2xl border border-primary/30 bg-primary/5 p-6 sm:p-8">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
@@ -298,7 +298,7 @@ export default function PricingPage() {
 
             {/* Platform fee note */}
             <ScrollReveal>
-              <div className="mt-6 rounded-xl border border-border bg-surface-muted p-5 text-center">
+              <div className="card-hover mt-6 rounded-xl border border-border bg-surface-muted p-5 text-center">
                 <p className="text-sm font-semibold text-foreground">
                   Enterprise client payments — 0.5% platform handling fee
                 </p>
