@@ -92,6 +92,7 @@ export default function PricingPage() {
                 title="One flat price covers your whole team. Always."
                 subtitle="While other platforms charge per user and watch your bill grow as you hire — Bizosto charges one flat monthly fee. Grow your team. The price doesn't move."
                 align="center"
+                className="mx-auto"
               />
             </ScrollReveal>
             <ScrollReveal className="mt-10">
