@@ -138,28 +138,28 @@ export default function HomePage() {
             </div>
 
             <div className="space-y-6">
-              <h1 className="text-balance text-[3.25rem] font-semibold leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl lg:text-[4.8rem]">
-                <span className="font-normal text-white/55">The operating system</span>{" "}
+              <h1 className="command-hero__highlight text-balance text-[3.25rem] font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl lg:text-[4.8rem]">
+                <span className="command-hero__muted font-normal">The operating system</span>{" "}
                 for service businesses.
               </h1>
-              <p className="max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
+              <p className="command-hero__lede max-w-xl text-base leading-relaxed sm:text-lg">
                 Connect sales, delivery, finance, people, and every client relationship in one intelligent workspace built for how service businesses actually operate.
               </p>
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a href="https://app.bizosto.com/signup" className="btn-sheen inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#071225] shadow-[0_18px_55px_rgba(0,0,0,0.24)] transition hover:-translate-y-0.5 hover:bg-cyan-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
+              <a href="https://app.bizosto.com/signup" className="command-primary btn-sheen inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
                 Start free for 14 days <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
-              <Button href="/book-demo" variant="outline" className="min-h-12 border-white/20 text-white hover:border-cyan-300 hover:text-cyan-200">
+              <Button href="/book-demo" variant="outline" className="min-h-12">
                 See it with your workflow
               </Button>
             </div>
 
-            <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-slate-400" aria-label="Trial highlights">
-              <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" aria-hidden="true" />Full product access</span>
-              <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" aria-hidden="true" />No per-user fees</span>
-              <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" aria-hidden="true" />Cancel before day 15</span>
+            <div className="command-hero__lede flex flex-wrap gap-x-5 gap-y-3 text-sm" aria-label="Trial highlights">
+              <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-primary" aria-hidden="true" />Full product access</span>
+              <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-primary" aria-hidden="true" />No per-user fees</span>
+              <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-primary" aria-hidden="true" />Cancel before day 15</span>
             </div>
           </ScrollReveal>
 
@@ -257,7 +257,7 @@ export default function HomePage() {
               />
             </ScrollReveal>
             <ScrollReveal>
-              <Button href="/product" variant="outline" className="border-white/20 text-white hover:border-cyan-300 hover:text-cyan-200">
+              <Button href="/product" variant="outline">
                 Explore the platform <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
             </ScrollReveal>
@@ -314,7 +314,7 @@ export default function HomePage() {
               title="AI that works inside the operation—not beside it."
               subtitle="Bizosto agents read the live business context already in your workspace, surface what matters, and keep people in control of every write action."
             />
-            <div className="mt-7"><Button href="/ai-workforce" variant="outline" className="border-white/20 text-white hover:border-cyan-300 hover:text-cyan-200">Meet the AI workforce <ArrowRight className="h-4 w-4" aria-hidden="true" /></Button></div>
+            <div className="mt-7"><Button href="/ai-workforce" variant="outline">Meet the AI workforce <ArrowRight className="h-4 w-4" aria-hidden="true" /></Button></div>
           </ScrollReveal>
 
           <div className="ai-agent-stack">
@@ -324,13 +324,13 @@ export default function HomePage() {
                 <ScrollReveal key={agent.name} delay={index * 70}>
                   <div className="ai-agent-row">
                     <span className="ai-agent-row__icon"><Icon className="h-5 w-5" aria-hidden="true" /></span>
-                    <div className="min-w-0 flex-1"><p className="font-display font-semibold text-white">{agent.name}</p><p className="mt-1 text-sm text-slate-400">{agent.outcome}</p></div>
+                    <div className="min-w-0 flex-1"><p className="ai-agent-row__title font-display font-semibold">{agent.name}</p><p className="ai-agent-row__copy mt-1 text-sm">{agent.outcome}</p></div>
                     <span className="ai-agent-row__status"><span className="h-1.5 w-1.5 rounded-full bg-emerald-300" />Available</span>
                   </div>
                 </ScrollReveal>
               );
             })}
-            <div className="mt-4 flex items-center gap-2 px-2 text-xs text-slate-500"><ShieldCheck className="h-4 w-4 text-cyan-300" aria-hidden="true" />Human approval stays in the loop for write actions.</div>
+            <div className="ai-stage__note mt-4 flex items-center gap-2 px-2 text-xs"><ShieldCheck className="h-4 w-4 text-primary" aria-hidden="true" />Human approval stays in the loop for write actions.</div>
           </div>
         </Container>
       </section>

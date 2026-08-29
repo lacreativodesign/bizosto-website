@@ -21,7 +21,7 @@ export default function MobileNav() {
   return (
     <div className="relative lg:hidden">
       <button
-        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition hover:bg-white/10"
+        className="mobile-menu-trigger inline-flex h-10 w-10 items-center justify-center rounded-full border transition"
         onClick={() => setOpen((current) => !current)}
         type="button"
         aria-expanded={open}
@@ -32,24 +32,24 @@ export default function MobileNav() {
       </button>
 
       {open ? (
-        <div id="mobile-navigation" className="menu-pop absolute right-0 top-13 z-20 w-[min(19rem,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-[#0a1830]/98 p-4 shadow-2xl shadow-black/40 backdrop-blur-xl">
-          <nav className="grid gap-1 text-sm text-white" aria-label="Mobile navigation">
+        <div id="mobile-navigation" className="mobile-menu-panel menu-pop absolute right-0 top-13 z-20 w-[min(19rem,calc(100vw-2rem))] rounded-2xl border p-4 backdrop-blur-xl">
+          <nav className="grid gap-1 text-sm" aria-label="Mobile navigation">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3 py-2.5 text-slate-200 transition hover:bg-white/[0.07] hover:text-white"
+                className="mobile-menu-link rounded-xl px-3 py-2.5 transition"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
-          <div className="mt-4 grid gap-2 border-t border-white/10 pt-4">
-            <a href="https://app.bizosto.com/login" className="rounded-xl px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/[0.07] hover:text-white" onClick={() => setOpen(false)}>
+          <div className="mt-4 grid gap-2 border-t border-border pt-4">
+            <a href="https://app.bizosto.com/login" className="mobile-menu-link rounded-xl px-3 py-2 text-sm font-medium transition" onClick={() => setOpen(false)}>
               Sign in
             </a>
-            <a href="https://app.bizosto.com/signup" className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-[#071225]" onClick={() => setOpen(false)}>
+            <a href="https://app.bizosto.com/signup" className="header-primary btn-sheen inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold" onClick={() => setOpen(false)}>
               Start free trial
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>

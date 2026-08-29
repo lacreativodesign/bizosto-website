@@ -104,7 +104,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   return (
     <PageShell>
       <Container className="section-spacing">
-        <div className="mx-auto max-w-2xl">
+        <div className="article-reader mx-auto max-w-2xl">
           {/* Back */}
           <Link
             href="/blog"
@@ -136,7 +136,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </article>
 
           {/* CTA */}
-          <div className="mt-12 rounded-2xl border border-border bg-surface p-8 text-center space-y-4">
+          <div className="content-panel card-hover mt-12 space-y-4 p-8 text-center">
             <p className="text-lg font-semibold text-foreground">
               Ready to run your service business from one system?
             </p>
@@ -146,13 +146,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
               <a
                 href="https://app.bizosto.com/signup"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+                className="button-primary btn-sheen inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5"
               >
                 Start Free Trial →
               </a>
               <Link
                 href="/blog"
-                className="inline-flex items-center justify-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition hover:bg-surface-muted"
+                className="button-outline inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5"
               >
                 More Articles
               </Link>

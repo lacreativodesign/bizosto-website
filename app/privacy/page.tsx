@@ -8,10 +8,10 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="space-y-12 pb-20 pt-12">
-      <Container className="space-y-6">
-        <SectionHeading title="Privacy Policy" />
-        <div className="space-y-6 text-sm text-muted-foreground">
+    <div className="legal-page">
+      <Container className="legal-shell">
+        <SectionHeading as="h1" eyebrow="Legal" title="Privacy Policy" />
+        <div className="legal-content space-y-6 text-sm text-muted-foreground">
           <p>Effective Date: March 1, 2026</p>
           <p>Last Updated: March 1, 2026</p>
           <p>

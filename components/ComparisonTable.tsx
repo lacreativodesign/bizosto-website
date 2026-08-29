@@ -45,7 +45,7 @@ function Cell({ value }: { value: boolean | string }) {
 
 export default function ComparisonTable() {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-border">
+    <div className="data-panel overflow-x-auto rounded-2xl border">
       <table className="w-full min-w-[540px] text-sm">
         <thead>
           <tr className="border-b border-border bg-surface-muted">

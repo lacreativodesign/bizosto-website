@@ -89,7 +89,7 @@ export default function UseCasesPage() {
                       <div className="flex items-start lg:items-center">
                         <Link
                           href={useCase.href}
-                          className="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 whitespace-nowrap"
+                          className="button-primary btn-sheen inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5 whitespace-nowrap"
                         >
                           See how it works →
                         </Link>

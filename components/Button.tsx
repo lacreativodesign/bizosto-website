@@ -15,10 +15,10 @@ interface ButtonProps {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: "btn-sheen bg-primary text-primary-foreground shadow-[0_14px_40px_rgba(51,92,255,0.24)] hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-[0_18px_48px_rgba(51,92,255,0.3)]",
-  secondary: "bg-surface-muted text-foreground hover:-translate-y-0.5 hover:bg-surface",
-  ghost: "bg-transparent text-foreground hover:bg-surface-muted",
-  outline: "border border-border bg-transparent text-foreground hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary",
+  primary: "button-primary btn-sheen hover:-translate-y-0.5",
+  secondary: "button-secondary hover:-translate-y-0.5",
+  ghost: "button-ghost",
+  outline: "button-outline hover:-translate-y-0.5",
 };
 
 export default function Button({

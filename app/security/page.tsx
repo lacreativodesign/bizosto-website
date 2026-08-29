@@ -8,13 +8,15 @@ export const metadata = {
 
 export default function SecurityPage() {
   return (
-    <div className="space-y-12 pb-20 pt-12">
-      <Container className="space-y-6">
+    <div className="legal-page">
+      <Container className="legal-shell">
         <SectionHeading
+          as="h1"
+          eyebrow="Trust Center"
           title="Security"
           subtitle="Security is built into the core of Bizosto — not bolted on after the fact. Here is how we protect your business data."
         />
-        <div className="space-y-6 text-sm text-muted-foreground">
+        <div className="legal-content space-y-6 text-sm text-muted-foreground">
           <p>Last Updated: July 7, 2026</p>
 
           <div className="space-y-2">

@@ -121,7 +121,7 @@ export default function PricingPage() {
           </Container>
         </Section>
 
-        <Section>
+        <Section variant="muted">
           <Container className="relative z-10">
             <ScrollReveal>
               <SectionHeading
@@ -166,7 +166,7 @@ export default function PricingPage() {
         </Section>
 
         {/* ── Add-ons, Upgrades & Services ──────────── */}
-        <Section>
+        <Section variant="muted">
           <Container>
             <ScrollReveal>
               <SectionHeading
@@ -208,7 +208,7 @@ export default function PricingPage() {
                   </div>
                   <a
                     href="https://app.bizosto.com/signup"
-                    className="inline-flex flex-shrink-0 items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+                    className="button-primary btn-sheen inline-flex flex-shrink-0 items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5"
                   >
                     Start with annual →
                   </a>
@@ -221,7 +221,7 @@ export default function PricingPage() {
               {[
                 {
                   badge: "Included — Pro & Enterprise",
-                  badgeColor: "bg-green-500/10 text-green-600",
+                  badgeColor: "bg-green-500/10 text-green-700 dark:text-green-300",
                   title: "AI Workforce",
                   description:
                     "Four live AI agents — COO, Finance, Sales, and AI Reports — built into your dashboard. Connect your own OpenAI or Anthropic API key in Settings and activate instantly. No AI markup from Bizosto.",
@@ -229,7 +229,7 @@ export default function PricingPage() {
                 },
                 {
                   badge: "Included — Pro & Enterprise",
-                  badgeColor: "bg-green-500/10 text-green-600",
+                  badgeColor: "bg-green-500/10 text-green-700 dark:text-green-300",
                   title: "Website Embed Integration",
                   description:
                     "One line of JavaScript code captures form submissions from any website — WordPress, Shopify, Wix, Squarespace, or custom HTML — and routes them as leads into your Bizosto CRM automatically.",
@@ -253,7 +253,7 @@ export default function PricingPage() {
               {[
                 {
                   badge: "Professional Service",
-                  badgeColor: "bg-blue-500/10 text-blue-600",
+                  badgeColor: "bg-blue-500/10 text-blue-700 dark:text-blue-300",
                   title: "Professional Onboarding",
                   description:
                     "A dedicated Bizosto team member sets up your workspace, imports your data, configures your modules, and trains your team. Go live in days, not weeks.",
@@ -261,7 +261,7 @@ export default function PricingPage() {
                 },
                 {
                   badge: "Professional Service",
-                  badgeColor: "bg-blue-500/10 text-blue-600",
+                  badgeColor: "bg-blue-500/10 text-blue-700 dark:text-blue-300",
                   title: "Custom Integration Setup",
                   description:
                     "Need Bizosto connected to a tool that isn't in our integrations list? Our team scopes and builds custom integrations for your specific workflow requirements.",
@@ -269,7 +269,7 @@ export default function PricingPage() {
                 },
                 {
                   badge: "Coming Soon — Free with any paid plan",
-                  badgeColor: "bg-amber-500/10 text-amber-700",
+                  badgeColor: "bg-amber-500/10 text-amber-700 dark:text-amber-300",
                   title: "WordPress Plugin",
                   description:
                     "Install the Bizosto WordPress plugin to automatically sync Contact Form 7, WPForms, and WooCommerce orders directly into your CRM as leads — no Zapier required.",
