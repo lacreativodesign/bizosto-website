@@ -7,6 +7,7 @@ interface SectionHeadingProps {
   subtitle?: string;
   align?: "left" | "center";
   as?: "h1" | "h2";
+  className?: string;
 }
 
 export default function SectionHeading({
@@ -15,24 +16,27 @@ export default function SectionHeading({
   subtitle,
   align = "left",
   as: HeadingTag = "h2",
+  className,
 }: SectionHeadingProps) {
-  const alignment = align === "center" ? "text-center items-center" : "text-left";
+  const centered = align === "center";
 
   return (
-    <div className={cn("flex flex-col gap-4", alignment)}>
-      {eyebrow ? <Badge className={align === "center" ? "mx-auto" : undefined}>{eyebrow}</Badge> : null}
-      <div className="space-y-2">
+    <div className={cn("section-heading flex flex-col gap-5", centered ? "items-center text-center" : "text-left", className)}>
+      {eyebrow ? <Badge className={centered ? "mx-auto" : undefined}>{eyebrow}</Badge> : null}
+      <div className="space-y-4">
         <HeadingTag
-          className={
+          className={cn(
+            "text-balance font-display font-semibold tracking-[-0.04em] text-foreground",
             HeadingTag === "h1"
-              ? "text-3xl font-semibold leading-tight text-foreground sm:text-4xl lg:text-[2.75rem]"
-              : "text-2xl font-semibold text-foreground sm:text-3xl"
-          }
+              ? "max-w-[17ch] text-[2.75rem] leading-[1.02] sm:text-5xl lg:text-[4.25rem]"
+              : "max-w-[20ch] text-3xl leading-[1.08] sm:text-4xl lg:text-[3.25rem]",
+            centered && "mx-auto"
+          )}
         >
           {title}
         </HeadingTag>
         {subtitle ? (
-          <p className="text-base text-muted-foreground sm:text-lg">{subtitle}</p>
+          <p className={cn("max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg", centered && "mx-auto")}>{subtitle}</p>
         ) : null}
       </div>
     </div>

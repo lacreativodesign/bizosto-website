@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 
 const storageKey = "bizosto-theme";
-
 type Theme = "light" | "dark" | "system";
 
 function applyTheme(theme: Theme) {
@@ -16,45 +16,42 @@ function applyTheme(theme: Theme) {
 }
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("system");
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     const stored = window.localStorage.getItem(storageKey) as Theme | null;
     const initialTheme = stored ?? "system";
-    setTheme(initialTheme);
-    const nextResolved = applyTheme(initialTheme);
-    setResolvedTheme(nextResolved);
+    const frame = window.requestAnimationFrame(() => {
+      setResolvedTheme(applyTheme(initialTheme));
+    });
 
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const onChange = () => {
       const current = (window.localStorage.getItem(storageKey) as Theme | null) ?? "system";
-      if (current === "system") {
-        const updated = applyTheme("system");
-        setResolvedTheme(updated);
-      }
+      if (current === "system") setResolvedTheme(applyTheme("system"));
     };
     media.addEventListener("change", onChange);
-    return () => media.removeEventListener("change", onChange);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      media.removeEventListener("change", onChange);
+    };
   }, []);
 
   const handleToggle = () => {
-    const nextTheme: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
+    const nextTheme: Theme = resolvedTheme === "dark" ? "light" : "dark";
     window.localStorage.setItem(storageKey, nextTheme);
-    const updated = applyTheme(nextTheme);
-    setResolvedTheme(updated);
+    setResolvedTheme(applyTheme(nextTheme));
   };
 
   return (
     <button
-      className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-xs font-semibold text-muted-foreground transition hover:border-primary/50 hover:text-foreground"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
       onClick={handleToggle}
       type="button"
-      aria-label="Toggle theme"
+      aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme`}
+      title={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme`}
     >
-      <span className="h-2 w-2 rounded-full bg-primary" />
-      {resolvedTheme === "dark" ? "Dark" : "Light"}
+      {resolvedTheme === "dark" ? <Moon className="h-4 w-4" aria-hidden="true" /> : <Sun className="h-4 w-4" aria-hidden="true" />}
     </button>
   );
 }

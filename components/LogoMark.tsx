@@ -10,19 +10,11 @@ interface LogoMarkProps {
 export default function LogoMark({ className, variant = "full" }: LogoMarkProps) {
   return (
     <div className={cn("flex items-center gap-2.5 text-foreground", className)}>
-      <div
-        className="flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold text-white"
-        style={{ background: "linear-gradient(135deg, #012167 0%, #6692f9 100%)" }}
-      >
+      <div className="logo-mark flex h-9 w-9 items-center justify-center rounded-xl text-sm font-extrabold text-white shadow-lg shadow-blue-950/20">
         B
       </div>
       {variant === "full" ? (
-        <span
-          className="text-[1.05rem] font-semibold tracking-tight text-foreground"
-          style={{ letterSpacing: "-0.01em" }}
-        >
-          Bizosto
-        </span>
+        <span className="text-[1.08rem] font-bold tracking-[-0.03em] text-current">Bizosto</span>
       ) : null}
     </div>
   );

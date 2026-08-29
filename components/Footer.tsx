@@ -1,163 +1,68 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import Container from "@/components/Container";
 import LogoMark from "@/components/LogoMark";
+
+const productLinks = [
+  ["Features", "/product"], ["Integrations", "/integrations"], ["Use Cases", "/use-cases"],
+  ["How It Works", "/how-it-works"], ["AI Workforce", "/ai-workforce"], ["Pricing", "/pricing"],
+] as const;
+
+const companyLinks = [
+  ["About", "/about"], ["Blog", "/blog"], ["Book a Demo", "/book-demo"], ["Contact", "/contact"], ["Security", "/security"],
+] as const;
+
+const legalLinks = [
+  ["Privacy", "/privacy"], ["Terms", "/terms"], ["Refund Policy", "/refund-policy"], ["Cookie Policy", "/cookies"],
+] as const;
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-background">
-      <Container className="py-12">
-        <div className="grid gap-8 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
-          <div className="space-y-4">
-            <LogoMark />
-            <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-              The all-in-one platform for service businesses. CRM, projects, finance, HR, and
-              client portal — connected, automated, and built to scale with you.
+    <footer className="site-footer border-t border-white/10 bg-[#06101f] text-white">
+      <Container className="py-14 sm:py-16">
+        <div className="grid gap-12 border-b border-white/10 pb-12 lg:grid-cols-[1.35fr_0.65fr_0.65fr_0.65fr]">
+          <div className="space-y-6">
+            <LogoMark className="text-white" />
+            <p className="max-w-md text-base leading-relaxed text-slate-400">
+              One intelligent operating system for sales, delivery, finance, people, and every client relationship.
             </p>
-            <p className="text-xs text-muted-foreground">
-              A product of{" "}
-              <a
-                href="https://www.lacreativogroup.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-2 transition hover:text-foreground"
-              >
-                LA CREATIVO GROUP, LLC
-              </a>
+            <a href="https://app.bizosto.com/signup" className="inline-flex items-center gap-2 text-sm font-bold text-cyan-300 transition hover:text-cyan-200">
+              Start your 14-day trial <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+            <p className="text-xs text-slate-500">
+              A product of <a href="https://www.lacreativogroup.com" target="_blank" rel="noopener noreferrer" className="underline decoration-white/20 underline-offset-4 transition hover:text-white">LA CREATIVO GROUP, LLC</a>
             </p>
           </div>
 
-          <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
-              Product
-            </p>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/product" className="transition hover:text-foreground">
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link href="/integrations" className="transition hover:text-foreground">
-                  Integrations
-                </Link>
-              </li>
-              <li>
-                <Link href="/use-cases" className="transition hover:text-foreground">
-                  Use Cases
-                </Link>
-              </li>
-              <li>
-                <Link href="/how-it-works" className="transition hover:text-foreground">
-                  How It Works
-                </Link>
-              </li>
-              <li>
-                <Link href="/ai-workforce" className="transition hover:text-foreground">
-                  AI Workforce
-                </Link>
-              </li>
-              <li>
-                <Link href="/pricing" className="transition hover:text-foreground">
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <a href="https://app.bizosto.com/signup" className="transition hover:text-foreground">
-                  Start Free Trial
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
-              Company
-            </p>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/about" className="transition hover:text-foreground">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="transition hover:text-foreground">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/book-demo" className="transition hover:text-foreground">
-                  Book a Demo
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="transition hover:text-foreground">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/company/bizosto/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition hover:text-foreground"
-                >
-                  LinkedIn
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-foreground">
-              Account
-            </p>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="https://app.bizosto.com/login" className="transition hover:text-foreground">
-                  Sign In
-                </a>
-              </li>
-              <li>
-                <a href="https://app.bizosto.com/signup" className="transition hover:text-foreground">
-                  Create Account
-                </a>
-              </li>
-              <li>
-                <Link href="/privacy" className="transition hover:text-foreground">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="transition hover:text-foreground">
-                  Terms &amp; Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/refund-policy" className="transition hover:text-foreground">
-                  Refund Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/cookies" className="transition hover:text-foreground">
-                  Cookie Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/security" className="transition hover:text-foreground">
-                  Security
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <FooterColumn title="Product" links={productLinks} />
+          <FooterColumn title="Company" links={companyLinks} />
+          <FooterColumn title="Legal" links={legalLinks} />
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground">
+        <div className="flex flex-col gap-5 pt-7 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p>© {currentYear} LA CREATIVO GROUP, LLC. All rights reserved.</p>
-          <p>Bizosto® — Business Operating System</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <a href="https://www.linkedin.com/company/bizosto/" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">LinkedIn</a>
+            <a href="https://app.bizosto.com/login" className="transition hover:text-white">Sign in</a>
+            <span>Bizosto® — Business Operating System</span>
+          </div>
         </div>
       </Container>
     </footer>
+  );
+}
+
+function FooterColumn({ title, links }: { title: string; links: ReadonlyArray<readonly [string, string]> }) {
+  return (
+    <div className="space-y-4">
+      <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-200">{title}</p>
+      <ul className="space-y-3 text-sm text-slate-400">
+        {links.map(([label, href]) => (
+          <li key={href}><Link href={href} className="transition hover:text-white">{label}</Link></li>
+        ))}
+      </ul>
+    </div>
   );
 }

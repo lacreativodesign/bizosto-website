@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import Button from "@/components/Button";
 
 interface CTASectionProps {
@@ -14,15 +15,19 @@ export default function CTASection({
   secondaryAction = "Contact",
 }: CTASectionProps) {
   return (
-    <div className="cta-band relative overflow-hidden rounded-2xl border border-primary/20 p-8 md:p-10">
-      <div className="relative z-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-        <div className="max-w-xl space-y-2">
-          <h3 className="text-2xl font-semibold text-foreground">{title}</h3>
-          <p className="text-sm text-muted-foreground sm:text-base">{description}</p>
+    <div className="cta-band relative overflow-hidden rounded-[2rem] border border-white/10 p-8 sm:p-10 lg:p-14">
+      <div className="relative z-10 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
+        <div className="max-w-2xl space-y-4">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-cyan-300">Build the operating advantage</p>
+          <h3 className="text-balance text-3xl font-semibold leading-tight tracking-[-0.035em] text-white sm:text-4xl">{title}</h3>
+          <p className="max-w-xl text-base text-slate-300">{description}</p>
         </div>
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-          <Button href="/book-demo">{primaryAction}</Button>
-          <Button href="/contact" variant="outline">
+          <Button href="/book-demo" className="bg-white text-[#071225] hover:bg-cyan-50 hover:text-[#071225]">
+            {primaryAction}
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </Button>
+          <Button href="/contact" variant="outline" className="border-white/20 text-white hover:border-cyan-300 hover:text-cyan-200">
             {secondaryAction}
           </Button>
         </div>

@@ -136,7 +136,7 @@ export default function HeroLeadForm() {
       setSuccess(true);
       window.location.href = `https://app.bizosto.com/signup?email=${encodeURIComponent(form.email)}&company=${encodeURIComponent(form.company)}&name=${encodeURIComponent(form.fullName)}`;
       setForm(initialState);
-    } catch (error) {
+    } catch {
       setApiError("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);

@@ -105,7 +105,7 @@ export default function ContactForm() {
       setShowToast(true);
       setForm(initialState);
       window.setTimeout(() => setShowToast(false), 3000);
-    } catch (error) {
+    } catch {
       setApiError("Unable to submit right now. Please try again.");
     } finally {
       setSubmitting(false);
