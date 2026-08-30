@@ -16,10 +16,6 @@ export default function CTASection({
 }: CTASectionProps) {
   return (
     <div className="cta-band relative overflow-hidden rounded-[2rem] border border-white/10 p-8 sm:p-10 lg:p-14">
-      <div className="cta-band__brand" aria-hidden="true">
-        <span className="cta-band__brand-ring" />
-        <span className="cta-band__brand-mark">B</span>
-      </div>
       <div className="relative z-10 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
         <div className="max-w-2xl space-y-4">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-cyan-300">Build the operating advantage</p>

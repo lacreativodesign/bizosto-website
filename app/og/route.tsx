@@ -7,6 +7,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const title = searchParams.get("title") || "The Operating System for Service Businesses";
   const eyebrow = searchParams.get("eyebrow") || "Bizosto";
+  const logoUrl = new URL("/brand/bizosto-mark.png", req.url).toString();
 
   return new ImageResponse(
     (
@@ -50,19 +51,12 @@ export async function GET(req: NextRequest) {
             style={{
               width: 48,
               height: 48,
-              borderRadius: 12,
-              background: "rgba(255,255,255,0.15)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 24,
-              fontWeight: 800,
-              color: "#fff",
+              backgroundImage: `url(${logoUrl})`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
             }}
-          >
-            B
-          </div>
+          />
           <span
             style={{
               fontSize: 18,

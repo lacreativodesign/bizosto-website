@@ -24,7 +24,7 @@ const organization = {
   "@id": `${SITE_URL}/#organization`,
   name: "Bizosto",
   url: SITE_URL,
-  logo: `${SITE_URL}/favicon-32.png`,
+  logo: `${SITE_URL}/brand/bizosto-mark.png`,
   description:
     "Bizosto is the operating system for service businesses — CRM, sales, projects, finance, HR, and AI agents in one flat-priced platform.",
   sameAs: [] as string[],

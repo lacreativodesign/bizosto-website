@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoMarkProps {
@@ -10,9 +11,14 @@ interface LogoMarkProps {
 export default function LogoMark({ className, variant = "full" }: LogoMarkProps) {
   return (
     <div className={cn("flex items-center gap-2.5 text-foreground", className)}>
-      <div className="logo-mark flex h-9 w-9 items-center justify-center rounded-xl text-sm font-extrabold text-white shadow-lg shadow-blue-950/20">
-        B
-      </div>
+      <Image
+        src="/brand/bizosto-mark.png"
+        alt=""
+        width={36}
+        height={36}
+        sizes="36px"
+        className="logo-mark h-9 w-9 shrink-0 object-contain"
+      />
       {variant === "full" ? (
         <span className="text-[1.08rem] font-bold tracking-[-0.03em] text-current">Bizosto</span>
       ) : null}
