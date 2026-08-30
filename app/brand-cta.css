@@ -1,0 +1,107 @@
+:is(
+  .button-primary,
+  .button-secondary,
+  .button-outline,
+  .button-ghost,
+  .header-primary,
+  .command-primary,
+  .footer-trial-pill,
+  .pricing-cta
+) {
+  position: relative;
+  overflow: hidden;
+  color: #fff !important;
+  background: var(--action-gradient) !important;
+  box-shadow: 0 14px 40px rgba(36, 84, 237, 0.25);
+}
+
+:is(
+  .button-primary,
+  .button-secondary,
+  .button-outline,
+  .button-ghost,
+  .header-primary,
+  .command-primary,
+  .footer-trial-pill,
+  .pricing-cta
+):hover {
+  color: #fff !important;
+  background: var(--action-gradient) !important;
+  filter: saturate(112%);
+  box-shadow: 0 18px 48px rgba(36, 84, 237, 0.34);
+}
+
+.cta-band .cta-band__primary,
+.cta-band .cta-band__primary:hover {
+  color: #fff !important;
+  background: var(--action-gradient) !important;
+  filter: saturate(112%);
+}
+
+:is(
+  .button-primary,
+  .button-secondary,
+  .button-outline,
+  .button-ghost,
+  .header-primary,
+  .command-primary,
+  .footer-trial-pill,
+  .pricing-cta
+)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 80%
+  );
+  transform: skewX(-18deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+:is(
+  .button-primary,
+  .button-secondary,
+  .button-outline,
+  .button-ghost,
+  .header-primary,
+  .command-primary,
+  .footer-trial-pill,
+  .pricing-cta
+):hover::after {
+  left: 130%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(
+    .button-primary,
+    .button-secondary,
+    .button-outline,
+    .button-ghost,
+    .header-primary,
+    .command-primary,
+    .footer-trial-pill,
+    .pricing-cta
+  )::after {
+    transition: none;
+  }
+
+  :is(
+    .button-primary,
+    .button-secondary,
+    .button-outline,
+    .button-ghost,
+    .header-primary,
+    .command-primary,
+    .footer-trial-pill,
+    .pricing-cta
+  ):hover::after {
+    left: -80%;
+  }
+}

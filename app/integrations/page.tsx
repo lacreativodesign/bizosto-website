@@ -11,6 +11,7 @@ import Section from "@/components/Section";
 const integrations = [
   {
     name: "Google Workspace",
+    logoDomain: "workspace.google.com",
     category: "Productivity",
     description:
       "Sync Google Calendar with your project milestones and delivery deadlines. Send emails via Gmail directly from client and lead records. Store and access project files in Google Drive — all from inside Bizosto.",
@@ -18,6 +19,7 @@ const integrations = [
   },
   {
     name: "Microsoft 365",
+    logoDomain: "microsoft365.com",
     category: "Productivity",
     description:
       "For teams running on Microsoft infrastructure. Outlook email and calendar sync, OneDrive for project file storage. Every email sent, every meeting booked — connected to the right client record in Bizosto.",
@@ -25,6 +27,7 @@ const integrations = [
   },
   {
     name: "Slack",
+    logoDomain: "slack.com",
     category: "Communication",
     description:
       "Get instant Slack notifications when invoices are paid, projects hit milestones, or tasks are assigned. Use the /bizosto slash command to check invoice status, create tasks, or request leave — without leaving Slack.",
@@ -32,6 +35,7 @@ const integrations = [
   },
   {
     name: "QuickBooks Online",
+    logoDomain: "quickbooks.intuit.com",
     category: "Accounting",
     description:
       "Two-way sync between Bizosto and QuickBooks. Clients, invoices, and payments stay in sync automatically. Your finance team gets the accounting depth they need. Your operations team doesn't have to think about it.",
@@ -39,6 +43,7 @@ const integrations = [
   },
   {
     name: "Xero",
+    logoDomain: "xero.com",
     category: "Accounting",
     description:
       "Full OAuth connection with detailed sync logs and conflict resolution. Accounting entries in Xero are automatically matched to your Bizosto invoices. No manual exports, no duplicate data entry.",
@@ -46,6 +51,7 @@ const integrations = [
   },
   {
     name: "DocuSign",
+    logoDomain: "docusign.com",
     category: "Documents",
     description:
       "Send contracts and proposals for e-signature directly from Bizosto. Get real-time status updates as recipients open and sign. Completed documents are stored automatically against the right client record.",
@@ -53,6 +59,7 @@ const integrations = [
   },
   {
     name: "Mailchimp",
+    logoDomain: "mailchimp.com",
     category: "Marketing",
     description:
       "Sync your CRM clients as Mailchimp audiences automatically. Map tags, manage segments, and run unsubscribe-safe email campaigns — without manual list exports. When a client is added in Bizosto, Mailchimp updates.",
@@ -60,6 +67,7 @@ const integrations = [
   },
   {
     name: "Twilio SMS",
+    logoDomain: "twilio.com",
     category: "Communication",
     description:
       "Send automated SMS to clients and team members directly from Bizosto. Invoice payment reminders, project update alerts, and appointment confirmations — all templated, trigger-based, and logged.",
@@ -67,6 +75,7 @@ const integrations = [
   },
   {
     name: "Calendly",
+    logoDomain: "calendly.com",
     category: "Scheduling",
     description:
       "Book meetings directly from leads and deals in Bizosto. Calendly events sync automatically so scheduled calls appear against the right record. Cancellations and reschedules update in real time via webhook.",
@@ -74,6 +83,7 @@ const integrations = [
   },
   {
     name: "Stripe",
+    logoDomain: "stripe.com",
     category: "Payments",
     description:
       "Accept client payments directly through Bizosto using Stripe Connect. Each client pays you through their own dedicated payment link. Payments are recorded against the right invoice automatically — no manual reconciliation.",
@@ -81,6 +91,7 @@ const integrations = [
   },
   {
     name: "Zapier",
+    logoDomain: "zapier.com",
     category: "Automation",
     description:
       "Connect Bizosto to 5,000+ apps via outbound webhooks. Build automations without writing code — trigger a Zap when an invoice is created, a project is delivered, or a lead changes status. Your workflow, your rules.",
@@ -89,6 +100,10 @@ const integrations = [
 ];
 
 const categories = ["All", "Productivity", "Accounting", "Communication", "Documents", "Marketing", "Scheduling", "Payments", "Automation"];
+
+function integrationLogoUrl(domain: string) {
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+}
 
 export default function IntegrationsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -132,7 +147,19 @@ export default function IntegrationsPage() {
               {filtered.map((integration, index) => (
                 <ScrollReveal key={integration.name} delay={index * 50}>
                   <Card className="space-y-4 h-full">
-                    <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-3">
+                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-white p-2 shadow-sm">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={integrationLogoUrl(integration.logoDomain)}
+                          alt=""
+                          width={28}
+                          height={28}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-7 w-7 object-contain"
+                        />
+                      </span>
                       <div>
                         <p className="text-base font-semibold text-foreground">{integration.name}</p>
                         <span className="mt-1 inline-block rounded-full bg-surface-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
