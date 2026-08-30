@@ -201,11 +201,7 @@
   .mobile-menu-link { color: var(--muted-foreground); }
   .mobile-menu-link:hover { color: var(--foreground); background: var(--surface-muted); }
 
-  .logo-mark {
-    background:
-      linear-gradient(145deg, rgba(255,255,255,0.15), transparent 42%),
-      var(--brand-gradient);
-  }
+  .logo-mark { filter: drop-shadow(0 10px 18px rgba(13, 45, 116, 0.22)); }
 
   .nav-link { position: relative; }
   .nav-link::after {
@@ -474,21 +470,6 @@
 
   .premium-section > * { position: relative; z-index: 1; }
   .dark .premium-section [class*="bg-green-500\/10"] { color: #86efac; }
-
-  .page-hero::after {
-    content: "B";
-    position: absolute;
-    right: clamp(-2.5rem, 4vw, 4rem);
-    top: 50%;
-    color: color-mix(in srgb, var(--primary) 7%, transparent);
-    font-family: var(--font-sora);
-    font-size: clamp(12rem, 25vw, 25rem);
-    font-weight: 800;
-    line-height: 0.72;
-    letter-spacing: -0.1em;
-    transform: translateY(-43%) rotate(-7deg);
-    pointer-events: none;
-  }
 
   .page-hero .section-heading { max-width: 57rem; }
 

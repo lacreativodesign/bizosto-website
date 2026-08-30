@@ -13,6 +13,7 @@ This document protects the approved Bizosto website art direction from gradual v
 - **Typography:** Sora for display and headings; DM Sans for body copy and interface text.
 - **Shape language:** confident rounded geometry, generous whitespace, fine borders, controlled shadows, and pill-shaped actions where appropriate.
 - **Gradient language:** electric blue through deep navy with selective cyan illumination. Gradients must remain directional and purposeful, never decorative noise.
+- **Logo:** the approved custom white B-mark on its midnight-to-electric-blue gradient tile. `public/brand/bizosto-mark.png` is the canonical website master.
 - **Surfaces:** clear hierarchy between page background, section background, and elevated cards. Every component must have intentionally art-directed light and dark states.
 - **Motion:** subtle reveal, sheen, and hover movement only. Motion supports hierarchy and comprehension.
 - **Imagery:** real Bizosto product UI is preferred. Any supporting generated imagery must feel architectural, precise, and consistent with the operating-system narrative.
@@ -26,6 +27,7 @@ This document protects the approved Bizosto website art direction from gradual v
 5. Mobile is a composed layout, not a compressed desktop layout. Tap targets, readable line lengths, and stacking order must be preserved.
 6. New UI must use the existing tokens and shared components before introducing one-off styling.
 7. Accessibility, contrast, keyboard behavior, reduced motion, performance, and responsive correctness may never be traded for visual effect.
+8. Never recreate the B-mark with a font. Header, footer, favicon, app icon, Apple icon, structured data, and social cards must use assets derived from the canonical master.
 
 ## Changes allowed without an art-direction review
 
@@ -33,7 +35,7 @@ This document protects the approved Bizosto website art direction from gradual v
 - Real dashboard screenshot replacements within approved product frames.
 - Bug fixes, accessibility improvements, and performance improvements.
 - New sections and pages that faithfully reuse the locked system.
-- A production Bizosto logo once a concept is selected, refined, and approved.
+- New size or format exports derived without redesigning the canonical logo.
 
 ## Changes requiring explicit approval
 
@@ -49,4 +51,4 @@ This document protects the approved Bizosto website art direction from gradual v
 - Reusable surfaces and sections: `components/`
 - Responsive page composition: `app/`
 
-Logo exploration remains open until a final symbol and wordmark are selected. Everything else in the current website system is considered the approved baseline.
+The supplied B-mark and the current website art direction are the approved baseline. A future logo redesign requires explicit approval; routine exports must remain visually identical to the canonical master.
