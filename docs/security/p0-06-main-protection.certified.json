@@ -1,0 +1,103 @@
+{
+  "$comment": [
+    "P0-06 — the certified main-branch protection contract for the Bizosto marketing website.",
+    "",
+    "This is the website half of the certification whose ERP half lives in",
+    "lacreativodesign/nextjs-boilerplate. The two are deliberately SEPARATE files verified by",
+    "SEPARATE workflows, each running inside the repository it certifies, under that",
+    "repository's own job token.",
+    "",
+    "That separation is the point. This repository is PRIVATE, and a job token issued to the",
+    "ERP repository cannot read it — GitHub answers 404. A cross-repository read that fails",
+    "must never be reported as a successful certification, so neither repository vouches for",
+    "the other.",
+    "",
+    "It holds no credential."
+  ],
+  "repositories": [
+    {
+      "key": "website",
+      "repository": "lacreativodesign/bizosto-website",
+      "applied": false,
+      "rulesetId": null,
+      "rulesetName": "Production Main Protection",
+      "snapshot": null,
+      "snapshotCapturedBy": null,
+      "expectedVisibility": "private",
+      "visibilityIsGovernanceFinding": false,
+      "target": "branch",
+      "enforcement": "active",
+      "refNameInclude": [
+        "~DEFAULT_BRANCH"
+      ],
+      "bypassActorsMustBeEmpty": true,
+      "requiredRuleTypes": [
+        "deletion",
+        "non_fast_forward",
+        "pull_request",
+        "required_status_checks"
+      ],
+      "pullRequest": {
+        "requiredReviewThreadResolution": true,
+        "allowedMergeMethods": [
+          "merge"
+        ],
+        "requiredApprovingReviewCount": {
+          "certifiedFloor": 0,
+          "target": 1,
+          "gapOpen": true,
+          "$comment": [
+            "Same gap, same single account, same reason as the ERP entry above. The two",
+            "repositories share one owner, so supplying a reviewer for one does not supply one",
+            "for the other - each needs its own collaborator added before its count can go to 1."
+          ]
+        }
+      },
+      "requiredStatusChecks": {
+        "strictRequiredStatusChecksPolicy": true,
+        "doNotEnforceOnCreate": false,
+        "contexts": [
+          {
+            "context": "Vercel",
+            "integrationId": 8329,
+            "$comment": [
+              "The ONLY check this repository produces. It has no .github directory at all, so",
+              "there are no GitHub Actions workflows and no check runs - `Vercel` arrives as a",
+              "commit STATUS, and it was success on main at 83ae0648.",
+              "",
+              "Requiring anything else here would block every merge forever. Integration id 8329",
+              "is the Vercel app: the same id is pinned on the ERP repository, where PR #1011",
+              "reached mergeable_state 'clean' with it, which is what proves the id is right for",
+              "this owner's Vercel integration rather than merely plausible."
+            ]
+          }
+        ]
+      },
+      "$comment": [
+        "NOT YET APPLIED, AND THE REASON MATTERS.",
+        "",
+        "This repository MUST REMAIN PRIVATE. It holds proprietary Bizosto marketing source.",
+        "",
+        "GitHub Free serves rulesets on public repositories only; Pro, Team and Enterprise",
+        "serve them on private repositories too. So on the current plan a private",
+        "bizosto-website cannot carry a ruleset at all, and the API says so:",
+        "  403 \"Upgrade to GitHub Pro or make this repository public to enable this feature.\"",
+        "",
+        "That error names two ways out and only ONE of them is acceptable. The correct owner",
+        "action is to UPGRADE THE ACCOUNT to GitHub Pro or higher. Publishing proprietary",
+        "source to obtain a security control is not a remedy, it is a larger exposure than the",
+        "one it closes, and P0-06 rejects it.",
+        "",
+        "On 2026-09-17 the repository was briefly made public in an attempt to unblock this.",
+        "That was a policy violation, it is being reverted to private, and it is recorded here",
+        "rather than erased. `expectedVisibility` is now a checked control precisely so that a",
+        "repeat reads as DRIFT rather than as progress: see ruleset.visibility in the verifier.",
+        "",
+        "Because the repository is private, the ERP repository's job-scoped GITHUB_TOKEN cannot",
+        "read it. Its ruleset is therefore verified by a companion workflow running INSIDE",
+        "bizosto-website under its own job token, not from here. A cross-repository read that",
+        "fails must never be reported as a successful certification."
+      ]
+    }
+  ]
+}
