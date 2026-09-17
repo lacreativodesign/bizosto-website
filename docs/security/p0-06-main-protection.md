@@ -8,7 +8,8 @@ document keeps them apart rather than averaging them into a single verdict.
 
 | Control                | State                                                                      |
 | ---------------------- | -------------------------------------------------------------------------- |
-| **Ruleset**            | ✅ **GREEN — live and applied**, id `23581080`                             |
+| **Ruleset**            | ✅ **GREEN — live and applied**, id `23581080`, **two** required checks    |
+| **Dependency gate**    | ✅ **GREEN and branch-required** — `dependency-security` (PR #61 merged)   |
 | **Visibility**         | ⚠️ **OPEN** — repository is temporarily **public**; target is private      |
 | **Independent review** | ⚠️ **OPEN** — required approvals `0`; no second collaborator exists        |
 | **Plan**               | ⚠️ GitHub **Free**; **Pro or higher** still required for the final posture |
@@ -42,7 +43,8 @@ authenticated request on 2026-09-17. It is the **only** ruleset on the repositor
 | `require_extra_approval_for_unattributed_changes` | `false`                                                                  | as certified          |
 | `strict_required_status_checks_policy`            | `true`                                                                   | **PASS**              |
 | `do_not_enforce_on_create`                        | `false`                                                                  | **PASS**              |
-| required check                                    | `Vercel`, integration `8329`                                             | **PASS**              |
+| required check 1                                  | `Vercel`, integration `8329`                                             | **PASS**              |
+| required check 2                                  | `dependency-security`, integration `15368`                               | **PASS**              |
 | `required_approving_review_count`                 | **`0`**                                                                  | **OPEN GAP — see §3** |
 
 `GET /branches/main` now reports `"protected": true`.
@@ -57,6 +59,35 @@ The read above was authenticated, the field was present, and it was `[]`.
 Because the id is now recorded, the verifier **pins its read to `23581080`** instead of
 discovering the ruleset by name. Name discovery survives only as the fallback for a repository
 whose id has not been recorded yet.
+
+### The dependency-security gate
+
+`dependency-security` arrived with **PR #61**, merged to main on 2026-09-17 at
+`632f5daf6e5981dd610b59199c7230f38b8cd2c0`. The owner then added it to ruleset 23581080, so it
+is **branch-required, not advisory**.
+
+|                       |                                                                     |
+| --------------------- | ------------------------------------------------------------------- |
+| Workflow              | `.github/workflows/dependency-security.yml`                         |
+| Emitted by            | **GitHub Actions**, integration `15368`                             |
+| Runs                  | `npm ci` then `npm run security:audit`                              |
+| `security:audit`      | `npm audit --audit-level=high`                                      |
+| Scope                 | the **whole** lockfile, dev dependencies included — no `--omit=dev` |
+| Live on main          | ✅ success — run `35264726041`, job `105348912555`                  |
+| Baseline after PR #61 | **0 critical, 0 high** (8 moderate, 0 low)                          |
+
+It fails on **any** high or critical advisory. `next` is on `16.3.5`.
+
+The workflow is deliberately **not** path-filtered, and that matters: a required check which is
+skipped for pull requests touching unrelated files leaves GitHub waiting on it forever, which
+would block every such merge. That is the same dead-required-check failure mode this
+certification guards against for `Vercel`.
+
+Both integration ids are pinned. A check merely _named_ `dependency-security`, posted by
+anything other than GitHub Actions, does not satisfy the requirement — and neither does
+`dependency-security-report`, `Dependency Security`, or any other near-miss. Losing either
+context, or re-pointing either, is P0-06 drift. The contract is directional, so the owner may
+add further required checks without failing the record; these two may never disappear.
 
 ---
 
@@ -157,7 +188,8 @@ required.
 
 It reads the live ruleset. Requiring it would mean that the day the ruleset is wrong is the day
 you cannot merge the pull request that fixes it — the control would block its own repair. It
-reports; it does not gate. `Vercel` remains the only required check on this repository.
+reports; it does not gate. The two checks that **are** required are `Vercel` and
+`dependency-security` — see §1.
 
 ---
 
@@ -173,36 +205,30 @@ expected until both owner actions are done.
 
 ---
 
-## 6. A separate finding: pre-existing dependency vulnerabilities
+## 6. Dependency vulnerabilities — resolved by PR #61
 
-Found while validating this change, reported because it is real — **not** introduced by it, and
-**not** fixed by it.
+An earlier revision of this document recorded 4 critical and 12 high npm advisories as a
+pre-existing finding, out of scope for a branch-protection certification and not fixed here.
 
-`npm audit` on this repository reports **4 critical** and 12 high advisories, in
-`fast-xml-parser`, `next`, `protobufjs` and `websocket-driver`. They are present on `main`
-today: this pull request changes no dependency file, and the same audit fails identically on
-`main` without it.
+**That finding is now closed.** PR #61 remediated it and was merged to main on 2026-09-17:
 
-|                                  |                                                                          |
-| -------------------------------- | ------------------------------------------------------------------------ |
-| Scope                            | pre-existing on `main`; unrelated to P0-06                               |
-| Introduced by this PR            | **no** — it touches 4 files, none of them `package.json` or the lockfile |
-| Fixed by this PR                 | **no** — dependency upgrades are product changes and out of scope here   |
-| `npm audit` in normal validation | **no** — this repository's scripts are `dev`, `build`, `start`, `lint`   |
+|            | Before PR #61 | After PR #61                               |
+| ---------- | ------------- | ------------------------------------------ |
+| Critical   | 4             | **0**                                      |
+| High       | 12            | **0**                                      |
+| Moderate   | 12            | 8                                          |
+| Audit gate | none          | **`dependency-security`, branch-required** |
 
-It is recorded rather than fixed because bumping production dependencies is a product change,
-and this change is deliberately confined to P0-06 branch-protection certification. The ERP
-repository has a blocking `npm audit --audit-level=critical` gate; **this repository has no
-audit gate at all**, which is why these went unnoticed.
+The remediation also added the gate that stops it recurring, and the owner made that gate a
+required status check — so the audit is now enforced on `main` rather than merely available.
+`next` moved to `16.3.5`.
 
-> **Suggested follow-up, separate from P0-06:** triage the four criticals and add a blocking
-> `npm audit --audit-level=critical` step to this repository's CI, as the ERP repository has.
-> `next` is on `16.1.1` here; the advisories against it should be checked against the current
-> patch line.
+This certification neither performed nor takes credit for that remediation; it records it
+because the required-check list it certifies now depends on it.
 
 ---
 
-## 6. Secret-exposure audit
+## 7. Secret-exposure audit
 
 This repository has had public windows, so its **entire git history** was scanned — not just
 `HEAD`. Re-run on 2026-09-17 after the most recent publication.
