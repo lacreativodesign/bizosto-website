@@ -1,0 +1,43 @@
+# Blocking dependency vulnerability gate.
+#
+# Fails on ANY High or Critical advisory in the full lockfile (runtime AND
+# development). Development dependencies are deliberately in scope: a
+# compromised build-time package is a supply-chain risk too, so this gate
+# does not use --omit=dev.
+#
+# Deliberately NOT path-filtered. Once this check is added to the
+# "Production Main Protection" ruleset as a required status check, a path
+# filter would leave GitHub waiting forever on a required check that never
+# runs for pull requests touching unrelated files.
+name: dependency-security
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-security:
+    name: dependency-security
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Matches the Node.js major the app is built and deployed on.
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies from lockfile
+        run: npm ci
+
+      - name: Audit dependencies (fails on high or critical)
+        run: npm run security:audit
