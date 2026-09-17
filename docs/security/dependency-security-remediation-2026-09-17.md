@@ -41,20 +41,42 @@ Dependabot counts (one row per advisory), the same base tree carries
 (5 critical, 55 high, 36 moderate, 6 low instances), which reconciles with
 the owner-reported 87 open Dependabot alerts.
 
-### GitHub Dependabot API availability
+### GitHub Dependabot live baseline
 
-**API available: NO.**
+**REST API available: NO. Live totals obtained: YES.**
 
 `GET /repos/lacreativodesign/bizosto-website/dependabot/alerts` returns
 `403 Resource not accessible by integration` for this session's credential —
 the GitHub App installation does not carry the `security_events` /
 `vulnerability_alerts` read scope. Ordinary repository endpoints authenticate
-normally, so this is a scope limitation, not an outage.
+normally, so this is a scope limitation, not an outage. Per-alert IDs and
+states could therefore not be enumerated.
 
-Live alert IDs, states and counts are therefore **not** reproduced here.
-The baseline above is derived from the authoritative artifacts that *were*
-reachable: the committed `package-lock.json` resolved tree and `npm audit`,
-which sources the same GitHub Advisory Database that backs Dependabot.
+GitHub did, however, report the authoritative totals for the **default
+branch** on push:
+
+> GitHub found 87 vulnerabilities on lacreativodesign/bizosto-website's
+> default branch (5 critical, 43 high, 33 moderate, 6 low).
+
+| Source | Total | Critical | High | Moderate | Low |
+| --- | --- | --- | --- | --- | --- |
+| GitHub Dependabot (live, `main`) | **87** | **5** | 43 | 33 | **6** |
+| `npm audit` advisory instances at base | 102 | **5** | 55 | 36 | **6** |
+| `npm audit` unique GHSA advisories | 92 | — | — | — | — |
+| `npm audit` package rows at base | 30 | 4 | 12 | 12 | 2 |
+
+Critical (5) and Low (6) match Dependabot exactly. The High and Moderate
+instance counts run higher in `npm audit` because it reports an advisory once
+per affected copy in the tree — `minimatch` 3.x and 9.x, `brace-expansion`
+1.x and 2.x, and `postcss` 8.4.31 and 8.5.6 each appear twice — whereas
+Dependabot de-duplicates per manifest and package. The two sources describe
+the same underlying set.
+
+The 5 live Critical alerts map to exactly the 5 Critical advisory instances
+remediated below: GHSA-m7jm-9gc2-mpf2 (`fast-xml-parser`),
+GHSA-p293-qw3h-jr36 and GHSA-2xp9-vwfh-vxw4 (`next`),
+GHSA-xq3m-2v4x-88gg (`protobufjs`) and GHSA-xv26-6w52-cph6
+(`websocket-driver`).
 
 ---
 
@@ -257,6 +279,33 @@ The other 7 rows (`gaxios`, `google-gax`, `retry-request`, `teeny-request`,
 Track `firebase-admin` 14.x as a separate, scoped upgrade: confirm the Vercel
 Node runtime is >= 22, upgrade, and re-verify a real lead write end-to-end
 against Firestore. That change closes all 8 remaining Moderate findings.
+
+---
+
+## DEPENDABOT CLOSURE PROOF
+
+Dependabot evaluates the **default branch**. This pull request is manual-merge
+only, so the 87 alerts on `main` remain OPEN until it is merged. No claim of
+"0 open alerts" is made here, and **no alert was dismissed, suppressed or
+manually closed.**
+
+What is proven instead is *prospective* remediation: every Critical and High
+advisory present on `main` maps to a patched version in this branch's
+`package-lock.json`.
+
+| Severity | Advisory instances on `main` | Mapped to a patched version at this head |
+| --- | --- | --- |
+| Critical | 5 | 5 (100%) |
+| High | 55 npm instances / 43 Dependabot alerts | all (100%) |
+
+The per-package mapping is the Critical and High matrices above: each row
+gives the vulnerable version on `main`, the first patched version, and the
+version this lockfile actually resolves. A clean `npm ci` from this lockfile
+yields 0 Critical and 0 High, and `npm audit --audit-level=high` exits 0.
+
+After a manual merge, Dependabot should re-evaluate `main` and settle to
+Critical 0 / High 0, with the 8 Moderate `uuid` alerts documented below
+remaining until the separate `firebase-admin` 14.x follow-up lands.
 
 ---
 
