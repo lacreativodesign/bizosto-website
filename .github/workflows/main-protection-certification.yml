@@ -1,0 +1,146 @@
+name: Main Protection Certification
+
+# P0-06 — re-reads the LIVE branch protection on this repository's `main` and fails if it has
+# drifted from what docs/security/p0-06-main-protection.certified.json certifies.
+#
+# WHY THIS WORKFLOW EXISTS HERE RATHER THAN IN THE ERP REPOSITORY
+#
+# The Bizosto certification covers two repositories. The other half runs in
+# lacreativodesign/nextjs-boilerplate and certifies only itself (`--repo=erp`).
+#
+# It cannot certify this one once the final private posture is restored. This repository is
+# CURRENTLY PUBLIC only as a temporary GitHub Free-plan expedient; the certified final posture is
+# PRIVATE. In that private posture, a job token issued to the ERP repository has no access here
+# and GitHub answers 404. A cross-repository read that fails must never be reported as a
+# successful certification, so each repository verifies ITSELF under its own automatic job token.
+# Neither can vouch for the other, and neither needs to.
+#
+# WHY THE TOKEN MATTERS, BEYOND RATE LIMITS
+#
+# `GET /repos/{owner}/{repo}/rulesets/{id}` returns `bypass_actors` only to callers with
+# sufficient access to the ruleset. A single bypass actor makes every other rule advisory, so
+# that field decides whether the protection is real — and an unprivileged read can come back
+# WITHOUT it. Absent is not empty. The verifier therefore refuses to certify the control from
+# an unprivileged read instead of defaulting it to "none"; an earlier version of the ERP
+# verifier defaulted it, and independent review correctly rejected that as a false green.
+#
+# WHAT IT WILL REPORT UNTIL THE OWNER ACTS
+#
+# Two things remain outstanding and this job says so rather than passing quietly:
+#
+#   1. VISIBILITY: this repository must end up PRIVATE. It is currently PUBLIC temporarily so
+#      ruleset 23581080 can remain available on GitHub Free. A public reading therefore fails as
+#      `repository.visibility`, which is intentional until the owner upgrades to GitHub Pro or
+#      higher and restores the repository to private.
+#   2. INDEPENDENT REVIEW: required approvals remain 0 until a second independent human
+#      collaborator exists. That gap is reported separately by the contract.
+#
+# The ruleset itself ALREADY EXISTS and is pinned as id 23581080. The workflow continues to
+# evaluate it even while visibility is still an open owner action.
+#
+# No personal access token is stored or required.
+
+on:
+  schedule:
+    # 07:00 UTC daily — noon in Asia/Karachi, so drift introduced overnight is reported before
+    # the working day rather than at the next merge.
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    # Only when the certification itself changes: re-reading GitHub on every unrelated merge
+    # spends rate limit to re-prove something that cannot have changed.
+    paths:
+      - 'docs/security/p0-06-main-protection.certified.json'
+      - 'scripts/verify-github-main-protection.mjs'
+      - '.github/workflows/main-protection-certification.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  main-protection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # No `npm ci`: the verifier is dependency-free on purpose, so the control that proves
+      # `main` is protected cannot be broken by an unrelated dependency problem.
+      - name: Verify live main protection (P0-06)
+        run: node scripts/verify-github-main-protection.mjs --repo=website
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # WHY A PROSE GUARD IS PART OF THE CONTROL
+      #
+      # Every artefact in this certification makes claims about live infrastructure, and live
+      # infrastructure moves. Prose does not fail a build on its own, so a sentence can outlive
+      # the world it described: four did here, and two of those survived a rewrite whose whole
+      # purpose was to remove them. One of the two was in the OTHER repository's copy of this
+      # contract, found only by diffing the two files against each other.
+      #
+      # The ERP repository asserts these phrases in its Jest suite. This repository has no test
+      # runner, and the ERP suite cannot reach across repositories — especially not once the
+      # private posture is restored — so the same guard runs here, as a step, dependency-free.
+      #
+      # THIS FILE IS DELIBERATELY NOT SCANNED. It is the scanner, and it necessarily contains
+      # every phrase below as its own pattern; including it made the ERP version of this guard
+      # fail against itself.
+      - name: Guard against certification prose that has gone stale (P0-06)
+        run: |
+          set -uo pipefail
+          contract=docs/security/p0-06-main-protection.certified.json
+          verifier=scripts/verify-github-main-protection.mjs
+          fail=0
+
+          # A claim that must not reappear in either artefact, in any letter case.
+          absent() {
+            for f in "$contract" "$verifier"; do
+              if grep -qiF -- "$1" "$f"; then
+                echo "FAIL  $f still claims: $1"
+                fail=1
+              fi
+            done
+          }
+
+          # Defect 3: visibility asserted, and the credential model justified on anonymous reads.
+          absent 'both repositories are public'
+          absent 'readable anonymously'
+          absent 'needs no personal access token'
+          # Defect 4: the open visibility gap described as already closed.
+          absent 'is private and must stay that way'
+          absent 'bizosto-website is private'
+          # Superseded by PR #61: Vercel was once the only required check and there was no gate.
+          absent 'only required check'
+          absent 'no audit gate'
+          absent 'dependency-security is future work'
+
+          # A claim that must still be there. Deleting a sentence is as much drift as keeping a
+          # false one, and is how an open gap quietly stops being reported.
+          present() {
+            if ! grep -qF -- "$1" "$contract"; then
+              echo "FAIL  $contract no longer states: $1"
+              fail=1
+            fi
+          }
+
+          present 'dependency-security'
+          present 'npm audit --audit-level=high'
+          present 'CURRENTLY PUBLIC'
+          present '"expectedVisibility": "private"'
+
+          if [ "$fail" -ne 0 ]; then
+            echo
+            echo 'P0-06: the certification RECORD now contradicts the configuration it certifies.'
+            echo 'Fix the record to match live reality — do not relax the expectation to match'
+            echo 'the record, which converts an open owner gap into a false green.'
+            exit 1
+          fi
+          echo 'OK    no stale certification claim, and every load-bearing claim still present.'
