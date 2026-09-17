@@ -77,3 +77,70 @@ jobs:
         run: node scripts/verify-github-main-protection.mjs --repo=website
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # WHY A PROSE GUARD IS PART OF THE CONTROL
+      #
+      # Every artefact in this certification makes claims about live infrastructure, and live
+      # infrastructure moves. Prose does not fail a build on its own, so a sentence can outlive
+      # the world it described: four did here, and two of those survived a rewrite whose whole
+      # purpose was to remove them. One of the two was in the OTHER repository's copy of this
+      # contract, found only by diffing the two files against each other.
+      #
+      # The ERP repository asserts these phrases in its Jest suite. This repository has no test
+      # runner, and the ERP suite cannot reach across repositories — especially not once the
+      # private posture is restored — so the same guard runs here, as a step, dependency-free.
+      #
+      # THIS FILE IS DELIBERATELY NOT SCANNED. It is the scanner, and it necessarily contains
+      # every phrase below as its own pattern; including it made the ERP version of this guard
+      # fail against itself.
+      - name: Guard against certification prose that has gone stale (P0-06)
+        run: |
+          set -uo pipefail
+          contract=docs/security/p0-06-main-protection.certified.json
+          verifier=scripts/verify-github-main-protection.mjs
+          fail=0
+
+          # A claim that must not reappear in either artefact, in any letter case.
+          absent() {
+            for f in "$contract" "$verifier"; do
+              if grep -qiF -- "$1" "$f"; then
+                echo "FAIL  $f still claims: $1"
+                fail=1
+              fi
+            done
+          }
+
+          # Defect 3: visibility asserted, and the credential model justified on anonymous reads.
+          absent 'both repositories are public'
+          absent 'readable anonymously'
+          absent 'needs no personal access token'
+          # Defect 4: the open visibility gap described as already closed.
+          absent 'is private and must stay that way'
+          absent 'bizosto-website is private'
+          # Superseded by PR #61: Vercel was once the only required check and there was no gate.
+          absent 'only required check'
+          absent 'no audit gate'
+          absent 'dependency-security is future work'
+
+          # A claim that must still be there. Deleting a sentence is as much drift as keeping a
+          # false one, and is how an open gap quietly stops being reported.
+          present() {
+            if ! grep -qF -- "$1" "$contract"; then
+              echo "FAIL  $contract no longer states: $1"
+              fail=1
+            fi
+          }
+
+          present 'dependency-security'
+          present 'npm audit --audit-level=high'
+          present 'CURRENTLY PUBLIC'
+          present '"expectedVisibility": "private"'
+
+          if [ "$fail" -ne 0 ]; then
+            echo
+            echo 'P0-06: the certification RECORD now contradicts the configuration it certifies.'
+            echo 'Fix the record to match live reality — do not relax the expectation to match'
+            echo 'the record, which converts an open owner gap into a false green.'
+            exit 1
+          fi
+          echo 'OK    no stale certification claim, and every load-bearing claim still present.'

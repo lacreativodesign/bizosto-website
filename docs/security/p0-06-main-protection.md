@@ -170,7 +170,7 @@ independent review, no automated self-approval path.
 | ----------------------------------------------------- | ---------------------------------------------------------------- |
 | `docs/security/p0-06-main-protection.certified.json`  | The contract: what must be true of `main`. Holds no credential.  |
 | `scripts/verify-github-main-protection.mjs`           | Fail-closed verifier. Dependency-free.                           |
-| `.github/workflows/main-protection-certification.yml` | Runs the verifier daily and on demand. **Not** a required check. |
+| `.github/workflows/main-protection-certification.yml` | Runs the verifier and the prose guard daily and on demand. **Not** a required check. |
 | `docs/security/p0-06-main-protection.md`              | This document.                                                   |
 
 Nothing under `app/`, `components/`, `lib/` or `public/` is touched. No product behaviour, UI or
@@ -183,6 +183,34 @@ A job token issued to the ERP repository cannot read this one once it is private
 So rather than hand one repository a credential for the other, each verifies itself under its own
 automatic job token. Neither vouches for the other, and no personal access token is stored or
 required.
+
+### Why the workflow also guards its own prose
+
+The workflow has a second step that scans the contract and the verifier for claims that have gone
+stale. It exists because four sentences in this certification did exactly that, and prose does not
+fail a build on its own.
+
+Two were caught by independent review. Two were not:
+
+- one survived a rewrite whose entire purpose was to remove it — it asserted that both
+  repositories were public and justified the credential model on unauthenticated reads, which is
+  the same false-green as defaulting an unobservable bypass list;
+- one lived in the **other** repository's copy of this contract, claiming this repository was
+  already private. It was found by diffing the two copies against each other, not by review. The
+  guard written for the first miss did not catch it, because none of its patterns covered that
+  phrasing.
+
+The step asserts eight phrases **absent** and four **present** — because deleting a sentence is as
+much drift as keeping a false one, and is how an open gap quietly stops being reported. It runs
+dependency-free: this repository has no test runner, and the ERP repository's Jest suite cannot
+reach across repositories, least of all once the private posture is restored. The workflow file
+itself is deliberately excluded from the scan; it is the scanner, and it contains every phrase as
+its own pattern.
+
+Four mutants confirm it has teeth, each producing the right diagnosis rather than a generic
+failure: reinstating the "already private" claim, deleting the `CURRENTLY PUBLIC` admission,
+lowering the recorded audit gate from `high` to `critical`, and removing `dependency-security`
+from the record. The contract was restored and re-verified by SHA-256 after each.
 
 ### Why the certification workflow is not a required check
 
