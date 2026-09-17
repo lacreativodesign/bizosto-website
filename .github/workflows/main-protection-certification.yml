@@ -8,11 +8,12 @@ name: Main Protection Certification
 # The Bizosto certification covers two repositories. The other half runs in
 # lacreativodesign/nextjs-boilerplate and certifies only itself (`--repo=erp`).
 #
-# It cannot certify this one. This repository is PRIVATE, and a job token issued to the ERP
-# repository has no access to it — GitHub answers 404. A cross-repository read that fails must
-# never be reported as a successful certification, so rather than hand one repository a
-# credential for the other, each verifies ITSELF under its own automatic job token. Neither can
-# vouch for the other, and neither needs to.
+# It cannot certify this one once the final private posture is restored. This repository is
+# CURRENTLY PUBLIC only as a temporary GitHub Free-plan expedient; the certified final posture is
+# PRIVATE. In that private posture, a job token issued to the ERP repository has no access here
+# and GitHub answers 404. A cross-repository read that fails must never be reported as a
+# successful certification, so each repository verifies ITSELF under its own automatic job token.
+# Neither can vouch for the other, and neither needs to.
 #
 # WHY THE TOKEN MATTERS, BEYOND RATE LIMITS
 #
@@ -25,15 +26,17 @@ name: Main Protection Certification
 #
 # WHAT IT WILL REPORT UNTIL THE OWNER ACTS
 #
-# Two things are outstanding and this job says so rather than passing quietly:
+# Two things remain outstanding and this job says so rather than passing quietly:
 #
-#   1. This repository must be PRIVATE. Publishing proprietary source to obtain a branch
-#      protection setting is not a remedy — it is a larger exposure than the control it buys.
-#      A public reading fails as `repository.visibility`.
-#   2. GitHub Free serves rulesets on public repositories only. Protecting a PRIVATE
-#      repository needs GitHub Pro or higher. Until the plan is upgraded and the ruleset
-#      created, this job fails with `ruleset.applied`, which is the honest reading of an open
-#      P0-06 gap. It gates nothing: this is not a required check.
+#   1. VISIBILITY: this repository must end up PRIVATE. It is currently PUBLIC temporarily so
+#      ruleset 23581080 can remain available on GitHub Free. A public reading therefore fails as
+#      `repository.visibility`, which is intentional until the owner upgrades to GitHub Pro or
+#      higher and restores the repository to private.
+#   2. INDEPENDENT REVIEW: required approvals remain 0 until a second independent human
+#      collaborator exists. That gap is reported separately by the contract.
+#
+# The ruleset itself ALREADY EXISTS and is pinned as id 23581080. The workflow continues to
+# evaluate it even while visibility is still an open owner action.
 #
 # No personal access token is stored or required.
 
